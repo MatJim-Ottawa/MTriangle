@@ -6,4 +6,8 @@ PA = [];
 
 PB = [0;0;0;0;0];
 
-minterface(P,PB,PA,S)
+o = MTriangle(P,PB,PA,S);
+
+
+figure(1);
+plot(o.P(:,1),o.P(:,2

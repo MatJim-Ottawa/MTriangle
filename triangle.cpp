@@ -341,8 +341,6 @@
 
 #define ONETHIRD 0.333333333333333333333333333333333333333333333333333333333333
 
-
-#include "mex.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1435,7 +1433,7 @@ int size;
 
   memptr = (VOID *) malloc((unsigned int) size);
   if (memptr == (VOID *) NULL) {
-    mexPrintf("Error:  Out of memory.\n");
+    printf("Error:  Out of memory.\n");
     triexit(1);
   }
   return(memptr);
@@ -1472,69 +1470,69 @@ void syntax()
 {
 #ifdef CDT_ONLY
 #ifdef REDUCED
-  mexPrintf("triangle [-pAcjevngBPNEIOXzo_lQVh] input_file\n");
+  printf("triangle [-pAcjevngBPNEIOXzo_lQVh] input_file\n");
 #else /* not REDUCED */
-  mexPrintf("triangle [-pAcjevngBPNEIOXzo_iFlCQVh] input_file\n");
+  printf("triangle [-pAcjevngBPNEIOXzo_iFlCQVh] input_file\n");
 #endif /* not REDUCED */
 #else /* not CDT_ONLY */
 #ifdef REDUCED
-  mexPrintf("triangle [-prq__a__uAcDjevngBPNEIOXzo_YS__lQVh] input_file\n");
+  printf("triangle [-prq__a__uAcDjevngBPNEIOXzo_YS__lQVh] input_file\n");
 #else /* not REDUCED */
-  mexPrintf("triangle [-prq__a__uAcDjevngBPNEIOXzo_YS__iFlsCQVh] input_file\n");
+  printf("triangle [-prq__a__uAcDjevngBPNEIOXzo_YS__iFlsCQVh] input_file\n");
 #endif /* not REDUCED */
 #endif /* not CDT_ONLY */
 
-  mexPrintf("    -p  Triangulates a Planar Straight Line Graph (.poly file).\n");
+  printf("    -p  Triangulates a Planar Straight Line Graph (.poly file).\n");
 #ifndef CDT_ONLY
-  mexPrintf("    -r  Refines a previously generated mesh.\n");
-  mexPrintf(
+  printf("    -r  Refines a previously generated mesh.\n");
+  printf(
     "    -q  Quality mesh generation.  A minimum angle may be specified.\n");
-  mexPrintf("    -a  Applies a maximum triangle area constraint.\n");
-  mexPrintf("    -u  Applies a user-defined triangle constraint.\n");
+  printf("    -a  Applies a maximum triangle area constraint.\n");
+  printf("    -u  Applies a user-defined triangle constraint.\n");
 #endif /* not CDT_ONLY */
-  mexPrintf(
+  printf(
     "    -A  Applies attributes to identify triangles in certain regions.\n");
-  mexPrintf("    -c  Encloses the convex hull with segments.\n");
+  printf("    -c  Encloses the convex hull with segments.\n");
 #ifndef CDT_ONLY
-  mexPrintf("    -D  Conforming Delaunay:  all triangles are truly Delaunay.\n");
+  printf("    -D  Conforming Delaunay:  all triangles are truly Delaunay.\n");
 #endif /* not CDT_ONLY */
 /*
-  mexPrintf("    -w  Weighted Delaunay triangulation.\n");
-  mexPrintf("    -W  Regular triangulation (lower hull of a height field).\n");
+  printf("    -w  Weighted Delaunay triangulation.\n");
+  printf("    -W  Regular triangulation (lower hull of a height field).\n");
 */
-  mexPrintf("    -j  Jettison unused vertices from output .node file.\n");
-  mexPrintf("    -e  Generates an edge list.\n");
-  mexPrintf("    -v  Generates a Voronoi diagram.\n");
-  mexPrintf("    -n  Generates a list of triangle neighbors.\n");
-  mexPrintf("    -g  Generates an .off file for Geomview.\n");
-  mexPrintf("    -B  Suppresses output of boundary information.\n");
-  mexPrintf("    -P  Suppresses output of .poly file.\n");
-  mexPrintf("    -N  Suppresses output of .node file.\n");
-  mexPrintf("    -E  Suppresses output of .ele file.\n");
-  mexPrintf("    -I  Suppresses mesh iteration numbers.\n");
-  mexPrintf("    -O  Ignores holes in .poly file.\n");
-  mexPrintf("    -X  Suppresses use of exact arithmetic.\n");
-  mexPrintf("    -z  Numbers all items starting from zero (rather than one).\n");
-  mexPrintf("    -o2 Generates second-order subparametric elements.\n");
+  printf("    -j  Jettison unused vertices from output .node file.\n");
+  printf("    -e  Generates an edge list.\n");
+  printf("    -v  Generates a Voronoi diagram.\n");
+  printf("    -n  Generates a list of triangle neighbors.\n");
+  printf("    -g  Generates an .off file for Geomview.\n");
+  printf("    -B  Suppresses output of boundary information.\n");
+  printf("    -P  Suppresses output of .poly file.\n");
+  printf("    -N  Suppresses output of .node file.\n");
+  printf("    -E  Suppresses output of .ele file.\n");
+  printf("    -I  Suppresses mesh iteration numbers.\n");
+  printf("    -O  Ignores holes in .poly file.\n");
+  printf("    -X  Suppresses use of exact arithmetic.\n");
+  printf("    -z  Numbers all items starting from zero (rather than one).\n");
+  printf("    -o2 Generates second-order subparametric elements.\n");
 #ifndef CDT_ONLY
-  mexPrintf("    -Y  Suppresses boundary segment splitting.\n");
-  mexPrintf("    -S  Specifies maximum number of added Steiner points.\n");
+  printf("    -Y  Suppresses boundary segment splitting.\n");
+  printf("    -S  Specifies maximum number of added Steiner points.\n");
 #endif /* not CDT_ONLY */
 #ifndef REDUCED
-  mexPrintf("    -i  Uses incremental method, rather than divide-and-conquer.\n");
-  mexPrintf("    -F  Uses Fortune's sweepline algorithm, rather than d-and-c.\n");
+  printf("    -i  Uses incremental method, rather than divide-and-conquer.\n");
+  printf("    -F  Uses Fortune's sweepline algorithm, rather than d-and-c.\n");
 #endif /* not REDUCED */
-  mexPrintf("    -l  Uses vertical cuts only, rather than alternating cuts.\n");
+  printf("    -l  Uses vertical cuts only, rather than alternating cuts.\n");
 #ifndef REDUCED
 #ifndef CDT_ONLY
-  mexPrintf(
+  printf(
     "    -s  Force segments into mesh by splitting (instead of using CDT).\n");
 #endif /* not CDT_ONLY */
-  mexPrintf("    -C  Check consistency of final mesh.\n");
+  printf("    -C  Check consistency of final mesh.\n");
 #endif /* not REDUCED */
-  mexPrintf("    -Q  Quiet:  No terminal output except errors.\n");
-  mexPrintf("    -V  Verbose:  Detailed information on what I'm doing.\n");
-  mexPrintf("    -h  Help:  Detailed instructions for Triangle.\n");
+  printf("    -Q  Quiet:  No terminal output except errors.\n");
+  printf("    -V  Verbose:  Detailed information on what I'm doing.\n");
+  printf("    -h  Help:  Detailed instructions for Triangle.\n");
   triexit(0);
 }
 
@@ -1550,1714 +1548,1714 @@ void syntax()
 
 void info()
 {
-  mexPrintf("Triangle\n");
-  mexPrintf(
+  printf("Triangle\n");
+  printf(
 "A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator.\n");
-  mexPrintf("Version 1.6\n\n");
-  mexPrintf(
+  printf("Version 1.6\n\n");
+  printf(
 "Copyright 1993, 1995, 1997, 1998, 2002, 2005 Jonathan Richard Shewchuk\n");
-  mexPrintf("2360 Woolsey #H / Berkeley, California 94705-1927\n");
-  mexPrintf("Bugs/comments to jrs@cs.berkeley.edu\n");
-  mexPrintf(
+  printf("2360 Woolsey #H / Berkeley, California 94705-1927\n");
+  printf("Bugs/comments to jrs@cs.berkeley.edu\n");
+  printf(
 "Created as part of the Quake project (tools for earthquake simulation).\n");
-  mexPrintf(
+  printf(
 "Supported in part by NSF Grant CMS-9318163 and an NSERC 1967 Scholarship.\n");
-  mexPrintf("There is no warranty whatsoever.  Use at your own risk.\n");
+  printf("There is no warranty whatsoever.  Use at your own risk.\n");
 #ifdef SINGLE
-  mexPrintf("This executable is compiled for single precision arithmetic.\n\n\n");
+  printf("This executable is compiled for single precision arithmetic.\n\n\n");
 #else /* not SINGLE */
-  mexPrintf("This executable is compiled for double precision arithmetic.\n\n\n");
+  printf("This executable is compiled for double precision arithmetic.\n\n\n");
 #endif /* not SINGLE */
-  mexPrintf(
+  printf(
 "Triangle generates exact Delaunay triangulations, constrained Delaunay\n");
-  mexPrintf(
+  printf(
 "triangulations, conforming Delaunay triangulations, Voronoi diagrams, and\n");
-  mexPrintf(
+  printf(
 "high-quality triangular meshes.  The latter can be generated with no small\n"
 );
-  mexPrintf(
+  printf(
 "or large angles, and are thus suitable for finite element analysis.  If no\n"
 );
-  mexPrintf(
+  printf(
 "command line switch is specified, your .node input file is read, and the\n");
-  mexPrintf(
+  printf(
 "Delaunay triangulation is returned in .node and .ele output files.  The\n");
-  mexPrintf("command syntax is:\n\n");
-  mexPrintf("triangle [-prq__a__uAcDjevngBPNEIOXzo_YS__iFlsCQVh] input_file\n\n");
-  mexPrintf(
+  printf("command syntax is:\n\n");
+  printf("triangle [-prq__a__uAcDjevngBPNEIOXzo_YS__iFlsCQVh] input_file\n\n");
+  printf(
 "Underscores indicate that numbers may optionally follow certain switches.\n");
-  mexPrintf(
+  printf(
 "Do not leave any space between a switch and its numeric parameter.\n");
-  mexPrintf(
+  printf(
 "input_file must be a file with extension .node, or extension .poly if the\n");
-  mexPrintf(
+  printf(
 "-p switch is used.  If -r is used, you must supply .node and .ele files,\n");
-  mexPrintf(
+  printf(
 "and possibly a .poly file and an .area file as well.  The formats of these\n"
 );
-  mexPrintf("files are described below.\n\n");
-  mexPrintf("Command Line Switches:\n\n");
-  mexPrintf(
+  printf("files are described below.\n\n");
+  printf("Command Line Switches:\n\n");
+  printf(
 "    -p  Reads a Planar Straight Line Graph (.poly file), which can specify\n"
 );
-  mexPrintf(
+  printf(
 "        vertices, segments, holes, regional attributes, and regional area\n");
-  mexPrintf(
+  printf(
 "        constraints.  Generates a constrained Delaunay triangulation (CDT)\n"
 );
-  mexPrintf(
+  printf(
 "        fitting the input; or, if -s, -q, -a, or -u is used, a conforming\n");
-  mexPrintf(
+  printf(
 "        constrained Delaunay triangulation (CCDT).  If you want a truly\n");
-  mexPrintf(
+  printf(
 "        Delaunay (not just constrained Delaunay) triangulation, use -D as\n");
-  mexPrintf(
+  printf(
 "        well.  When -p is not used, Triangle reads a .node file by default.\n"
 );
-  mexPrintf(
+  printf(
 "    -r  Refines a previously generated mesh.  The mesh is read from a .node\n"
 );
-  mexPrintf(
+  printf(
 "        file and an .ele file.  If -p is also used, a .poly file is read\n");
-  mexPrintf(
+  printf(
 "        and used to constrain segments in the mesh.  If -a is also used\n");
-  mexPrintf(
+  printf(
 "        (with no number following), an .area file is read and used to\n");
-  mexPrintf(
+  printf(
 "        impose area constraints on the mesh.  Further details on refinement\n"
 );
-  mexPrintf("        appear below.\n");
-  mexPrintf(
+  printf("        appear below.\n");
+  printf(
 "    -q  Quality mesh generation by Delaunay refinement (a hybrid of Paul\n");
-  mexPrintf(
+  printf(
 "        Chew's and Jim Ruppert's algorithms).  Adds vertices to the mesh to\n"
 );
-  mexPrintf(
+  printf(
 "        ensure that all angles are between 20 and 140 degrees.  An\n");
-  mexPrintf(
+  printf(
 "        alternative bound on the minimum angle, replacing 20 degrees, may\n");
-  mexPrintf(
+  printf(
 "        be specified after the `q'.  The specified angle may include a\n");
-  mexPrintf(
+  printf(
 "        decimal point, but not exponential notation.  Note that a bound of\n"
 );
-  mexPrintf(
+  printf(
 "        theta degrees on the smallest angle also implies a bound of\n");
-  mexPrintf(
+  printf(
 "        (180 - 2 theta) on the largest angle.  If the minimum angle is 28.6\n"
 );
-  mexPrintf(
+  printf(
 "        degrees or smaller, Triangle is mathematically guaranteed to\n");
-  mexPrintf(
+  printf(
 "        terminate (assuming infinite precision arithmetic--Triangle may\n");
-  mexPrintf(
+  printf(
 "        fail to terminate if you run out of precision).  In practice,\n");
-  mexPrintf(
+  printf(
 "        Triangle often succeeds for minimum angles up to 34 degrees.  For\n");
-  mexPrintf(
+  printf(
 "        some meshes, however, you might need to reduce the minimum angle to\n"
 );
-  mexPrintf(
+  printf(
 "        avoid problems associated with insufficient floating-point\n");
-  mexPrintf("        precision.\n");
-  mexPrintf(
+  printf("        precision.\n");
+  printf(
 "    -a  Imposes a maximum triangle area.  If a number follows the `a', no\n");
-  mexPrintf(
+  printf(
 "        triangle is generated whose area is larger than that number.  If no\n"
 );
-  mexPrintf(
+  printf(
 "        number is specified, an .area file (if -r is used) or .poly file\n");
-  mexPrintf(
+  printf(
 "        (if -r is not used) specifies a set of maximum area constraints.\n");
-  mexPrintf(
+  printf(
 "        An .area file contains a separate area constraint for each\n");
-  mexPrintf(
+  printf(
 "        triangle, and is useful for refining a finite element mesh based on\n"
 );
-  mexPrintf(
+  printf(
 "        a posteriori error estimates.  A .poly file can optionally contain\n"
 );
-  mexPrintf(
+  printf(
 "        an area constraint for each segment-bounded region, thereby\n");
-  mexPrintf(
+  printf(
 "        controlling triangle densities in a first triangulation of a PSLG.\n"
 );
-  mexPrintf(
+  printf(
 "        You can impose both a fixed area constraint and a varying area\n");
-  mexPrintf(
+  printf(
 "        constraint by invoking the -a switch twice, once with and once\n");
-  mexPrintf(
+  printf(
 "        without a number following.  Each area specified may include a\n");
-  mexPrintf("        decimal point.\n");
-  mexPrintf(
+  printf("        decimal point.\n");
+  printf(
 "    -u  Imposes a user-defined constraint on triangle size.  There are two\n"
 );
-  mexPrintf(
+  printf(
 "        ways to use this feature.  One is to edit the triunsuitable()\n");
-  mexPrintf(
+  printf(
 "        procedure in triangle.c to encode any constraint you like, then\n");
-  mexPrintf(
+  printf(
 "        recompile Triangle.  The other is to compile triangle.c with the\n");
-  mexPrintf(
+  printf(
 "        EXTERNAL_TEST symbol set (compiler switch -DEXTERNAL_TEST), then\n");
-  mexPrintf(
+  printf(
 "        link Triangle with a separate object file that implements\n");
-  mexPrintf(
+  printf(
 "        triunsuitable().  In either case, the -u switch causes the user-\n");
-  mexPrintf("        defined test to be applied to every triangle.\n");
-  mexPrintf(
+  printf("        defined test to be applied to every triangle.\n");
+  printf(
 "    -A  Assigns an additional floating-point attribute to each triangle\n");
-  mexPrintf(
+  printf(
 "        that identifies what segment-bounded region each triangle belongs\n");
-  mexPrintf(
+  printf(
 "        to.  Attributes are assigned to regions by the .poly file.  If a\n");
-  mexPrintf(
+  printf(
 "        region is not explicitly marked by the .poly file, triangles in\n");
-  mexPrintf(
+  printf(
 "        that region are assigned an attribute of zero.  The -A switch has\n");
-  mexPrintf(
+  printf(
 "        an effect only when the -p switch is used and the -r switch is not.\n"
 );
-  mexPrintf(
+  printf(
 "    -c  Creates segments on the convex hull of the triangulation.  If you\n");
-  mexPrintf(
+  printf(
 "        are triangulating a vertex set, this switch causes a .poly file to\n"
 );
-  mexPrintf(
+  printf(
 "        be written, containing all edges of the convex hull.  If you are\n");
-  mexPrintf(
+  printf(
 "        triangulating a PSLG, this switch specifies that the whole convex\n");
-  mexPrintf(
+  printf(
 "        hull of the PSLG should be triangulated, regardless of what\n");
-  mexPrintf(
+  printf(
 "        segments the PSLG has.  If you do not use this switch when\n");
-  mexPrintf(
+  printf(
 "        triangulating a PSLG, Triangle assumes that you have identified the\n"
 );
-  mexPrintf(
+  printf(
 "        region to be triangulated by surrounding it with segments of the\n");
-  mexPrintf(
+  printf(
 "        input PSLG.  Beware:  if you are not careful, this switch can cause\n"
 );
-  mexPrintf(
+  printf(
 "        the introduction of an extremely thin angle between a PSLG segment\n"
 );
-  mexPrintf(
+  printf(
 "        and a convex hull segment, which can cause overrefinement (and\n");
-  mexPrintf(
+  printf(
 "        possibly failure if Triangle runs out of precision).  If you are\n");
-  mexPrintf(
+  printf(
 "        refining a mesh, the -c switch works differently:  it causes a\n");
-  mexPrintf(
+  printf(
 "        .poly file to be written containing the boundary edges of the mesh\n"
 );
-  mexPrintf("        (useful if no .poly file was read).\n");
-  mexPrintf(
+  printf("        (useful if no .poly file was read).\n");
+  printf(
 "    -D  Conforming Delaunay triangulation:  use this switch if you want to\n"
 );
-  mexPrintf(
+  printf(
 "        ensure that all the triangles in the mesh are Delaunay, and not\n");
-  mexPrintf(
+  printf(
 "        merely constrained Delaunay; or if you want to ensure that all the\n"
 );
-  mexPrintf(
+  printf(
 "        Voronoi vertices lie within the triangulation.  (Some finite volume\n"
 );
-  mexPrintf(
+  printf(
 "        methods have this requirement.)  This switch invokes Ruppert's\n");
-  mexPrintf(
+  printf(
 "        original algorithm, which splits every subsegment whose diametral\n");
-  mexPrintf(
+  printf(
 "        circle is encroached.  It usually increases the number of vertices\n"
 );
-  mexPrintf("        and triangles.\n");
-  mexPrintf(
+  printf("        and triangles.\n");
+  printf(
 "    -j  Jettisons vertices that are not part of the final triangulation\n");
-  mexPrintf(
+  printf(
 "        from the output .node file.  By default, Triangle copies all\n");
-  mexPrintf(
+  printf(
 "        vertices in the input .node file to the output .node file, in the\n");
-  mexPrintf(
+  printf(
 "        same order, so their indices do not change.  The -j switch prevents\n"
 );
-  mexPrintf(
+  printf(
 "        duplicated input vertices, or vertices `eaten' by holes, from\n");
-  mexPrintf(
+  printf(
 "        appearing in the output .node file.  Thus, if two input vertices\n");
-  mexPrintf(
+  printf(
 "        have exactly the same coordinates, only the first appears in the\n");
-  mexPrintf(
+  printf(
 "        output.  If any vertices are jettisoned, the vertex numbering in\n");
-  mexPrintf(
+  printf(
 "        the output .node file differs from that of the input .node file.\n");
-  mexPrintf(
+  printf(
 "    -e  Outputs (to an .edge file) a list of edges of the triangulation.\n");
-  mexPrintf(
+  printf(
 "    -v  Outputs the Voronoi diagram associated with the triangulation.\n");
-  mexPrintf(
+  printf(
 "        Does not attempt to detect degeneracies, so some Voronoi vertices\n");
-  mexPrintf(
+  printf(
 "        may be duplicated.  See the discussion of Voronoi diagrams below.\n");
-  mexPrintf(
+  printf(
 "    -n  Outputs (to a .neigh file) a list of triangles neighboring each\n");
-  mexPrintf("        triangle.\n");
-  mexPrintf(
+  printf("        triangle.\n");
+  printf(
 "    -g  Outputs the mesh to an Object File Format (.off) file, suitable for\n"
 );
-  mexPrintf("        viewing with the Geometry Center's Geomview package.\n");
-  mexPrintf(
+  printf("        viewing with the Geometry Center's Geomview package.\n");
+  printf(
 "    -B  No boundary markers in the output .node, .poly, and .edge output\n");
-  mexPrintf(
+  printf(
 "        files.  See the detailed discussion of boundary markers below.\n");
-  mexPrintf(
+  printf(
 "    -P  No output .poly file.  Saves disk space, but you lose the ability\n");
-  mexPrintf(
+  printf(
 "        to maintain constraining segments on later refinements of the mesh.\n"
 );
-  mexPrintf("    -N  No output .node file.\n");
-  mexPrintf("    -E  No output .ele file.\n");
-  mexPrintf(
+  printf("    -N  No output .node file.\n");
+  printf("    -E  No output .ele file.\n");
+  printf(
 "    -I  No iteration numbers.  Suppresses the output of .node and .poly\n");
-  mexPrintf(
+  printf(
 "        files, so your input files won't be overwritten.  (If your input is\n"
 );
-  mexPrintf(
+  printf(
 "        a .poly file only, a .node file is written.)  Cannot be used with\n");
-  mexPrintf(
+  printf(
 "        the -r switch, because that would overwrite your input .ele file.\n");
-  mexPrintf(
+  printf(
 "        Shouldn't be used with the -q, -a, -u, or -s switch if you are\n");
-  mexPrintf(
+  printf(
 "        using a .node file for input, because no .node file is written, so\n"
 );
-  mexPrintf("        there is no record of any added Steiner points.\n");
-  mexPrintf("    -O  No holes.  Ignores the holes in the .poly file.\n");
-  mexPrintf(
+  printf("        there is no record of any added Steiner points.\n");
+  printf("    -O  No holes.  Ignores the holes in the .poly file.\n");
+  printf(
 "    -X  No exact arithmetic.  Normally, Triangle uses exact floating-point\n"
 );
-  mexPrintf(
+  printf(
 "        arithmetic for certain tests if it thinks the inexact tests are not\n"
 );
-  mexPrintf(
+  printf(
 "        accurate enough.  Exact arithmetic ensures the robustness of the\n");
-  mexPrintf(
+  printf(
 "        triangulation algorithms, despite floating-point roundoff error.\n");
-  mexPrintf(
+  printf(
 "        Disabling exact arithmetic with the -X switch causes a small\n");
-  mexPrintf(
+  printf(
 "        improvement in speed and creates the possibility that Triangle will\n"
 );
-  mexPrintf("        fail to produce a valid mesh.  Not recommended.\n");
-  mexPrintf(
+  printf("        fail to produce a valid mesh.  Not recommended.\n");
+  printf(
 "    -z  Numbers all items starting from zero (rather than one).  Note that\n"
 );
-  mexPrintf(
+  printf(
 "        this switch is normally overridden by the value used to number the\n"
 );
-  mexPrintf(
+  printf(
 "        first vertex of the input .node or .poly file.  However, this\n");
-  mexPrintf(
+  printf(
 "        switch is useful when calling Triangle from another program.\n");
-  mexPrintf(
+  printf(
 "    -o2 Generates second-order subparametric elements with six nodes each.\n"
 );
-  mexPrintf(
+  printf(
 "    -Y  No new vertices on the boundary.  This switch is useful when the\n");
-  mexPrintf(
+  printf(
 "        mesh boundary must be preserved so that it conforms to some\n");
-  mexPrintf(
+  printf(
 "        adjacent mesh.  Be forewarned that you will probably sacrifice much\n"
 );
-  mexPrintf(
+  printf(
 "        of the quality of the mesh; Triangle will try, but the resulting\n");
-  mexPrintf(
+  printf(
 "        mesh may contain poorly shaped triangles.  Works well if all the\n");
-  mexPrintf(
+  printf(
 "        boundary vertices are closely spaced.  Specify this switch twice\n");
-  mexPrintf(
+  printf(
 "        (`-YY') to prevent all segment splitting, including internal\n");
-  mexPrintf("        boundaries.\n");
-  mexPrintf(
+  printf("        boundaries.\n");
+  printf(
 "    -S  Specifies the maximum number of Steiner points (vertices that are\n");
-  mexPrintf(
+  printf(
 "        not in the input, but are added to meet the constraints on minimum\n"
 );
-  mexPrintf(
+  printf(
 "        angle and maximum area).  The default is to allow an unlimited\n");
-  mexPrintf(
+  printf(
 "        number.  If you specify this switch with no number after it,\n");
-  mexPrintf(
+  printf(
 "        the limit is set to zero.  Triangle always adds vertices at segment\n"
 );
-  mexPrintf(
+  printf(
 "        intersections, even if it needs to use more vertices than the limit\n"
 );
-  mexPrintf(
+  printf(
 "        you set.  When Triangle inserts segments by splitting (-s), it\n");
-  mexPrintf(
+  printf(
 "        always adds enough vertices to ensure that all the segments of the\n"
 );
-  mexPrintf("        PLSG are recovered, ignoring the limit if necessary.\n");
-  mexPrintf(
+  printf("        PLSG are recovered, ignoring the limit if necessary.\n");
+  printf(
 "    -i  Uses an incremental rather than a divide-and-conquer algorithm to\n");
-  mexPrintf(
+  printf(
 "        construct a Delaunay triangulation.  Try it if the divide-and-\n");
-  mexPrintf("        conquer algorithm fails.\n");
-  mexPrintf(
+  printf("        conquer algorithm fails.\n");
+  printf(
 "    -F  Uses Steven Fortune's sweepline algorithm to construct a Delaunay\n");
-  mexPrintf(
+  printf(
 "        triangulation.  Warning:  does not use exact arithmetic for all\n");
-  mexPrintf("        calculations.  An exact result is not guaranteed.\n");
-  mexPrintf(
+  printf("        calculations.  An exact result is not guaranteed.\n");
+  printf(
 "    -l  Uses only vertical cuts in the divide-and-conquer algorithm.  By\n");
-  mexPrintf(
+  printf(
 "        default, Triangle alternates between vertical and horizontal cuts,\n"
 );
-  mexPrintf(
+  printf(
 "        which usually improve the speed except with vertex sets that are\n");
-  mexPrintf(
+  printf(
 "        small or short and wide.  This switch is primarily of theoretical\n");
-  mexPrintf("        interest.\n");
-  mexPrintf(
+  printf("        interest.\n");
+  printf(
 "    -s  Specifies that segments should be forced into the triangulation by\n"
 );
-  mexPrintf(
+  printf(
 "        recursively splitting them at their midpoints, rather than by\n");
-  mexPrintf(
+  printf(
 "        generating a constrained Delaunay triangulation.  Segment splitting\n"
 );
-  mexPrintf(
+  printf(
 "        is true to Ruppert's original algorithm, but can create needlessly\n"
 );
-  mexPrintf(
+  printf(
 "        small triangles.  This switch is primarily of theoretical interest.\n"
 );
-  mexPrintf(
+  printf(
 "    -C  Check the consistency of the final mesh.  Uses exact arithmetic for\n"
 );
-  mexPrintf(
+  printf(
 "        checking, even if the -X switch is used.  Useful if you suspect\n");
-  mexPrintf("        Triangle is buggy.\n");
-  mexPrintf(
+  printf("        Triangle is buggy.\n");
+  printf(
 "    -Q  Quiet:  Suppresses all explanation of what Triangle is doing,\n");
-  mexPrintf("        unless an error occurs.\n");
-  mexPrintf(
+  printf("        unless an error occurs.\n");
+  printf(
 "    -V  Verbose:  Gives detailed information about what Triangle is doing.\n"
 );
-  mexPrintf(
+  printf(
 "        Add more `V's for increasing amount of detail.  `-V' is most\n");
-  mexPrintf(
+  printf(
 "        useful; itgives information on algorithmic progress and much more\n");
-  mexPrintf(
+  printf(
 "        detailed statistics.  `-VV' gives vertex-by-vertex details, and\n");
-  mexPrintf(
+  printf(
 "        prints so much that Triangle runs much more slowly.  `-VVVV' gives\n"
 );
-  mexPrintf("        information only a debugger could love.\n");
-  mexPrintf("    -h  Help:  Displays these instructions.\n");
-  mexPrintf("\n");
-  mexPrintf("Definitions:\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("        information only a debugger could love.\n");
+  printf("    -h  Help:  Displays these instructions.\n");
+  printf("\n");
+  printf("Definitions:\n");
+  printf("\n");
+  printf(
 "  A Delaunay triangulation of a vertex set is a triangulation whose\n");
-  mexPrintf(
+  printf(
 "  vertices are the vertex set, that covers the convex hull of the vertex\n");
-  mexPrintf(
+  printf(
 "  set.  A Delaunay triangulation has the property that no vertex lies\n");
-  mexPrintf(
+  printf(
 "  inside the circumscribing circle (circle that passes through all three\n");
-  mexPrintf("  vertices) of any triangle in the triangulation.\n\n");
-  mexPrintf(
+  printf("  vertices) of any triangle in the triangulation.\n\n");
+  printf(
 "  A Voronoi diagram of a vertex set is a subdivision of the plane into\n");
-  mexPrintf(
+  printf(
 "  polygonal cells (some of which may be unbounded, meaning infinitely\n");
-  mexPrintf(
+  printf(
 "  large), where each cell is the set of points in the plane that are closer\n"
 );
-  mexPrintf(
+  printf(
 "  to some input vertex than to any other input vertex.  The Voronoi diagram\n"
 );
-  mexPrintf("  is a geometric dual of the Delaunay triangulation.\n\n");
-  mexPrintf(
+  printf("  is a geometric dual of the Delaunay triangulation.\n\n");
+  printf(
 "  A Planar Straight Line Graph (PSLG) is a set of vertices and segments.\n");
-  mexPrintf(
+  printf(
 "  Segments are simply edges, whose endpoints are all vertices in the PSLG.\n"
 );
-  mexPrintf(
+  printf(
 "  Segments may intersect each other only at their endpoints.  The file\n");
-  mexPrintf("  format for PSLGs (.poly files) is described below.\n\n");
-  mexPrintf(
+  printf("  format for PSLGs (.poly files) is described below.\n\n");
+  printf(
 "  A constrained Delaunay triangulation (CDT) of a PSLG is similar to a\n");
-  mexPrintf(
+  printf(
 "  Delaunay triangulation, but each PSLG segment is present as a single edge\n"
 );
-  mexPrintf(
+  printf(
 "  of the CDT.  (A constrained Delaunay triangulation is not truly a\n");
-  mexPrintf(
+  printf(
 "  Delaunay triangulation, because some of its triangles might not be\n");
-  mexPrintf(
+  printf(
 "  Delaunay.)  By definition, a CDT does not have any vertices other than\n");
-  mexPrintf(
+  printf(
 "  those specified in the input PSLG.  Depending on context, a CDT might\n");
-  mexPrintf(
+  printf(
 "  cover the convex hull of the PSLG, or it might cover only a segment-\n");
-  mexPrintf("  bounded region (e.g. a polygon).\n\n");
-  mexPrintf(
+  printf("  bounded region (e.g. a polygon).\n\n");
+  printf(
 "  A conforming Delaunay triangulation of a PSLG is a triangulation in which\n"
 );
-  mexPrintf(
+  printf(
 "  each triangle is truly Delaunay, and each PSLG segment is represented by\n"
 );
-  mexPrintf(
+  printf(
 "  a linear contiguous sequence of edges of the triangulation.  New vertices\n"
 );
-  mexPrintf(
+  printf(
 "  (not part of the PSLG) may appear, and each input segment may have been\n");
-  mexPrintf(
+  printf(
 "  subdivided into shorter edges (subsegments) by these additional vertices.\n"
 );
-  mexPrintf(
+  printf(
 "  The new vertices are frequently necessary to maintain the Delaunay\n");
-  mexPrintf("  property while ensuring that every segment is represented.\n\n");
-  mexPrintf(
+  printf("  property while ensuring that every segment is represented.\n\n");
+  printf(
 "  A conforming constrained Delaunay triangulation (CCDT) of a PSLG is a\n");
-  mexPrintf(
+  printf(
 "  triangulation of a PSLG whose triangles are constrained Delaunay.  New\n");
-  mexPrintf("  vertices may appear, and input segments may be subdivided into\n");
-  mexPrintf(
+  printf("  vertices may appear, and input segments may be subdivided into\n");
+  printf(
 "  subsegments, but not to guarantee that segments are respected; rather, to\n"
 );
-  mexPrintf(
+  printf(
 "  improve the quality of the triangles.  The high-quality meshes produced\n");
-  mexPrintf(
+  printf(
 "  by the -q switch are usually CCDTs, but can be made conforming Delaunay\n");
-  mexPrintf("  with the -D switch.\n\n");
-  mexPrintf("File Formats:\n\n");
-  mexPrintf(
+  printf("  with the -D switch.\n\n");
+  printf("File Formats:\n\n");
+  printf(
 "  All files may contain comments prefixed by the character '#'.  Vertices,\n"
 );
-  mexPrintf(
+  printf(
 "  triangles, edges, holes, and maximum area constraints must be numbered\n");
-  mexPrintf(
+  printf(
 "  consecutively, starting from either 1 or 0.  Whichever you choose, all\n");
-  mexPrintf(
+  printf(
 "  input files must be consistent; if the vertices are numbered from 1, so\n");
-  mexPrintf(
+  printf(
 "  must be all other objects.  Triangle automatically detects your choice\n");
-  mexPrintf(
+  printf(
 "  while reading the .node (or .poly) file.  (When calling Triangle from\n");
-  mexPrintf(
+  printf(
 "  another program, use the -z switch if you wish to number objects from\n");
-  mexPrintf("  zero.)  Examples of these file formats are given below.\n\n");
-  mexPrintf("  .node files:\n");
-  mexPrintf(
+  printf("  zero.)  Examples of these file formats are given below.\n\n");
+  printf("  .node files:\n");
+  printf(
 "    First line:  <# of vertices> <dimension (must be 2)> <# of attributes>\n"
 );
-  mexPrintf(
+  printf(
 "                                           <# of boundary markers (0 or 1)>\n"
 );
-  mexPrintf(
+  printf(
 "    Remaining lines:  <vertex #> <x> <y> [attributes] [boundary marker]\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    The attributes, which are typically floating-point values of physical\n");
-  mexPrintf(
+  printf(
 "    quantities (such as mass or conductivity) associated with the nodes of\n"
 );
-  mexPrintf(
+  printf(
 "    a finite element mesh, are copied unchanged to the output mesh.  If -q,\n"
 );
-  mexPrintf(
+  printf(
 "    -a, -u, -D, or -s is selected, each new Steiner point added to the mesh\n"
 );
-  mexPrintf("    has attributes assigned to it by linear interpolation.\n\n");
-  mexPrintf(
+  printf("    has attributes assigned to it by linear interpolation.\n\n");
+  printf(
 "    If the fourth entry of the first line is `1', the last column of the\n");
-  mexPrintf(
+  printf(
 "    remainder of the file is assumed to contain boundary markers.  Boundary\n"
 );
-  mexPrintf(
+  printf(
 "    markers are used to identify boundary vertices and vertices resting on\n"
 );
-  mexPrintf(
+  printf(
 "    PSLG segments; a complete description appears in a section below.  The\n"
 );
-  mexPrintf(
+  printf(
 "    .node file produced by Triangle contains boundary markers in the last\n");
-  mexPrintf("    column unless they are suppressed by the -B switch.\n\n");
-  mexPrintf("  .ele files:\n");
-  mexPrintf(
+  printf("    column unless they are suppressed by the -B switch.\n\n");
+  printf("  .ele files:\n");
+  printf(
 "    First line:  <# of triangles> <nodes per triangle> <# of attributes>\n");
-  mexPrintf(
+  printf(
 "    Remaining lines:  <triangle #> <node> <node> <node> ... [attributes]\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    Nodes are indices into the corresponding .node file.  The first three\n");
-  mexPrintf(
+  printf(
 "    nodes are the corner vertices, and are listed in counterclockwise order\n"
 );
-  mexPrintf(
+  printf(
 "    around each triangle.  (The remaining nodes, if any, depend on the type\n"
 );
-  mexPrintf("    of finite element used.)\n\n");
-  mexPrintf(
+  printf("    of finite element used.)\n\n");
+  printf(
 "    The attributes are just like those of .node files.  Because there is no\n"
 );
-  mexPrintf(
+  printf(
 "    simple mapping from input to output triangles, Triangle attempts to\n");
-  mexPrintf(
+  printf(
 "    interpolate attributes, and may cause a lot of diffusion of attributes\n"
 );
-  mexPrintf(
+  printf(
 "    among nearby triangles as the triangulation is refined.  Attributes do\n"
 );
-  mexPrintf("    not diffuse across segments, so attributes used to identify\n");
-  mexPrintf("    segment-bounded regions remain intact.\n\n");
-  mexPrintf(
+  printf("    not diffuse across segments, so attributes used to identify\n");
+  printf("    segment-bounded regions remain intact.\n\n");
+  printf(
 "    In .ele files produced by Triangle, each triangular element has three\n");
-  mexPrintf(
+  printf(
 "    nodes (vertices) unless the -o2 switch is used, in which case\n");
-  mexPrintf(
+  printf(
 "    subparametric quadratic elements with six nodes each are generated.\n");
-  mexPrintf(
+  printf(
 "    The first three nodes are the corners in counterclockwise order, and\n");
-  mexPrintf(
+  printf(
 "    the fourth, fifth, and sixth nodes lie on the midpoints of the edges\n");
-  mexPrintf(
+  printf(
 "    opposite the first, second, and third vertices, respectively.\n");
-  mexPrintf("\n");
-  mexPrintf("  .poly files:\n");
-  mexPrintf(
+  printf("\n");
+  printf("  .poly files:\n");
+  printf(
 "    First line:  <# of vertices> <dimension (must be 2)> <# of attributes>\n"
 );
-  mexPrintf(
+  printf(
 "                                           <# of boundary markers (0 or 1)>\n"
 );
-  mexPrintf(
+  printf(
 "    Following lines:  <vertex #> <x> <y> [attributes] [boundary marker]\n");
-  mexPrintf("    One line:  <# of segments> <# of boundary markers (0 or 1)>\n");
-  mexPrintf(
+  printf("    One line:  <# of segments> <# of boundary markers (0 or 1)>\n");
+  printf(
 "    Following lines:  <segment #> <endpoint> <endpoint> [boundary marker]\n");
-  mexPrintf("    One line:  <# of holes>\n");
-  mexPrintf("    Following lines:  <hole #> <x> <y>\n");
-  mexPrintf(
+  printf("    One line:  <# of holes>\n");
+  printf("    Following lines:  <hole #> <x> <y>\n");
+  printf(
 "    Optional line:  <# of regional attributes and/or area constraints>\n");
-  mexPrintf(
+  printf(
 "    Optional following lines:  <region #> <x> <y> <attribute> <max area>\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    A .poly file represents a PSLG, as well as some additional information.\n"
 );
-  mexPrintf(
+  printf(
 "    The first section lists all the vertices, and is identical to the\n");
-  mexPrintf(
+  printf(
 "    format of .node files.  <# of vertices> may be set to zero to indicate\n"
 );
-  mexPrintf(
+  printf(
 "    that the vertices are listed in a separate .node file; .poly files\n");
-  mexPrintf(
+  printf(
 "    produced by Triangle always have this format.  A vertex set represented\n"
 );
-  mexPrintf(
+  printf(
 "    this way has the advantage that it may easily be triangulated with or\n");
-  mexPrintf(
+  printf(
 "    without segments (depending on whether the -p switch is invoked).\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    The second section lists the segments.  Segments are edges whose\n");
-  mexPrintf(
+  printf(
 "    presence in the triangulation is enforced.  (Depending on the choice of\n"
 );
-  mexPrintf(
+  printf(
 "    switches, segment might be subdivided into smaller edges).  Each\n");
-  mexPrintf(
+  printf(
 "    segment is specified by listing the indices of its two endpoints.  This\n"
 );
-  mexPrintf(
+  printf(
 "    means that you must include its endpoints in the vertex list.  Each\n");
-  mexPrintf("    segment, like each point, may have a boundary marker.\n\n");
-  mexPrintf(
+  printf("    segment, like each point, may have a boundary marker.\n\n");
+  printf(
 "    If -q, -a, -u, and -s are not selected, Triangle produces a constrained\n"
 );
-  mexPrintf(
+  printf(
 "    Delaunay triangulation (CDT), in which each segment appears as a single\n"
 );
-  mexPrintf(
+  printf(
 "    edge in the triangulation.  If -q, -a, -u, or -s is selected, Triangle\n"
 );
-  mexPrintf(
+  printf(
 "    produces a conforming constrained Delaunay triangulation (CCDT), in\n");
-  mexPrintf(
+  printf(
 "    which segments may be subdivided into smaller edges.  If -D is\n");
-  mexPrintf(
+  printf(
 "    selected, Triangle produces a conforming Delaunay triangulation, so\n");
-  mexPrintf(
+  printf(
 "    that every triangle is Delaunay, and not just constrained Delaunay.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    The third section lists holes (and concavities, if -c is selected) in\n");
-  mexPrintf(
+  printf(
 "    the triangulation.  Holes are specified by identifying a point inside\n");
-  mexPrintf(
+  printf(
 "    each hole.  After the triangulation is formed, Triangle creates holes\n");
-  mexPrintf(
+  printf(
 "    by eating triangles, spreading out from each hole point until its\n");
-  mexPrintf(
+  printf(
 "    progress is blocked by segments in the PSLG.  You must be careful to\n");
-  mexPrintf(
+  printf(
 "    enclose each hole in segments, or your whole triangulation might be\n");
-  mexPrintf(
+  printf(
 "    eaten away.  If the two triangles abutting a segment are eaten, the\n");
-  mexPrintf(
+  printf(
 "    segment itself is also eaten.  Do not place a hole directly on a\n");
-  mexPrintf("    segment; if you do, Triangle chooses one side of the segment\n");
-  mexPrintf("    arbitrarily.\n\n");
-  mexPrintf(
+  printf("    segment; if you do, Triangle chooses one side of the segment\n");
+  printf("    arbitrarily.\n\n");
+  printf(
 "    The optional fourth section lists regional attributes (to be assigned\n");
-  mexPrintf(
+  printf(
 "    to all triangles in a region) and regional constraints on the maximum\n");
-  mexPrintf(
+  printf(
 "    triangle area.  Triangle reads this section only if the -A switch is\n");
-  mexPrintf(
+  printf(
 "    used or the -a switch is used without a number following it, and the -r\n"
 );
-  mexPrintf(
+  printf(
 "    switch is not used.  Regional attributes and area constraints are\n");
-  mexPrintf(
+  printf(
 "    propagated in the same manner as holes:  you specify a point for each\n");
-  mexPrintf(
+  printf(
 "    attribute and/or constraint, and the attribute and/or constraint\n");
-  mexPrintf(
+  printf(
 "    affects the whole region (bounded by segments) containing the point.\n");
-  mexPrintf(
+  printf(
 "    If two values are written on a line after the x and y coordinate, the\n");
-  mexPrintf(
+  printf(
 "    first such value is assumed to be a regional attribute (but is only\n");
-  mexPrintf(
+  printf(
 "    applied if the -A switch is selected), and the second value is assumed\n"
 );
-  mexPrintf(
+  printf(
 "    to be a regional area constraint (but is only applied if the -a switch\n"
 );
-  mexPrintf(
+  printf(
 "    is selected).  You may specify just one value after the coordinates,\n");
-  mexPrintf(
+  printf(
 "    which can serve as both an attribute and an area constraint, depending\n"
 );
-  mexPrintf(
+  printf(
 "    on the choice of switches.  If you are using the -A and -a switches\n");
-  mexPrintf(
+  printf(
 "    simultaneously and wish to assign an attribute to some region without\n");
-  mexPrintf("    imposing an area constraint, use a negative maximum area.\n\n");
-  mexPrintf(
+  printf("    imposing an area constraint, use a negative maximum area.\n\n");
+  printf(
 "    When a triangulation is created from a .poly file, you must either\n");
-  mexPrintf(
+  printf(
 "    enclose the entire region to be triangulated in PSLG segments, or\n");
-  mexPrintf(
+  printf(
 "    use the -c switch, which automatically creates extra segments that\n");
-  mexPrintf(
+  printf(
 "    enclose the convex hull of the PSLG.  If you do not use the -c switch,\n"
 );
-  mexPrintf(
+  printf(
 "    Triangle eats all triangles that are not enclosed by segments; if you\n");
-  mexPrintf(
+  printf(
 "    are not careful, your whole triangulation may be eaten away.  If you do\n"
 );
-  mexPrintf(
+  printf(
 "    use the -c switch, you can still produce concavities by the appropriate\n"
 );
-  mexPrintf(
+  printf(
 "    placement of holes just inside the boundary of the convex hull.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    An ideal PSLG has no intersecting segments, nor any vertices that lie\n");
-  mexPrintf(
+  printf(
 "    upon segments (except, of course, the endpoints of each segment).  You\n"
 );
-  mexPrintf(
+  printf(
 "    aren't required to make your .poly files ideal, but you should be aware\n"
 );
-  mexPrintf(
+  printf(
 "    of what can go wrong.  Segment intersections are relatively safe--\n");
-  mexPrintf(
+  printf(
 "    Triangle calculates the intersection points for you and adds them to\n");
-  mexPrintf(
+  printf(
 "    the triangulation--as long as your machine's floating-point precision\n");
-  mexPrintf(
+  printf(
 "    doesn't become a problem.  You are tempting the fates if you have three\n"
 );
-  mexPrintf(
+  printf(
 "    segments that cross at the same location, and expect Triangle to figure\n"
 );
-  mexPrintf(
+  printf(
 "    out where the intersection point is.  Thanks to floating-point roundoff\n"
 );
-  mexPrintf(
+  printf(
 "    error, Triangle will probably decide that the three segments intersect\n"
 );
-  mexPrintf(
+  printf(
 "    at three different points, and you will find a minuscule triangle in\n");
-  mexPrintf(
+  printf(
 "    your output--unless Triangle tries to refine the tiny triangle, uses\n");
-  mexPrintf(
+  printf(
 "    up the last bit of machine precision, and fails to terminate at all.\n");
-  mexPrintf(
+  printf(
 "    You're better off putting the intersection point in the input files,\n");
-  mexPrintf(
+  printf(
 "    and manually breaking up each segment into two.  Similarly, if you\n");
-  mexPrintf(
+  printf(
 "    place a vertex at the middle of a segment, and hope that Triangle will\n"
 );
-  mexPrintf(
+  printf(
 "    break up the segment at that vertex, you might get lucky.  On the other\n"
 );
-  mexPrintf(
+  printf(
 "    hand, Triangle might decide that the vertex doesn't lie precisely on\n");
-  mexPrintf(
+  printf(
 "    the segment, and you'll have a needle-sharp triangle in your output--or\n"
 );
-  mexPrintf("    a lot of tiny triangles if you're generating a quality mesh.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("    a lot of tiny triangles if you're generating a quality mesh.\n");
+  printf("\n");
+  printf(
 "    When Triangle reads a .poly file, it also writes a .poly file, which\n");
-  mexPrintf(
+  printf(
 "    includes all the subsegments--the edges that are parts of input\n");
-  mexPrintf(
+  printf(
 "    segments.  If the -c switch is used, the output .poly file also\n");
-  mexPrintf(
+  printf(
 "    includes all of the edges on the convex hull.  Hence, the output .poly\n"
 );
-  mexPrintf(
+  printf(
 "    file is useful for finding edges associated with input segments and for\n"
 );
-  mexPrintf(
+  printf(
 "    setting boundary conditions in finite element simulations.  Moreover,\n");
-  mexPrintf(
+  printf(
 "    you will need the output .poly file if you plan to refine the output\n");
-  mexPrintf(
+  printf(
 "    mesh, and don't want segments to be missing in later triangulations.\n");
-  mexPrintf("\n");
-  mexPrintf("  .area files:\n");
-  mexPrintf("    First line:  <# of triangles>\n");
-  mexPrintf("    Following lines:  <triangle #> <maximum area>\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf("  .area files:\n");
+  printf("    First line:  <# of triangles>\n");
+  printf("    Following lines:  <triangle #> <maximum area>\n");
+  printf("\n");
+  printf(
 "    An .area file associates with each triangle a maximum area that is used\n"
 );
-  mexPrintf(
+  printf(
 "    for mesh refinement.  As with other file formats, every triangle must\n");
-  mexPrintf(
+  printf(
 "    be represented, and the triangles must be numbered consecutively.  A\n");
-  mexPrintf(
+  printf(
 "    triangle may be left unconstrained by assigning it a negative maximum\n");
-  mexPrintf("    area.\n\n");
-  mexPrintf("  .edge files:\n");
-  mexPrintf("    First line:  <# of edges> <# of boundary markers (0 or 1)>\n");
-  mexPrintf(
+  printf("    area.\n\n");
+  printf("  .edge files:\n");
+  printf("    First line:  <# of edges> <# of boundary markers (0 or 1)>\n");
+  printf(
 "    Following lines:  <edge #> <endpoint> <endpoint> [boundary marker]\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    Endpoints are indices into the corresponding .node file.  Triangle can\n"
 );
-  mexPrintf(
+  printf(
 "    produce .edge files (use the -e switch), but cannot read them.  The\n");
-  mexPrintf(
+  printf(
 "    optional column of boundary markers is suppressed by the -B switch.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    In Voronoi diagrams, one also finds a special kind of edge that is an\n");
-  mexPrintf(
+  printf(
 "    infinite ray with only one endpoint.  For these edges, a different\n");
-  mexPrintf("    format is used:\n\n");
-  mexPrintf("        <edge #> <endpoint> -1 <direction x> <direction y>\n\n");
-  mexPrintf(
+  printf("    format is used:\n\n");
+  printf("        <edge #> <endpoint> -1 <direction x> <direction y>\n\n");
+  printf(
 "    The `direction' is a floating-point vector that indicates the direction\n"
 );
-  mexPrintf("    of the infinite ray.\n\n");
-  mexPrintf("  .neigh files:\n");
-  mexPrintf(
+  printf("    of the infinite ray.\n\n");
+  printf("  .neigh files:\n");
+  printf(
 "    First line:  <# of triangles> <# of neighbors per triangle (always 3)>\n"
 );
-  mexPrintf(
+  printf(
 "    Following lines:  <triangle #> <neighbor> <neighbor> <neighbor>\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    Neighbors are indices into the corresponding .ele file.  An index of -1\n"
 );
-  mexPrintf(
+  printf(
 "    indicates no neighbor (because the triangle is on an exterior\n");
-  mexPrintf(
+  printf(
 "    boundary).  The first neighbor of triangle i is opposite the first\n");
-  mexPrintf("    corner of triangle i, and so on.\n\n");
-  mexPrintf(
+  printf("    corner of triangle i, and so on.\n\n");
+  printf(
 "    Triangle can produce .neigh files (use the -n switch), but cannot read\n"
 );
-  mexPrintf("    them.\n\n");
-  mexPrintf("Boundary Markers:\n\n");
-  mexPrintf(
+  printf("    them.\n\n");
+  printf("Boundary Markers:\n\n");
+  printf(
 "  Boundary markers are tags used mainly to identify which output vertices\n");
-  mexPrintf(
+  printf(
 "  and edges are associated with which PSLG segment, and to identify which\n");
-  mexPrintf(
+  printf(
 "  vertices and edges occur on a boundary of the triangulation.  A common\n");
-  mexPrintf(
+  printf(
 "  use is to determine where boundary conditions should be applied to a\n");
-  mexPrintf(
+  printf(
 "  finite element mesh.  You can prevent boundary markers from being written\n"
 );
-  mexPrintf("  into files produced by Triangle by using the -B switch.\n\n");
-  mexPrintf(
+  printf("  into files produced by Triangle by using the -B switch.\n\n");
+  printf(
 "  The boundary marker associated with each segment in an output .poly file\n"
 );
-  mexPrintf("  and each edge in an output .edge file is chosen as follows:\n");
-  mexPrintf(
+  printf("  and each edge in an output .edge file is chosen as follows:\n");
+  printf(
 "    - If an output edge is part or all of a PSLG segment with a nonzero\n");
-  mexPrintf(
+  printf(
 "      boundary marker, then the edge is assigned the same marker.\n");
-  mexPrintf(
+  printf(
 "    - Otherwise, if the edge lies on a boundary of the triangulation\n");
-  mexPrintf(
+  printf(
 "      (even the boundary of a hole), then the edge is assigned the marker\n");
-  mexPrintf("      one (1).\n");
-  mexPrintf("    - Otherwise, the edge is assigned the marker zero (0).\n");
-  mexPrintf(
+  printf("      one (1).\n");
+  printf("    - Otherwise, the edge is assigned the marker zero (0).\n");
+  printf(
 "  The boundary marker associated with each vertex in an output .node file\n");
-  mexPrintf("  is chosen as follows:\n");
-  mexPrintf(
+  printf("  is chosen as follows:\n");
+  printf(
 "    - If a vertex is assigned a nonzero boundary marker in the input file,\n"
 );
-  mexPrintf(
+  printf(
 "      then it is assigned the same marker in the output .node file.\n");
-  mexPrintf(
+  printf(
 "    - Otherwise, if the vertex lies on a PSLG segment (even if it is an\n");
-  mexPrintf(
+  printf(
 "      endpoint of the segment) with a nonzero boundary marker, then the\n");
-  mexPrintf(
+  printf(
 "      vertex is assigned the same marker.  If the vertex lies on several\n");
-  mexPrintf("      such segments, one of the markers is chosen arbitrarily.\n");
-  mexPrintf(
+  printf("      such segments, one of the markers is chosen arbitrarily.\n");
+  printf(
 "    - Otherwise, if the vertex occurs on a boundary of the triangulation,\n");
-  mexPrintf("      then the vertex is assigned the marker one (1).\n");
-  mexPrintf("    - Otherwise, the vertex is assigned the marker zero (0).\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("      then the vertex is assigned the marker one (1).\n");
+  printf("    - Otherwise, the vertex is assigned the marker zero (0).\n");
+  printf("\n");
+  printf(
 "  If you want Triangle to determine for you which vertices and edges are on\n"
 );
-  mexPrintf(
+  printf(
 "  the boundary, assign them the boundary marker zero (or use no markers at\n"
 );
-  mexPrintf(
+  printf(
 "  all) in your input files.  In the output files, all boundary vertices,\n");
-  mexPrintf("  edges, and segments will be assigned the value one.\n\n");
-  mexPrintf("Triangulation Iteration Numbers:\n\n");
-  mexPrintf(
+  printf("  edges, and segments will be assigned the value one.\n\n");
+  printf("Triangulation Iteration Numbers:\n\n");
+  printf(
 "  Because Triangle can read and refine its own triangulations, input\n");
-  mexPrintf(
+  printf(
 "  and output files have iteration numbers.  For instance, Triangle might\n");
-  mexPrintf(
+  printf(
 "  read the files mesh.3.node, mesh.3.ele, and mesh.3.poly, refine the\n");
-  mexPrintf(
+  printf(
 "  triangulation, and output the files mesh.4.node, mesh.4.ele, and\n");
-  mexPrintf("  mesh.4.poly.  Files with no iteration number are treated as if\n");
-  mexPrintf(
+  printf("  mesh.4.poly.  Files with no iteration number are treated as if\n");
+  printf(
 "  their iteration number is zero; hence, Triangle might read the file\n");
-  mexPrintf(
+  printf(
 "  points.node, triangulate it, and produce the files points.1.node and\n");
-  mexPrintf("  points.1.ele.\n\n");
-  mexPrintf(
+  printf("  points.1.ele.\n\n");
+  printf(
 "  Iteration numbers allow you to create a sequence of successively finer\n");
-  mexPrintf(
+  printf(
 "  meshes suitable for multigrid methods.  They also allow you to produce a\n"
 );
-  mexPrintf(
+  printf(
 "  sequence of meshes using error estimate-driven mesh refinement.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "  If you're not using refinement or quality meshing, and you don't like\n");
-  mexPrintf(
+  printf(
 "  iteration numbers, use the -I switch to disable them.  This switch also\n");
-  mexPrintf(
+  printf(
 "  disables output of .node and .poly files to prevent your input files from\n"
 );
-  mexPrintf(
+  printf(
 "  being overwritten.  (If the input is a .poly file that contains its own\n");
-  mexPrintf(
+  printf(
 "  points, a .node file is written.  This can be quite convenient for\n");
-  mexPrintf("  computing CDTs or quality meshes.)\n\n");
-  mexPrintf("Examples of How to Use Triangle:\n\n");
-  mexPrintf(
+  printf("  computing CDTs or quality meshes.)\n\n");
+  printf("Examples of How to Use Triangle:\n\n");
+  printf(
 "  `triangle dots' reads vertices from dots.node, and writes their Delaunay\n"
 );
-  mexPrintf(
+  printf(
 "  triangulation to dots.1.node and dots.1.ele.  (dots.1.node is identical\n");
-  mexPrintf(
+  printf(
 "  to dots.node.)  `triangle -I dots' writes the triangulation to dots.ele\n");
-  mexPrintf(
+  printf(
 "  instead.  (No additional .node file is needed, so none is written.)\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "  `triangle -pe object.1' reads a PSLG from object.1.poly (and possibly\n");
-  mexPrintf(
+  printf(
 "  object.1.node, if the vertices are omitted from object.1.poly) and writes\n"
 );
-  mexPrintf(
+  printf(
 "  its constrained Delaunay triangulation to object.2.node and object.2.ele.\n"
 );
-  mexPrintf(
+  printf(
 "  The segments are copied to object.2.poly, and all edges are written to\n");
-  mexPrintf("  object.2.edge.\n\n");
-  mexPrintf(
+  printf("  object.2.edge.\n\n");
+  printf(
 "  `triangle -pq31.5a.1 object' reads a PSLG from object.poly (and possibly\n"
 );
-  mexPrintf(
+  printf(
 "  object.node), generates a mesh whose angles are all between 31.5 and 117\n"
 );
-  mexPrintf(
+  printf(
 "  degrees and whose triangles all have areas of 0.1 or less, and writes the\n"
 );
-  mexPrintf(
+  printf(
 "  mesh to object.1.node and object.1.ele.  Each segment may be broken up\n");
-  mexPrintf("  into multiple subsegments; these are written to object.1.poly.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("  into multiple subsegments; these are written to object.1.poly.\n");
+  printf("\n");
+  printf(
 "  Here is a sample file `box.poly' describing a square with a square hole:\n"
 );
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    # A box with eight vertices in 2D, no attributes, one boundary marker.\n"
 );
-  mexPrintf("    8 2 0 1\n");
-  mexPrintf("     # Outer box has these vertices:\n");
-  mexPrintf("     1   0 0   0\n");
-  mexPrintf("     2   0 3   0\n");
-  mexPrintf("     3   3 0   0\n");
-  mexPrintf("     4   3 3   33     # A special marker for this vertex.\n");
-  mexPrintf("     # Inner square has these vertices:\n");
-  mexPrintf("     5   1 1   0\n");
-  mexPrintf("     6   1 2   0\n");
-  mexPrintf("     7   2 1   0\n");
-  mexPrintf("     8   2 2   0\n");
-  mexPrintf("    # Five segments with boundary markers.\n");
-  mexPrintf("    5 1\n");
-  mexPrintf("     1   1 2   5      # Left side of outer box.\n");
-  mexPrintf("     # Square hole has these segments:\n");
-  mexPrintf("     2   5 7   0\n");
-  mexPrintf("     3   7 8   0\n");
-  mexPrintf("     4   8 6   10\n");
-  mexPrintf("     5   6 5   0\n");
-  mexPrintf("    # One hole in the middle of the inner square.\n");
-  mexPrintf("    1\n");
-  mexPrintf("     1   1.5 1.5\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("    8 2 0 1\n");
+  printf("     # Outer box has these vertices:\n");
+  printf("     1   0 0   0\n");
+  printf("     2   0 3   0\n");
+  printf("     3   3 0   0\n");
+  printf("     4   3 3   33     # A special marker for this vertex.\n");
+  printf("     # Inner square has these vertices:\n");
+  printf("     5   1 1   0\n");
+  printf("     6   1 2   0\n");
+  printf("     7   2 1   0\n");
+  printf("     8   2 2   0\n");
+  printf("    # Five segments with boundary markers.\n");
+  printf("    5 1\n");
+  printf("     1   1 2   5      # Left side of outer box.\n");
+  printf("     # Square hole has these segments:\n");
+  printf("     2   5 7   0\n");
+  printf("     3   7 8   0\n");
+  printf("     4   8 6   10\n");
+  printf("     5   6 5   0\n");
+  printf("    # One hole in the middle of the inner square.\n");
+  printf("    1\n");
+  printf("     1   1.5 1.5\n");
+  printf("\n");
+  printf(
 "  Note that some segments are missing from the outer square, so you must\n");
-  mexPrintf(
+  printf(
 "  use the `-c' switch.  After `triangle -pqc box.poly', here is the output\n"
 );
-  mexPrintf(
+  printf(
 "  file `box.1.node', with twelve vertices.  The last four vertices were\n");
-  mexPrintf(
+  printf(
 "  added to meet the angle constraint.  Vertices 1, 2, and 9 have markers\n");
-  mexPrintf(
+  printf(
 "  from segment 1.  Vertices 6 and 8 have markers from segment 4.  All the\n");
-  mexPrintf(
+  printf(
 "  other vertices but 4 have been marked to indicate that they lie on a\n");
-  mexPrintf("  boundary.\n\n");
-  mexPrintf("    12  2  0  1\n");
-  mexPrintf("       1    0   0      5\n");
-  mexPrintf("       2    0   3      5\n");
-  mexPrintf("       3    3   0      1\n");
-  mexPrintf("       4    3   3     33\n");
-  mexPrintf("       5    1   1      1\n");
-  mexPrintf("       6    1   2     10\n");
-  mexPrintf("       7    2   1      1\n");
-  mexPrintf("       8    2   2     10\n");
-  mexPrintf("       9    0   1.5    5\n");
-  mexPrintf("      10    1.5   0    1\n");
-  mexPrintf("      11    3   1.5    1\n");
-  mexPrintf("      12    1.5   3    1\n");
-  mexPrintf("    # Generated by triangle -pqc box.poly\n");
-  mexPrintf("\n");
-  mexPrintf("  Here is the output file `box.1.ele', with twelve triangles.\n");
-  mexPrintf("\n");
-  mexPrintf("    12  3  0\n");
-  mexPrintf("       1     5   6   9\n");
-  mexPrintf("       2    10   3   7\n");
-  mexPrintf("       3     6   8  12\n");
-  mexPrintf("       4     9   1   5\n");
-  mexPrintf("       5     6   2   9\n");
-  mexPrintf("       6     7   3  11\n");
-  mexPrintf("       7    11   4   8\n");
-  mexPrintf("       8     7   5  10\n");
-  mexPrintf("       9    12   2   6\n");
-  mexPrintf("      10     8   7  11\n");
-  mexPrintf("      11     5   1  10\n");
-  mexPrintf("      12     8   4  12\n");
-  mexPrintf("    # Generated by triangle -pqc box.poly\n\n");
-  mexPrintf(
+  printf("  boundary.\n\n");
+  printf("    12  2  0  1\n");
+  printf("       1    0   0      5\n");
+  printf("       2    0   3      5\n");
+  printf("       3    3   0      1\n");
+  printf("       4    3   3     33\n");
+  printf("       5    1   1      1\n");
+  printf("       6    1   2     10\n");
+  printf("       7    2   1      1\n");
+  printf("       8    2   2     10\n");
+  printf("       9    0   1.5    5\n");
+  printf("      10    1.5   0    1\n");
+  printf("      11    3   1.5    1\n");
+  printf("      12    1.5   3    1\n");
+  printf("    # Generated by triangle -pqc box.poly\n");
+  printf("\n");
+  printf("  Here is the output file `box.1.ele', with twelve triangles.\n");
+  printf("\n");
+  printf("    12  3  0\n");
+  printf("       1     5   6   9\n");
+  printf("       2    10   3   7\n");
+  printf("       3     6   8  12\n");
+  printf("       4     9   1   5\n");
+  printf("       5     6   2   9\n");
+  printf("       6     7   3  11\n");
+  printf("       7    11   4   8\n");
+  printf("       8     7   5  10\n");
+  printf("       9    12   2   6\n");
+  printf("      10     8   7  11\n");
+  printf("      11     5   1  10\n");
+  printf("      12     8   4  12\n");
+  printf("    # Generated by triangle -pqc box.poly\n\n");
+  printf(
 "  Here is the output file `box.1.poly'.  Note that segments have been added\n"
 );
-  mexPrintf(
+  printf(
 "  to represent the convex hull, and some segments have been subdivided by\n");
-  mexPrintf(
+  printf(
 "  newly added vertices.  Note also that <# of vertices> is set to zero to\n");
-  mexPrintf("  indicate that the vertices should be read from the .node file.\n");
-  mexPrintf("\n");
-  mexPrintf("    0  2  0  1\n");
-  mexPrintf("    12  1\n");
-  mexPrintf("       1     1   9     5\n");
-  mexPrintf("       2     5   7     1\n");
-  mexPrintf("       3     8   7     1\n");
-  mexPrintf("       4     6   8    10\n");
-  mexPrintf("       5     5   6     1\n");
-  mexPrintf("       6     3  10     1\n");
-  mexPrintf("       7     4  11     1\n");
-  mexPrintf("       8     2  12     1\n");
-  mexPrintf("       9     9   2     5\n");
-  mexPrintf("      10    10   1     1\n");
-  mexPrintf("      11    11   3     1\n");
-  mexPrintf("      12    12   4     1\n");
-  mexPrintf("    1\n");
-  mexPrintf("       1   1.5 1.5\n");
-  mexPrintf("    # Generated by triangle -pqc box.poly\n");
-  mexPrintf("\n");
-  mexPrintf("Refinement and Area Constraints:\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("  indicate that the vertices should be read from the .node file.\n");
+  printf("\n");
+  printf("    0  2  0  1\n");
+  printf("    12  1\n");
+  printf("       1     1   9     5\n");
+  printf("       2     5   7     1\n");
+  printf("       3     8   7     1\n");
+  printf("       4     6   8    10\n");
+  printf("       5     5   6     1\n");
+  printf("       6     3  10     1\n");
+  printf("       7     4  11     1\n");
+  printf("       8     2  12     1\n");
+  printf("       9     9   2     5\n");
+  printf("      10    10   1     1\n");
+  printf("      11    11   3     1\n");
+  printf("      12    12   4     1\n");
+  printf("    1\n");
+  printf("       1   1.5 1.5\n");
+  printf("    # Generated by triangle -pqc box.poly\n");
+  printf("\n");
+  printf("Refinement and Area Constraints:\n");
+  printf("\n");
+  printf(
 "  The -r switch causes a mesh (.node and .ele files) to be read and\n");
-  mexPrintf(
+  printf(
 "  refined.  If the -p switch is also used, a .poly file is read and used to\n"
 );
-  mexPrintf(
+  printf(
 "  specify edges that are constrained and cannot be eliminated (although\n");
-  mexPrintf(
+  printf(
 "  they can be subdivided into smaller edges) by the refinement process.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "  When you refine a mesh, you generally want to impose tighter constraints.\n"
 );
-  mexPrintf(
+  printf(
 "  One way to accomplish this is to use -q with a larger angle, or -a\n");
-  mexPrintf(
+  printf(
 "  followed by a smaller area than you used to generate the mesh you are\n");
-  mexPrintf(
+  printf(
 "  refining.  Another way to do this is to create an .area file, which\n");
-  mexPrintf(
+  printf(
 "  specifies a maximum area for each triangle, and use the -a switch\n");
-  mexPrintf(
+  printf(
 "  (without a number following).  Each triangle's area constraint is applied\n"
 );
-  mexPrintf(
+  printf(
 "  to that triangle.  Area constraints tend to diffuse as the mesh is\n");
-  mexPrintf(
+  printf(
 "  refined, so if there are large variations in area constraint between\n");
-  mexPrintf(
+  printf(
 "  adjacent triangles, you may not get the results you want.  In that case,\n"
 );
-  mexPrintf(
+  printf(
 "  consider instead using the -u switch and writing a C procedure that\n");
-  mexPrintf("  determines which triangles are too large.\n\n");
-  mexPrintf(
+  printf("  determines which triangles are too large.\n\n");
+  printf(
 "  If you are refining a mesh composed of linear (three-node) elements, the\n"
 );
-  mexPrintf(
+  printf(
 "  output mesh contains all the nodes present in the input mesh, in the same\n"
 );
-  mexPrintf(
+  printf(
 "  order, with new nodes added at the end of the .node file.  However, the\n");
-  mexPrintf(
+  printf(
 "  refinement is not hierarchical: there is no guarantee that each output\n");
-  mexPrintf(
+  printf(
 "  element is contained in a single input element.  Often, an output element\n"
 );
-  mexPrintf(
+  printf(
 "  can overlap two or three input elements, and some input edges are not\n");
-  mexPrintf(
+  printf(
 "  present in the output mesh.  Hence, a sequence of refined meshes forms a\n"
 );
-  mexPrintf(
+  printf(
 "  hierarchy of nodes, but not a hierarchy of elements.  If you refine a\n");
-  mexPrintf(
+  printf(
 "  mesh of higher-order elements, the hierarchical property applies only to\n"
 );
-  mexPrintf(
+  printf(
 "  the nodes at the corners of an element; the midpoint nodes on each edge\n");
-  mexPrintf("  are discarded before the mesh is refined.\n\n");
-  mexPrintf(
+  printf("  are discarded before the mesh is refined.\n\n");
+  printf(
 "  Maximum area constraints in .poly files operate differently from those in\n"
 );
-  mexPrintf(
+  printf(
 "  .area files.  A maximum area in a .poly file applies to the whole\n");
-  mexPrintf(
+  printf(
 "  (segment-bounded) region in which a point falls, whereas a maximum area\n");
-  mexPrintf(
+  printf(
 "  in an .area file applies to only one triangle.  Area constraints in .poly\n"
 );
-  mexPrintf(
+  printf(
 "  files are used only when a mesh is first generated, whereas area\n");
-  mexPrintf(
+  printf(
 "  constraints in .area files are used only to refine an existing mesh, and\n"
 );
-  mexPrintf(
+  printf(
 "  are typically based on a posteriori error estimates resulting from a\n");
-  mexPrintf("  finite element simulation on that mesh.\n\n");
-  mexPrintf(
+  printf("  finite element simulation on that mesh.\n\n");
+  printf(
 "  `triangle -rq25 object.1' reads object.1.node and object.1.ele, then\n");
-  mexPrintf(
+  printf(
 "  refines the triangulation to enforce a 25 degree minimum angle, and then\n"
 );
-  mexPrintf(
+  printf(
 "  writes the refined triangulation to object.2.node and object.2.ele.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "  `triangle -rpaa6.2 z.3' reads z.3.node, z.3.ele, z.3.poly, and z.3.area.\n"
 );
-  mexPrintf(
+  printf(
 "  After reconstructing the mesh and its subsegments, Triangle refines the\n");
-  mexPrintf(
+  printf(
 "  mesh so that no triangle has area greater than 6.2, and furthermore the\n");
-  mexPrintf(
+  printf(
 "  triangles satisfy the maximum area constraints in z.3.area.  No angle\n");
-  mexPrintf(
+  printf(
 "  bound is imposed at all.  The output is written to z.4.node, z.4.ele, and\n"
 );
-  mexPrintf("  z.4.poly.\n\n");
-  mexPrintf(
+  printf("  z.4.poly.\n\n");
+  printf(
 "  The sequence `triangle -qa1 x', `triangle -rqa.3 x.1', `triangle -rqa.1\n");
-  mexPrintf(
+  printf(
 "  x.2' creates a sequence of successively finer meshes x.1, x.2, and x.3,\n");
-  mexPrintf("  suitable for multigrid.\n\n");
-  mexPrintf("Convex Hulls and Mesh Boundaries:\n\n");
-  mexPrintf(
+  printf("  suitable for multigrid.\n\n");
+  printf("Convex Hulls and Mesh Boundaries:\n\n");
+  printf(
 "  If the input is a vertex set (not a PSLG), Triangle produces its convex\n");
-  mexPrintf(
+  printf(
 "  hull as a by-product in the output .poly file if you use the -c switch.\n");
-  mexPrintf(
+  printf(
 "  There are faster algorithms for finding a two-dimensional convex hull\n");
-  mexPrintf("  than triangulation, of course, but this one comes for free.\n\n");
-  mexPrintf(
+  printf("  than triangulation, of course, but this one comes for free.\n\n");
+  printf(
 "  If the input is an unconstrained mesh (you are using the -r switch but\n");
-  mexPrintf(
+  printf(
 "  not the -p switch), Triangle produces a list of its boundary edges\n");
-  mexPrintf(
+  printf(
 "  (including hole boundaries) as a by-product when you use the -c switch.\n");
-  mexPrintf(
+  printf(
 "  If you also use the -p switch, the output .poly file contains all the\n");
-  mexPrintf("  segments from the input .poly file as well.\n\n");
-  mexPrintf("Voronoi Diagrams:\n\n");
-  mexPrintf(
+  printf("  segments from the input .poly file as well.\n\n");
+  printf("Voronoi Diagrams:\n\n");
+  printf(
 "  The -v switch produces a Voronoi diagram, in files suffixed .v.node and\n");
-  mexPrintf(
+  printf(
 "  .v.edge.  For example, `triangle -v points' reads points.node, produces\n");
-  mexPrintf(
+  printf(
 "  its Delaunay triangulation in points.1.node and points.1.ele, and\n");
-  mexPrintf(
+  printf(
 "  produces its Voronoi diagram in points.1.v.node and points.1.v.edge.  The\n"
 );
-  mexPrintf(
+  printf(
 "  .v.node file contains a list of all Voronoi vertices, and the .v.edge\n");
-  mexPrintf(
+  printf(
 "  file contains a list of all Voronoi edges, some of which may be infinite\n"
 );
-  mexPrintf(
+  printf(
 "  rays.  (The choice of filenames makes it easy to run the set of Voronoi\n");
-  mexPrintf("  vertices through Triangle, if so desired.)\n\n");
-  mexPrintf(
+  printf("  vertices through Triangle, if so desired.)\n\n");
+  printf(
 "  This implementation does not use exact arithmetic to compute the Voronoi\n"
 );
-  mexPrintf(
+  printf(
 "  vertices, and does not check whether neighboring vertices are identical.\n"
 );
-  mexPrintf(
+  printf(
 "  Be forewarned that if the Delaunay triangulation is degenerate or\n");
-  mexPrintf(
+  printf(
 "  near-degenerate, the Voronoi diagram may have duplicate vertices or\n");
-  mexPrintf("  crossing edges.\n\n");
-  mexPrintf(
+  printf("  crossing edges.\n\n");
+  printf(
 "  The result is a valid Voronoi diagram only if Triangle's output is a true\n"
 );
-  mexPrintf(
+  printf(
 "  Delaunay triangulation.  The Voronoi output is usually meaningless (and\n");
-  mexPrintf(
+  printf(
 "  may contain crossing edges and other pathology) if the output is a CDT or\n"
 );
-  mexPrintf(
+  printf(
 "  CCDT, or if it has holes or concavities.  If the triangulated domain is\n");
-  mexPrintf(
+  printf(
 "  convex and has no holes, you can use -D switch to force Triangle to\n");
-  mexPrintf(
+  printf(
 "  construct a conforming Delaunay triangulation instead of a CCDT, so the\n");
-  mexPrintf("  Voronoi diagram will be valid.\n\n");
-  mexPrintf("Mesh Topology:\n\n");
-  mexPrintf(
+  printf("  Voronoi diagram will be valid.\n\n");
+  printf("Mesh Topology:\n\n");
+  printf(
 "  You may wish to know which triangles are adjacent to a certain Delaunay\n");
-  mexPrintf(
+  printf(
 "  edge in an .edge file, which Voronoi cells are adjacent to a certain\n");
-  mexPrintf(
+  printf(
 "  Voronoi edge in a .v.edge file, or which Voronoi cells are adjacent to\n");
-  mexPrintf(
+  printf(
 "  each other.  All of this information can be found by cross-referencing\n");
-  mexPrintf(
+  printf(
 "  output files with the recollection that the Delaunay triangulation and\n");
-  mexPrintf("  the Voronoi diagram are planar duals.\n\n");
-  mexPrintf(
+  printf("  the Voronoi diagram are planar duals.\n\n");
+  printf(
 "  Specifically, edge i of an .edge file is the dual of Voronoi edge i of\n");
-  mexPrintf(
+  printf(
 "  the corresponding .v.edge file, and is rotated 90 degrees counterclock-\n");
-  mexPrintf(
+  printf(
 "  wise from the Voronoi edge.  Triangle j of an .ele file is the dual of\n");
-  mexPrintf(
+  printf(
 "  vertex j of the corresponding .v.node file.  Voronoi cell k is the dual\n");
-  mexPrintf("  of vertex k of the corresponding .node file.\n\n");
-  mexPrintf(
+  printf("  of vertex k of the corresponding .node file.\n\n");
+  printf(
 "  Hence, to find the triangles adjacent to a Delaunay edge, look at the\n");
-  mexPrintf(
+  printf(
 "  vertices of the corresponding Voronoi edge.  If the endpoints of a\n");
-  mexPrintf(
+  printf(
 "  Voronoi edge are Voronoi vertices 2 and 6 respectively, then triangles 2\n"
 );
-  mexPrintf(
+  printf(
 "  and 6 adjoin the left and right sides of the corresponding Delaunay edge,\n"
 );
-  mexPrintf(
+  printf(
 "  respectively.  To find the Voronoi cells adjacent to a Voronoi edge, look\n"
 );
-  mexPrintf(
+  printf(
 "  at the endpoints of the corresponding Delaunay edge.  If the endpoints of\n"
 );
-  mexPrintf(
+  printf(
 "  a Delaunay edge are input vertices 7 and 12, then Voronoi cells 7 and 12\n"
 );
-  mexPrintf(
+  printf(
 "  adjoin the right and left sides of the corresponding Voronoi edge,\n");
-  mexPrintf(
+  printf(
 "  respectively.  To find which Voronoi cells are adjacent to each other,\n");
-  mexPrintf("  just read the list of Delaunay edges.\n\n");
-  mexPrintf(
+  printf("  just read the list of Delaunay edges.\n\n");
+  printf(
 "  Triangle does not write a list of the edges adjoining each Voronoi cell,\n"
 );
-  mexPrintf(
+  printf(
 "  but you can reconstructed it straightforwardly.  For instance, to find\n");
-  mexPrintf(
+  printf(
 "  all the edges of Voronoi cell 1, search the output .edge file for every\n");
-  mexPrintf(
+  printf(
 "  edge that has input vertex 1 as an endpoint.  The corresponding dual\n");
-  mexPrintf(
+  printf(
 "  edges in the output .v.edge file form the boundary of Voronoi cell 1.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "  For each Voronoi vertex, the .neigh file gives a list of the three\n");
-  mexPrintf(
+  printf(
 "  Voronoi vertices attached to it.  You might find this more convenient\n");
-  mexPrintf("  than the .v.edge file.\n\n");
-  mexPrintf("Quadratic Elements:\n\n");
-  mexPrintf(
+  printf("  than the .v.edge file.\n\n");
+  printf("Quadratic Elements:\n\n");
+  printf(
 "  Triangle generates meshes with subparametric quadratic elements if the\n");
-  mexPrintf(
+  printf(
 "  -o2 switch is specified.  Quadratic elements have six nodes per element,\n"
 );
-  mexPrintf(
+  printf(
 "  rather than three.  `Subparametric' means that the edges of the triangles\n"
 );
-  mexPrintf(
+  printf(
 "  are always straight, so that subparametric quadratic elements are\n");
-  mexPrintf(
+  printf(
 "  geometrically identical to linear elements, even though they can be used\n"
 );
-  mexPrintf(
+  printf(
 "  with quadratic interpolating functions.  The three extra nodes of an\n");
-  mexPrintf(
+  printf(
 "  element fall at the midpoints of the three edges, with the fourth, fifth,\n"
 );
-  mexPrintf(
+  printf(
 "  and sixth nodes appearing opposite the first, second, and third corners\n");
-  mexPrintf("  respectively.\n\n");
-  mexPrintf("Domains with Small Angles:\n\n");
-  mexPrintf(
+  printf("  respectively.\n\n");
+  printf("Domains with Small Angles:\n\n");
+  printf(
 "  If two input segments adjoin each other at a small angle, clearly the -q\n"
 );
-  mexPrintf(
+  printf(
 "  switch cannot remove the small angle.  Moreover, Triangle may have no\n");
-  mexPrintf(
+  printf(
 "  choice but to generate additional triangles whose smallest angles are\n");
-  mexPrintf(
+  printf(
 "  smaller than the specified bound.  However, these triangles only appear\n");
-  mexPrintf(
+  printf(
 "  between input segments separated by small angles.  Moreover, if you\n");
-  mexPrintf(
+  printf(
 "  request a minimum angle of theta degrees, Triangle will generally produce\n"
 );
-  mexPrintf(
+  printf(
 "  no angle larger than 180 - 2 theta, even if it is forced to compromise on\n"
 );
-  mexPrintf("  the minimum angle.\n\n");
-  mexPrintf("Statistics:\n\n");
-  mexPrintf(
+  printf("  the minimum angle.\n\n");
+  printf("Statistics:\n\n");
+  printf(
 "  After generating a mesh, Triangle prints a count of entities in the\n");
-  mexPrintf(
+  printf(
 "  output mesh, including the number of vertices, triangles, edges, exterior\n"
 );
-  mexPrintf(
+  printf(
 "  boundary edges (i.e. subsegments on the boundary of the triangulation,\n");
-  mexPrintf(
+  printf(
 "  including hole boundaries), interior boundary edges (i.e. subsegments of\n"
 );
-  mexPrintf(
+  printf(
 "  input segments not on the boundary), and total subsegments.  If you've\n");
-  mexPrintf(
+  printf(
 "  forgotten the statistics for an existing mesh, run Triangle on that mesh\n"
 );
-  mexPrintf(
+  printf(
 "  with the -rNEP switches to read the mesh and print the statistics without\n"
 );
-  mexPrintf(
+  printf(
 "  writing any files.  Use -rpNEP if you've got a .poly file for the mesh.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "  The -V switch produces extended statistics, including a rough estimate\n");
-  mexPrintf(
+  printf(
 "  of memory use, the number of calls to geometric predicates, and\n");
-  mexPrintf(
+  printf(
 "  histograms of the angles and the aspect ratios of the triangles in the\n");
-  mexPrintf("  mesh.\n\n");
-  mexPrintf("Exact Arithmetic:\n\n");
-  mexPrintf(
+  printf("  mesh.\n\n");
+  printf("Exact Arithmetic:\n\n");
+  printf(
 "  Triangle uses adaptive exact arithmetic to perform what computational\n");
-  mexPrintf(
+  printf(
 "  geometers call the `orientation' and `incircle' tests.  If the floating-\n"
 );
-  mexPrintf(
+  printf(
 "  point arithmetic of your machine conforms to the IEEE 754 standard (as\n");
-  mexPrintf(
+  printf(
 "  most workstations do), and does not use extended precision internal\n");
-  mexPrintf(
+  printf(
 "  floating-point registers, then your output is guaranteed to be an\n");
-  mexPrintf(
+  printf(
 "  absolutely true Delaunay or constrained Delaunay triangulation, roundoff\n"
 );
-  mexPrintf(
+  printf(
 "  error notwithstanding.  The word `adaptive' implies that these arithmetic\n"
 );
-  mexPrintf(
+  printf(
 "  routines compute the result only to the precision necessary to guarantee\n"
 );
-  mexPrintf(
+  printf(
 "  correctness, so they are usually nearly as fast as their approximate\n");
-  mexPrintf("  counterparts.\n\n");
-  mexPrintf(
+  printf("  counterparts.\n\n");
+  printf(
 "  May CPUs, including Intel x86 processors, have extended precision\n");
-  mexPrintf(
+  printf(
 "  floating-point registers.  These must be reconfigured so their precision\n"
 );
-  mexPrintf(
+  printf(
 "  is reduced to memory precision.  Triangle does this if it is compiled\n");
-  mexPrintf("  correctly.  See the makefile for details.\n\n");
-  mexPrintf(
+  printf("  correctly.  See the makefile for details.\n\n");
+  printf(
 "  The exact tests can be disabled with the -X switch.  On most inputs, this\n"
 );
-  mexPrintf(
+  printf(
 "  switch reduces the computation time by about eight percent--it's not\n");
-  mexPrintf(
+  printf(
 "  worth the risk.  There are rare difficult inputs (having many collinear\n");
-  mexPrintf(
+  printf(
 "  and cocircular vertices), however, for which the difference in speed\n");
-  mexPrintf(
+  printf(
 "  could be a factor of two.  Be forewarned that these are precisely the\n");
-  mexPrintf(
+  printf(
 "  inputs most likely to cause errors if you use the -X switch.  Hence, the\n"
 );
-  mexPrintf("  -X switch is not recommended.\n\n");
-  mexPrintf(
+  printf("  -X switch is not recommended.\n\n");
+  printf(
 "  Unfortunately, the exact tests don't solve every numerical problem.\n");
-  mexPrintf(
+  printf(
 "  Exact arithmetic is not used to compute the positions of new vertices,\n");
-  mexPrintf(
+  printf(
 "  because the bit complexity of vertex coordinates would grow without\n");
-  mexPrintf(
+  printf(
 "  bound.  Hence, segment intersections aren't computed exactly; in very\n");
-  mexPrintf(
+  printf(
 "  unusual cases, roundoff error in computing an intersection point might\n");
-  mexPrintf(
+  printf(
 "  actually lead to an inverted triangle and an invalid triangulation.\n");
-  mexPrintf(
+  printf(
 "  (This is one reason to specify your own intersection points in your .poly\n"
 );
-  mexPrintf(
+  printf(
 "  files.)  Similarly, exact arithmetic is not used to compute the vertices\n"
 );
-  mexPrintf("  of the Voronoi diagram.\n\n");
-  mexPrintf(
+  printf("  of the Voronoi diagram.\n\n");
+  printf(
 "  Another pair of problems not solved by the exact arithmetic routines is\n");
-  mexPrintf(
+  printf(
 "  underflow and overflow.  If Triangle is compiled for double precision\n");
-  mexPrintf(
+  printf(
 "  arithmetic, I believe that Triangle's geometric predicates work correctly\n"
 );
-  mexPrintf(
+  printf(
 "  if the exponent of every input coordinate falls in the range [-148, 201].\n"
 );
-  mexPrintf(
+  printf(
 "  Underflow can silently prevent the orientation and incircle tests from\n");
-  mexPrintf(
+  printf(
 "  being performed exactly, while overflow typically causes a floating\n");
-  mexPrintf("  exception.\n\n");
-  mexPrintf("Calling Triangle from Another Program:\n\n");
-  mexPrintf("  Read the file triangle.h for details.\n\n");
-  mexPrintf("Troubleshooting:\n\n");
-  mexPrintf("  Please read this section before mailing me bugs.\n\n");
-  mexPrintf("  `My output mesh has no triangles!'\n\n");
-  mexPrintf(
+  printf("  exception.\n\n");
+  printf("Calling Triangle from Another Program:\n\n");
+  printf("  Read the file triangle.h for details.\n\n");
+  printf("Troubleshooting:\n\n");
+  printf("  Please read this section before mailing me bugs.\n\n");
+  printf("  `My output mesh has no triangles!'\n\n");
+  printf(
 "    If you're using a PSLG, you've probably failed to specify a proper set\n"
 );
-  mexPrintf(
+  printf(
 "    of bounding segments, or forgotten to use the -c switch.  Or you may\n");
-  mexPrintf(
+  printf(
 "    have placed a hole badly, thereby eating all your triangles.  To test\n");
-  mexPrintf("    these possibilities, try again with the -c and -O switches.\n");
-  mexPrintf(
+  printf("    these possibilities, try again with the -c and -O switches.\n");
+  printf(
 "    Alternatively, all your input vertices may be collinear, in which case\n"
 );
-  mexPrintf("    you can hardly expect to triangulate them.\n\n");
-  mexPrintf("  `Triangle doesn't terminate, or just crashes.'\n\n");
-  mexPrintf(
+  printf("    you can hardly expect to triangulate them.\n\n");
+  printf("  `Triangle doesn't terminate, or just crashes.'\n\n");
+  printf(
 "    Bad things can happen when triangles get so small that the distance\n");
-  mexPrintf(
+  printf(
 "    between their vertices isn't much larger than the precision of your\n");
-  mexPrintf(
+  printf(
 "    machine's arithmetic.  If you've compiled Triangle for single-precision\n"
 );
-  mexPrintf(
+  printf(
 "    arithmetic, you might do better by recompiling it for double-precision.\n"
 );
-  mexPrintf(
+  printf(
 "    Then again, you might just have to settle for more lenient constraints\n"
 );
-  mexPrintf(
+  printf(
 "    on the minimum angle and the maximum area than you had planned.\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    You can minimize precision problems by ensuring that the origin lies\n");
-  mexPrintf(
+  printf(
 "    inside your vertex set, or even inside the densest part of your\n");
-  mexPrintf(
+  printf(
 "    mesh.  If you're triangulating an object whose x-coordinates all fall\n");
-  mexPrintf(
+  printf(
 "    between 6247133 and 6247134, you're not leaving much floating-point\n");
-  mexPrintf("    precision for Triangle to work with.\n\n");
-  mexPrintf(
+  printf("    precision for Triangle to work with.\n\n");
+  printf(
 "    Precision problems can occur covertly if the input PSLG contains two\n");
-  mexPrintf(
+  printf(
 "    segments that meet (or intersect) at an extremely small angle, or if\n");
-  mexPrintf(
+  printf(
 "    such an angle is introduced by the -c switch.  If you don't realize\n");
-  mexPrintf(
+  printf(
 "    that a tiny angle is being formed, you might never discover why\n");
-  mexPrintf(
+  printf(
 "    Triangle is crashing.  To check for this possibility, use the -S switch\n"
 );
-  mexPrintf(
+  printf(
 "    (with an appropriate limit on the number of Steiner points, found by\n");
-  mexPrintf(
+  printf(
 "    trial-and-error) to stop Triangle early, and view the output .poly file\n"
 );
-  mexPrintf(
+  printf(
 "    with Show Me (described below).  Look carefully for regions where dense\n"
 );
-  mexPrintf(
+  printf(
 "    clusters of vertices are forming and for small angles between segments.\n"
 );
-  mexPrintf(
+  printf(
 "    Zoom in closely, as such segments might look like a single segment from\n"
 );
-  mexPrintf("    a distance.\n\n");
-  mexPrintf(
+  printf("    a distance.\n\n");
+  printf(
 "    If some of the input values are too large, Triangle may suffer a\n");
-  mexPrintf(
+  printf(
 "    floating exception due to overflow when attempting to perform an\n");
-  mexPrintf(
+  printf(
 "    orientation or incircle test.  (Read the section on exact arithmetic\n");
-  mexPrintf(
+  printf(
 "    above.)  Again, I recommend compiling Triangle for double (rather\n");
-  mexPrintf("    than single) precision arithmetic.\n\n");
-  mexPrintf(
+  printf("    than single) precision arithmetic.\n\n");
+  printf(
 "    Unexpected problems can arise if you use quality meshing (-q, -a, or\n");
-  mexPrintf(
+  printf(
 "    -u) with an input that is not segment-bounded--that is, if your input\n");
-  mexPrintf(
+  printf(
 "    is a vertex set, or you're using the -c switch.  If the convex hull of\n"
 );
-  mexPrintf(
+  printf(
 "    your input vertices has collinear vertices on its boundary, an input\n");
-  mexPrintf(
+  printf(
 "    vertex that you think lies on the convex hull might actually lie just\n");
-  mexPrintf(
+  printf(
 "    inside the convex hull.  If so, the vertex and the nearby convex hull\n");
-  mexPrintf(
+  printf(
 "    edge form an extremely thin triangle.  When Triangle tries to refine\n");
-  mexPrintf(
+  printf(
 "    the mesh to enforce angle and area constraints, Triangle might generate\n"
 );
-  mexPrintf(
+  printf(
 "    extremely tiny triangles, or it might fail because of insufficient\n");
-  mexPrintf("    floating-point precision.\n\n");
-  mexPrintf(
+  printf("    floating-point precision.\n\n");
+  printf(
 "  `The numbering of the output vertices doesn't match the input vertices.'\n"
 );
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    You may have had duplicate input vertices, or you may have eaten some\n");
-  mexPrintf(
+  printf(
 "    of your input vertices with a hole, or by placing them outside the area\n"
 );
-  mexPrintf(
+  printf(
 "    enclosed by segments.  In any case, you can solve the problem by not\n");
-  mexPrintf("    using the -j switch.\n\n");
-  mexPrintf(
+  printf("    using the -j switch.\n\n");
+  printf(
 "  `Triangle executes without incident, but when I look at the resulting\n");
-  mexPrintf(
+  printf(
 "  mesh, it has overlapping triangles or other geometric inconsistencies.'\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf(
 "    If you select the -X switch, Triangle occasionally makes mistakes due\n");
-  mexPrintf(
+  printf(
 "    to floating-point roundoff error.  Although these errors are rare,\n");
-  mexPrintf(
+  printf(
 "    don't use the -X switch.  If you still have problems, please report the\n"
 );
-  mexPrintf("    bug.\n\n");
-  mexPrintf(
+  printf("    bug.\n\n");
+  printf(
 "  `Triangle executes without incident, but when I look at the resulting\n");
-  mexPrintf("  Voronoi diagram, it has overlapping edges or other geometric\n");
-  mexPrintf("  inconsistencies.'\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("  Voronoi diagram, it has overlapping edges or other geometric\n");
+  printf("  inconsistencies.'\n");
+  printf("\n");
+  printf(
 "    If your input is a PSLG (-p), you can only expect a meaningful Voronoi\n"
 );
-  mexPrintf(
+  printf(
 "    diagram if the domain you are triangulating is convex and free of\n");
-  mexPrintf(
+  printf(
 "    holes, and you use the -D switch to construct a conforming Delaunay\n");
-  mexPrintf("    triangulation (instead of a CDT or CCDT).\n\n");
-  mexPrintf(
+  printf("    triangulation (instead of a CDT or CCDT).\n\n");
+  printf(
 "  Strange things can happen if you've taken liberties with your PSLG.  Do\n");
-  mexPrintf(
+  printf(
 "  you have a vertex lying in the middle of a segment?  Triangle sometimes\n");
-  mexPrintf(
+  printf(
 "  copes poorly with that sort of thing.  Do you want to lay out a collinear\n"
 );
-  mexPrintf(
+  printf(
 "  row of evenly spaced, segment-connected vertices?  Have you simply\n");
-  mexPrintf(
+  printf(
 "  defined one long segment connecting the leftmost vertex to the rightmost\n"
 );
-  mexPrintf(
+  printf(
 "  vertex, and a bunch of vertices lying along it?  This method occasionally\n"
 );
-  mexPrintf(
+  printf(
 "  works, especially with horizontal and vertical lines, but often it\n");
-  mexPrintf(
+  printf(
 "  doesn't, and you'll have to connect each adjacent pair of vertices with a\n"
 );
-  mexPrintf("  separate segment.  If you don't like it, tough.\n\n");
-  mexPrintf(
+  printf("  separate segment.  If you don't like it, tough.\n\n");
+  printf(
 "  Furthermore, if you have segments that intersect other than at their\n");
-  mexPrintf(
+  printf(
 "  endpoints, try not to let the intersections fall extremely close to PSLG\n"
 );
-  mexPrintf("  vertices or each other.\n\n");
-  mexPrintf(
+  printf("  vertices or each other.\n\n");
+  printf(
 "  If you have problems refining a triangulation not produced by Triangle:\n");
-  mexPrintf(
+  printf(
 "  Are you sure the triangulation is geometrically valid?  Is it formatted\n");
-  mexPrintf(
+  printf(
 "  correctly for Triangle?  Are the triangles all listed so the first three\n"
 );
-  mexPrintf(
+  printf(
 "  vertices are their corners in counterclockwise order?  Are all of the\n");
-  mexPrintf(
+  printf(
 "  triangles constrained Delaunay?  Triangle's Delaunay refinement algorithm\n"
 );
-  mexPrintf("  assumes that it starts with a CDT.\n\n");
-  mexPrintf("Show Me:\n\n");
-  mexPrintf(
+  printf("  assumes that it starts with a CDT.\n\n");
+  printf("Show Me:\n\n");
+  printf(
 "  Triangle comes with a separate program named `Show Me', whose primary\n");
-  mexPrintf(
+  printf(
 "  purpose is to draw meshes on your screen or in PostScript.  Its secondary\n"
 );
-  mexPrintf(
+  printf(
 "  purpose is to check the validity of your input files, and do so more\n");
-  mexPrintf(
+  printf(
 "  thoroughly than Triangle does.  Unlike Triangle, Show Me requires that\n");
-  mexPrintf(
+  printf(
 "  you have the X Windows system.  Sorry, Microsoft Windows users.\n");
-  mexPrintf("\n");
-  mexPrintf("Triangle on the Web:\n");
-  mexPrintf("\n");
-  mexPrintf("  To see an illustrated version of these instructions, check out\n");
-  mexPrintf("\n");
-  mexPrintf("    http://www.cs.cmu.edu/~quake/triangle.html\n");
-  mexPrintf("\n");
-  mexPrintf("A Brief Plea:\n");
-  mexPrintf("\n");
-  mexPrintf(
+  printf("\n");
+  printf("Triangle on the Web:\n");
+  printf("\n");
+  printf("  To see an illustrated version of these instructions, check out\n");
+  printf("\n");
+  printf("    http://www.cs.cmu.edu/~quake/triangle.html\n");
+  printf("\n");
+  printf("A Brief Plea:\n");
+  printf("\n");
+  printf(
 "  If you use Triangle, and especially if you use it to accomplish real\n");
-  mexPrintf(
+  printf(
 "  work, I would like very much to hear from you.  A short letter or email\n");
-  mexPrintf(
+  printf(
 "  (to jrs@cs.berkeley.edu) describing how you use Triangle will mean a lot\n"
 );
-  mexPrintf(
+  printf(
 "  to me.  The more people I know are using this program, the more easily I\n"
 );
-  mexPrintf(
+  printf(
 "  can justify spending time on improvements, which in turn will benefit\n");
-  mexPrintf(
+  printf(
 "  you.  Also, I can put you on a list to receive email whenever a new\n");
-  mexPrintf("  version of Triangle is available.\n\n");
-  mexPrintf(
+  printf("  version of Triangle is available.\n\n");
+  printf(
 "  If you use a mesh generated by Triangle in a publication, please include\n"
 );
-  mexPrintf(
+  printf(
 "  an acknowledgment as well.  And please spell Triangle with a capital `T'!\n"
 );
-  mexPrintf(
+  printf(
 "  If you want to include a citation, use `Jonathan Richard Shewchuk,\n");
-  mexPrintf(
+  printf(
 "  ``Triangle: Engineering a 2D Quality Mesh Generator and Delaunay\n");
-  mexPrintf(
+  printf(
 "  Triangulator,'' in Applied Computational Geometry:  Towards Geometric\n");
-  mexPrintf(
+  printf(
 "  Engineering (Ming C. Lin and Dinesh Manocha, editors), volume 1148 of\n");
-  mexPrintf(
+  printf(
 "  Lecture Notes in Computer Science, pages 203-222, Springer-Verlag,\n");
-  mexPrintf(
+  printf(
 "  Berlin, May 1996.  (From the First ACM Workshop on Applied Computational\n"
 );
-  mexPrintf("  Geometry.)'\n\n");
-  mexPrintf("Research credit:\n\n");
-  mexPrintf(
+  printf("  Geometry.)'\n\n");
+  printf("Research credit:\n\n");
+  printf(
 "  Of course, I can take credit for only a fraction of the ideas that made\n");
-  mexPrintf(
+  printf(
 "  this mesh generator possible.  Triangle owes its existence to the efforts\n"
 );
-  mexPrintf(
+  printf(
 "  of many fine computational geometers and other researchers, including\n");
-  mexPrintf(
+  printf(
 "  Marshall Bern, L. Paul Chew, Kenneth L. Clarkson, Boris Delaunay, Rex A.\n"
 );
-  mexPrintf(
+  printf(
 "  Dwyer, David Eppstein, Steven Fortune, Leonidas J. Guibas, Donald E.\n");
-  mexPrintf(
+  printf(
 "  Knuth, Charles L. Lawson, Der-Tsai Lee, Gary L. Miller, Ernst P. Mucke,\n");
-  mexPrintf(
+  printf(
 "  Steven E. Pav, Douglas M. Priest, Jim Ruppert, Isaac Saias, Bruce J.\n");
-  mexPrintf(
+  printf(
 "  Schachter, Micha Sharir, Peter W. Shor, Daniel D. Sleator, Jorge Stolfi,\n"
 );
-  mexPrintf("  Robert E. Tarjan, Alper Ungor, Christopher J. Van Wyk, Noel J.\n");
-  mexPrintf(
+  printf("  Robert E. Tarjan, Alper Ungor, Christopher J. Van Wyk, Noel J.\n");
+  printf(
 "  Walkington, and Binhai Zhu.  See the comments at the beginning of the\n");
-  mexPrintf("  source code for references.\n\n");
+  printf("  source code for references.\n\n");
   triexit(0);
 }
 
@@ -3271,9 +3269,9 @@ void info()
 
 void internalerror()
 {
-  mexPrintf("  Please report this bug to jrs@cs.berkeley.edu\n");
-  mexPrintf("  Include the message above, your input data set, and the exact\n");
-  mexPrintf("    command line you used to run Triangle.\n");
+  printf("  Please report this bug to jrs@cs.berkeley.edu\n");
+  printf("  Include the message above, your input data set, and the exact\n");
+  printf("    command line you used to run Triangle.\n");
   triexit(1);
 }
 
@@ -3371,7 +3369,7 @@ struct behavior *b;
             workstring[k] = '\0';
             b->maxarea = (REAL) strtod(workstring, (char **) NULL);
             if (b->maxarea <= 0.0) {
-              mexPrintf("Error:  Maximum area must be greater than zero.\n");
+              printf("Error:  Maximum area must be greater than zero.\n");
               triexit(1);
 	    }
 	  } else {
@@ -3532,7 +3530,7 @@ struct behavior *b;
   }
   b->goodangle *= b->goodangle;
   if (b->refine && b->noiterationnum) {
-    mexPrintf(
+    printf(
       "Error:  You cannot use the -I switch when refining a triangulation.\n");
     triexit(1);
   }
@@ -3551,15 +3549,15 @@ struct behavior *b;
   if (b->weighted && (b->poly || b->quality)) {
     b->weighted = 0;
     if (!b->quiet) {
-      mexPrintf("Warning:  weighted triangulations (-w, -W) are incompatible\n");
-      mexPrintf("  with PSLGs (-p) and meshing (-q, -a, -u).  Weights ignored.\n"
+      printf("Warning:  weighted triangulations (-w, -W) are incompatible\n");
+      printf("  with PSLGs (-p) and meshing (-q, -a, -u).  Weights ignored.\n"
              );
     }
   }
   if (b->jettison && b->nonodewritten && !b->quiet) {
-    mexPrintf("Warning:  -j and -N switches are somewhat incompatible.\n");
-    mexPrintf("  If any vertices are jettisoned, you will need the output\n");
-    mexPrintf("  .node file to reconstruct the new node indices.");
+    printf("Warning:  -j and -N switches are somewhat incompatible.\n");
+    printf("  If any vertices are jettisoned, you will need the output\n");
+    printf("  .node file to reconstruct the new node indices.");
   }
 
 #ifndef TRILIBRARY
@@ -3623,7 +3621,7 @@ struct behavior *b;
     workstring[increment] = '%';
     workstring[increment + 1] = 'd';
     workstring[increment + 2] = '\0';
-    smexPrintf(b->outnodefilename, workstring, meshnumber + 1);
+    sprintf(b->outnodefilename, workstring, meshnumber + 1);
     strcpy(b->outpolyfilename, b->outnodefilename);
     strcpy(b->outelefilename, b->outnodefilename);
     strcpy(b->edgefilename, b->outnodefilename);
@@ -3680,72 +3678,72 @@ struct otri *t;
   struct osub printsh;
   vertex printvertex;
 
-  mexPrintf("triangle x%lx with orientation %d:\n", (unsigned long) t->tri,
+  printf("triangle x%lx with orientation %d:\n", (unsigned long) t->tri,
          t->orient);
   decode(t->tri[0], printtri);
   if (printtri.tri == m->dummytri) {
-    mexPrintf("    [0] = Outer space\n");
+    printf("    [0] = Outer space\n");
   } else {
-    mexPrintf("    [0] = x%lx  %d\n", (unsigned long) printtri.tri,
+    printf("    [0] = x%lx  %d\n", (unsigned long) printtri.tri,
            printtri.orient);
   }
   decode(t->tri[1], printtri);
   if (printtri.tri == m->dummytri) {
-    mexPrintf("    [1] = Outer space\n");
+    printf("    [1] = Outer space\n");
   } else {
-    mexPrintf("    [1] = x%lx  %d\n", (unsigned long) printtri.tri,
+    printf("    [1] = x%lx  %d\n", (unsigned long) printtri.tri,
            printtri.orient);
   }
   decode(t->tri[2], printtri);
   if (printtri.tri == m->dummytri) {
-    mexPrintf("    [2] = Outer space\n");
+    printf("    [2] = Outer space\n");
   } else {
-    mexPrintf("    [2] = x%lx  %d\n", (unsigned long) printtri.tri,
+    printf("    [2] = x%lx  %d\n", (unsigned long) printtri.tri,
            printtri.orient);
   }
 
   org(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    mexPrintf("    Origin[%d] = NULL\n", (t->orient + 1) % 3 + 3);
+    printf("    Origin[%d] = NULL\n", (t->orient + 1) % 3 + 3);
   else
-    mexPrintf("    Origin[%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Origin[%d] = x%lx  (%.12g, %.12g)\n",
            (t->orient + 1) % 3 + 3, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
   dest(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    mexPrintf("    Dest  [%d] = NULL\n", (t->orient + 2) % 3 + 3);
+    printf("    Dest  [%d] = NULL\n", (t->orient + 2) % 3 + 3);
   else
-    mexPrintf("    Dest  [%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Dest  [%d] = x%lx  (%.12g, %.12g)\n",
            (t->orient + 2) % 3 + 3, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
   apex(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    mexPrintf("    Apex  [%d] = NULL\n", t->orient + 3);
+    printf("    Apex  [%d] = NULL\n", t->orient + 3);
   else
-    mexPrintf("    Apex  [%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Apex  [%d] = x%lx  (%.12g, %.12g)\n",
            t->orient + 3, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
 
   if (b->usesegments) {
     sdecode(t->tri[6], printsh);
     if (printsh.ss != m->dummysub) {
-      mexPrintf("    [6] = x%lx  %d\n", (unsigned long) printsh.ss,
+      printf("    [6] = x%lx  %d\n", (unsigned long) printsh.ss,
              printsh.ssorient);
     }
     sdecode(t->tri[7], printsh);
     if (printsh.ss != m->dummysub) {
-      mexPrintf("    [7] = x%lx  %d\n", (unsigned long) printsh.ss,
+      printf("    [7] = x%lx  %d\n", (unsigned long) printsh.ss,
              printsh.ssorient);
     }
     sdecode(t->tri[8], printsh);
     if (printsh.ss != m->dummysub) {
-      mexPrintf("    [8] = x%lx  %d\n", (unsigned long) printsh.ss,
+      printf("    [8] = x%lx  %d\n", (unsigned long) printsh.ss,
              printsh.ssorient);
     }
   }
 
   if (b->vararea) {
-    mexPrintf("    Area constraint:  %.4g\n", areabound(*t));
+    printf("    Area constraint:  %.4g\n", areabound(*t));
   }
 }
 
@@ -3774,65 +3772,65 @@ struct osub *s;
   struct otri printtri;
   vertex printvertex;
 
-  mexPrintf("subsegment x%lx with orientation %d and mark %d:\n",
+  printf("subsegment x%lx with orientation %d and mark %d:\n",
          (unsigned long) s->ss, s->ssorient, mark(*s));
   sdecode(s->ss[0], printsh);
   if (printsh.ss == m->dummysub) {
-    mexPrintf("    [0] = No subsegment\n");
+    printf("    [0] = No subsegment\n");
   } else {
-    mexPrintf("    [0] = x%lx  %d\n", (unsigned long) printsh.ss,
+    printf("    [0] = x%lx  %d\n", (unsigned long) printsh.ss,
            printsh.ssorient);
   }
   sdecode(s->ss[1], printsh);
   if (printsh.ss == m->dummysub) {
-    mexPrintf("    [1] = No subsegment\n");
+    printf("    [1] = No subsegment\n");
   } else {
-    mexPrintf("    [1] = x%lx  %d\n", (unsigned long) printsh.ss,
+    printf("    [1] = x%lx  %d\n", (unsigned long) printsh.ss,
            printsh.ssorient);
   }
 
   sorg(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    mexPrintf("    Origin[%d] = NULL\n", 2 + s->ssorient);
+    printf("    Origin[%d] = NULL\n", 2 + s->ssorient);
   else
-    mexPrintf("    Origin[%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Origin[%d] = x%lx  (%.12g, %.12g)\n",
            2 + s->ssorient, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
   sdest(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    mexPrintf("    Dest  [%d] = NULL\n", 3 - s->ssorient);
+    printf("    Dest  [%d] = NULL\n", 3 - s->ssorient);
   else
-    mexPrintf("    Dest  [%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Dest  [%d] = x%lx  (%.12g, %.12g)\n",
            3 - s->ssorient, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
 
   decode(s->ss[6], printtri);
   if (printtri.tri == m->dummytri) {
-    mexPrintf("    [6] = Outer space\n");
+    printf("    [6] = Outer space\n");
   } else {
-    mexPrintf("    [6] = x%lx  %d\n", (unsigned long) printtri.tri,
+    printf("    [6] = x%lx  %d\n", (unsigned long) printtri.tri,
            printtri.orient);
   }
   decode(s->ss[7], printtri);
   if (printtri.tri == m->dummytri) {
-    mexPrintf("    [7] = Outer space\n");
+    printf("    [7] = Outer space\n");
   } else {
-    mexPrintf("    [7] = x%lx  %d\n", (unsigned long) printtri.tri,
+    printf("    [7] = x%lx  %d\n", (unsigned long) printtri.tri,
            printtri.orient);
   }
 
   segorg(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    mexPrintf("    Segment origin[%d] = NULL\n", 4 + s->ssorient);
+    printf("    Segment origin[%d] = NULL\n", 4 + s->ssorient);
   else
-    mexPrintf("    Segment origin[%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Segment origin[%d] = x%lx  (%.12g, %.12g)\n",
            4 + s->ssorient, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
   segdest(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    mexPrintf("    Segment dest  [%d] = NULL\n", 5 - s->ssorient);
+    printf("    Segment dest  [%d] = NULL\n", 5 - s->ssorient);
   else
-    mexPrintf("    Segment dest  [%d] = x%lx  (%.12g, %.12g)\n",
+    printf("    Segment dest  [%d] = x%lx  (%.12g, %.12g)\n",
            5 - s->ssorient, (unsigned long) printvertex,
            printvertex[0], printvertex[1]);
 }
@@ -6719,7 +6717,7 @@ struct behavior *b;
   saveexact = b->noexact;
   b->noexact = 0;
   if (!b->quiet) {
-    mexPrintf("  Checking consistency of mesh...\n");
+    printf("  Checking consistency of mesh...\n");
   }
   horrors = 0;
   /* Run through the list of triangles, checking each one. */
@@ -6735,7 +6733,7 @@ struct behavior *b;
         /* Test if the triangle is flat or inverted. */
         apex(triangleloop, triapex);
         if (counterclockwise(m, b, triorg, tridest, triapex) <= 0.0) {
-          mexPrintf("  !! !! Inverted ");
+          printf("  !! !! Inverted ");
           printtriangle(m, b, &triangleloop);
           horrors++;
         }
@@ -6747,13 +6745,13 @@ struct behavior *b;
         sym(oppotri, oppooppotri);
         if ((triangleloop.tri != oppooppotri.tri)
             || (triangleloop.orient != oppooppotri.orient)) {
-          mexPrintf("  !! !! Asymmetric triangle-triangle bond:\n");
+          printf("  !! !! Asymmetric triangle-triangle bond:\n");
           if (triangleloop.tri == oppooppotri.tri) {
-            mexPrintf("   (Right triangle, wrong orientation)\n");
+            printf("   (Right triangle, wrong orientation)\n");
           }
-          mexPrintf("    First ");
+          printf("    First ");
           printtriangle(m, b, &triangleloop);
-          mexPrintf("    Second (nonreciprocating) ");
+          printf("    Second (nonreciprocating) ");
           printtriangle(m, b, &oppotri);
           horrors++;
         }
@@ -6762,11 +6760,11 @@ struct behavior *b;
         org(oppotri, oppoorg);
         dest(oppotri, oppodest);
         if ((triorg != oppodest) || (tridest != oppoorg)) {
-          mexPrintf("  !! !! Mismatched edge coordinates between two triangles:\n"
+          printf("  !! !! Mismatched edge coordinates between two triangles:\n"
                  );
-          mexPrintf("    First mismatched ");
+          printf("    First mismatched ");
           printtriangle(m, b, &triangleloop);
-          mexPrintf("    Second mismatched ");
+          printf("    Second mismatched ");
           printtriangle(m, b, &oppotri);
           horrors++;
         }
@@ -6776,12 +6774,12 @@ struct behavior *b;
   }
   if (horrors == 0) {
     if (!b->quiet) {
-      mexPrintf("  In my studied opinion, the mesh appears to be consistent.\n");
+      printf("  In my studied opinion, the mesh appears to be consistent.\n");
     }
   } else if (horrors == 1) {
-    mexPrintf("  !! !! !! !! Precisely one festering wound discovered.\n");
+    printf("  !! !! !! !! Precisely one festering wound discovered.\n");
   } else {
-    mexPrintf("  !! !! !! !! %d abominations witnessed.\n", horrors);
+    printf("  !! !! !! !! %d abominations witnessed.\n", horrors);
   }
   /* Restore the status of exact arithmetic. */
   b->noexact = saveexact;
@@ -6821,7 +6819,7 @@ struct behavior *b;
   saveexact = b->noexact;
   b->noexact = 0;
   if (!b->quiet) {
-    mexPrintf("  Checking Delaunay property of mesh...\n");
+    printf("  Checking Delaunay property of mesh...\n");
   }
   horrors = 0;
   /* Run through the list of triangles, checking each one. */
@@ -6860,15 +6858,15 @@ struct behavior *b;
       if (shouldbedelaunay) {
         if (nonregular(m, b, triorg, tridest, triapex, oppoapex) > 0.0) {
           if (!b->weighted) {
-            mexPrintf("  !! !! Non-Delaunay pair of triangles:\n");
-            mexPrintf("    First non-Delaunay ");
+            printf("  !! !! Non-Delaunay pair of triangles:\n");
+            printf("    First non-Delaunay ");
             printtriangle(m, b, &triangleloop);
-            mexPrintf("    Second non-Delaunay ");
+            printf("    Second non-Delaunay ");
           } else {
-            mexPrintf("  !! !! Non-regular pair of triangles:\n");
-            mexPrintf("    First non-regular ");
+            printf("  !! !! Non-regular pair of triangles:\n");
+            printf("    First non-regular ");
             printtriangle(m, b, &triangleloop);
-            mexPrintf("    Second non-regular ");
+            printf("    Second non-regular ");
           }
           printtriangle(m, b, &oppotri);
           horrors++;
@@ -6879,14 +6877,14 @@ struct behavior *b;
   }
   if (horrors == 0) {
     if (!b->quiet) {
-      mexPrintf(
+      printf(
   "  By virtue of my perceptive intelligence, I declare the mesh Delaunay.\n");
     }
   } else if (horrors == 1) {
-    mexPrintf(
+    printf(
          "  !! !! !! !! Precisely one terrifying transgression identified.\n");
   } else {
-    mexPrintf("  !! !! !! !! %d obscenities viewed with horror.\n", horrors);
+    printf("  !! !! !! !! %d obscenities viewed with horror.\n", horrors);
   }
   /* Restore the status of exact arithmetic. */
   b->noexact = saveexact;
@@ -6925,8 +6923,8 @@ struct badtriang *badtri;
   int i;
 
   if (b->verbose > 2) {
-    mexPrintf("  Queueing bad triangle:\n");
-    mexPrintf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
+    printf("  Queueing bad triangle:\n");
+    printf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
            badtri->triangorg[0], badtri->triangorg[1],
            badtri->triangdest[0], badtri->triangdest[1],
            badtri->triangapex[0], badtri->triangapex[1]);
@@ -7181,7 +7179,7 @@ struct osub *testsubseg;
 
   if (encroached && (!b->nobisect || ((b->nobisect == 1) && (sides == 2)))) {
     if (b->verbose > 2) {
-      mexPrintf(
+      printf(
         "  Queueing encroached subsegment (%.12g, %.12g) (%.12g, %.12g).\n",
         eorg[0], eorg[1], edest[0], edest[1]);
     }
@@ -7415,7 +7413,7 @@ struct behavior *b;
   vertex triorg;
 
   if (b->verbose) {
-    mexPrintf("    Constructing mapping from vertices to triangles.\n");
+    printf("    Constructing mapping from vertices to triangles.\n");
   }
   traversalinit(&m->triangles);
   triangleloop.tri = triangletraverse(m);
@@ -7520,7 +7518,7 @@ int stopatsubsegment;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose > 2) {
-    mexPrintf("  Searching for point (%.12g, %.12g).\n",
+    printf("  Searching for point (%.12g, %.12g).\n",
            searchpoint[0], searchpoint[1]);
   }
   /* Where are we? */
@@ -7529,7 +7527,7 @@ int stopatsubsegment;
   apex(*searchtri, fapex);
   while (1) {
     if (b->verbose > 2) {
-      mexPrintf("    At (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
+      printf("    At (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              forg[0], forg[1], fdest[0], fdest[1], fapex[0], fapex[1]);
     }
     /* Check whether the apex is the point we seek. */
@@ -7665,7 +7663,7 @@ struct otri *searchtri;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (b->verbose > 2) {
-    mexPrintf("  Randomly sampling for a triangle near point (%.12g, %.12g).\n",
+    printf("  Randomly sampling for a triangle near point (%.12g, %.12g).\n",
            searchpoint[0], searchpoint[1]);
   }
   /* Record the distance from the suggested starting triangle to the */
@@ -7674,7 +7672,7 @@ struct otri *searchtri;
   searchdist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
                (searchpoint[1] - torg[1]) * (searchpoint[1] - torg[1]);
   if (b->verbose > 2) {
-    mexPrintf("    Boundary triangle has origin (%.12g, %.12g).\n",
+    printf("    Boundary triangle has origin (%.12g, %.12g).\n",
            torg[0], torg[1]);
   }
 
@@ -7693,7 +7691,7 @@ struct otri *searchtri;
         otricopy(m->recenttri, *searchtri);
         searchdist = dist;
         if (b->verbose > 2) {
-          mexPrintf("    Choosing recent triangle with origin (%.12g, %.12g).\n",
+          printf("    Choosing recent triangle with origin (%.12g, %.12g).\n",
                  torg[0], torg[1]);
         }
       }
@@ -7748,7 +7746,7 @@ struct otri *searchtri;
           otricopy(sampletri, *searchtri);
           searchdist = dist;
           if (b->verbose > 2) {
-            mexPrintf("    Choosing triangle with origin (%.12g, %.12g).\n",
+            printf("    Choosing triangle with origin (%.12g, %.12g).\n",
                    torg[0], torg[1]);
           }
         }
@@ -7858,7 +7856,7 @@ int subsegmark;                            /* Marker for the new subsegment. */
     tsbond(oppotri, newsubseg);
     setmark(newsubseg, subsegmark);
     if (b->verbose > 2) {
-      mexPrintf("  Inserting new ");
+      printf("  Inserting new ");
       printsubseg(m, b, &newsubseg);
     }
   } else {
@@ -7945,14 +7943,14 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   sym(*flipedge, top);
 #ifdef SELF_CHECK
   if (top.tri == m->dummytri) {
-    mexPrintf("Internal error in flip():  Attempt to flip on boundary.\n");
+    printf("Internal error in flip():  Attempt to flip on boundary.\n");
     lnextself(*flipedge);
     return;
   }
   if (m->checksegments) {
     tspivot(*flipedge, toplsubseg);
     if (toplsubseg.ss != m->dummysub) {
-      mexPrintf("Internal error in flip():  Attempt to flip a segment.\n");
+      printf("Internal error in flip():  Attempt to flip a segment.\n");
       lnextself(*flipedge);
       return;
     }
@@ -8011,9 +8009,9 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   setdest(top, farvertex);
   setapex(top, leftvertex);
   if (b->verbose > 2) {
-    mexPrintf("  Edge flip results in left ");
+    printf("  Edge flip results in left ");
     printtriangle(m, b, &top);
-    mexPrintf("  and right ");
+    printf("  and right ");
     printtriangle(m, b, flipedge);
   }
 }
@@ -8080,14 +8078,14 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   sym(*flipedge, top);
 #ifdef SELF_CHECK
   if (top.tri == m->dummytri) {
-    mexPrintf("Internal error in unflip():  Attempt to flip on boundary.\n");
+    printf("Internal error in unflip():  Attempt to flip on boundary.\n");
     lnextself(*flipedge);
     return;
   }
   if (m->checksegments) {
     tspivot(*flipedge, toplsubseg);
     if (toplsubseg.ss != m->dummysub) {
-      mexPrintf("Internal error in unflip():  Attempt to flip a subsegment.\n");
+      printf("Internal error in unflip():  Attempt to flip a subsegment.\n");
       lnextself(*flipedge);
       return;
     }
@@ -8146,9 +8144,9 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   setdest(top, botvertex);
   setapex(top, rightvertex);
   if (b->verbose > 2) {
-    mexPrintf("  Edge unflip results in left ");
+    printf("  Edge unflip results in left ");
     printtriangle(m, b, flipedge);
-    mexPrintf("  and right ");
+    printf("  and right ");
     printtriangle(m, b, &top);
   }
 }
@@ -8250,7 +8248,7 @@ int triflaws;
   subseg sptr;         /* Temporary variable used by spivot() and tspivot(). */
 
   if (b->verbose > 1) {
-    mexPrintf("  Inserting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
+    printf("  Inserting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
   }
 
   if (splitseg == (struct osub *) NULL) {
@@ -8304,7 +8302,7 @@ int triflaws;
             sorg(brokensubseg, encroached->subsegorg);
             sdest(brokensubseg, encroached->subsegdest);
             if (b->verbose > 2) {
-              mexPrintf(
+              printf(
           "  Queueing encroached subsegment (%.12g, %.12g) (%.12g, %.12g).\n",
                      encroached->subsegorg[0], encroached->subsegorg[1],
                      encroached->subsegdest[0], encroached->subsegdest[1]);
@@ -8429,47 +8427,47 @@ int triflaws;
 
 #ifdef SELF_CHECK
     if (counterclockwise(m, b, rightvertex, leftvertex, botvertex) < 0.0) {
-      mexPrintf("Internal error in insertvertex():\n");
-      mexPrintf(
+      printf("Internal error in insertvertex():\n");
+      printf(
             "  Clockwise triangle prior to edge vertex insertion (bottom).\n");
     }
     if (mirrorflag) {
       if (counterclockwise(m, b, leftvertex, rightvertex, topvertex) < 0.0) {
-        mexPrintf("Internal error in insertvertex():\n");
-        mexPrintf("  Clockwise triangle prior to edge vertex insertion (top).\n");
+        printf("Internal error in insertvertex():\n");
+        printf("  Clockwise triangle prior to edge vertex insertion (top).\n");
       }
       if (counterclockwise(m, b, rightvertex, topvertex, newvertex) < 0.0) {
-        mexPrintf("Internal error in insertvertex():\n");
-        mexPrintf(
+        printf("Internal error in insertvertex():\n");
+        printf(
             "  Clockwise triangle after edge vertex insertion (top right).\n");
       }
       if (counterclockwise(m, b, topvertex, leftvertex, newvertex) < 0.0) {
-        mexPrintf("Internal error in insertvertex():\n");
-        mexPrintf(
+        printf("Internal error in insertvertex():\n");
+        printf(
             "  Clockwise triangle after edge vertex insertion (top left).\n");
       }
     }
     if (counterclockwise(m, b, leftvertex, botvertex, newvertex) < 0.0) {
-      mexPrintf("Internal error in insertvertex():\n");
-      mexPrintf(
+      printf("Internal error in insertvertex():\n");
+      printf(
           "  Clockwise triangle after edge vertex insertion (bottom left).\n");
     }
     if (counterclockwise(m, b, botvertex, rightvertex, newvertex) < 0.0) {
-      mexPrintf("Internal error in insertvertex():\n");
-      mexPrintf(
+      printf("Internal error in insertvertex():\n");
+      printf(
         "  Clockwise triangle after edge vertex insertion (bottom right).\n");
     }
 #endif /* SELF_CHECK */
     if (b->verbose > 2) {
-      mexPrintf("  Updating bottom left ");
+      printf("  Updating bottom left ");
       printtriangle(m, b, &botright);
       if (mirrorflag) {
-        mexPrintf("  Updating top left ");
+        printf("  Updating top left ");
         printtriangle(m, b, &topright);
-        mexPrintf("  Creating top right ");
+        printf("  Creating top right ");
         printtriangle(m, b, &newtopright);
       }
-      mexPrintf("  Creating bottom right ");
+      printf("  Creating bottom right ");
       printtriangle(m, b, &newbotright);
     }
 
@@ -8544,28 +8542,28 @@ int triflaws;
 
 #ifdef SELF_CHECK
     if (counterclockwise(m, b, rightvertex, leftvertex, botvertex) < 0.0) {
-      mexPrintf("Internal error in insertvertex():\n");
-      mexPrintf("  Clockwise triangle prior to vertex insertion.\n");
+      printf("Internal error in insertvertex():\n");
+      printf("  Clockwise triangle prior to vertex insertion.\n");
     }
     if (counterclockwise(m, b, rightvertex, leftvertex, newvertex) < 0.0) {
-      mexPrintf("Internal error in insertvertex():\n");
-      mexPrintf("  Clockwise triangle after vertex insertion (top).\n");
+      printf("Internal error in insertvertex():\n");
+      printf("  Clockwise triangle after vertex insertion (top).\n");
     }
     if (counterclockwise(m, b, leftvertex, botvertex, newvertex) < 0.0) {
-      mexPrintf("Internal error in insertvertex():\n");
-      mexPrintf("  Clockwise triangle after vertex insertion (left).\n");
+      printf("Internal error in insertvertex():\n");
+      printf("  Clockwise triangle after vertex insertion (left).\n");
     }
     if (counterclockwise(m, b, botvertex, rightvertex, newvertex) < 0.0) {
-      mexPrintf("Internal error in insertvertex():\n");
-      mexPrintf("  Clockwise triangle after vertex insertion (right).\n");
+      printf("Internal error in insertvertex():\n");
+      printf("  Clockwise triangle after vertex insertion (right).\n");
     }
 #endif /* SELF_CHECK */
     if (b->verbose > 2) {
-      mexPrintf("  Updating top ");
+      printf("  Updating top ");
       printtriangle(m, b, &horiz);
-      mexPrintf("  Creating left ");
+      printf("  Creating left ");
       printtriangle(m, b, &newbotleft);
-      mexPrintf("  Creating right ");
+      printf("  Creating right ");
       printtriangle(m, b, &newbotright);
     }
   }
@@ -8725,8 +8723,8 @@ int triflaws;
           if (newvertex != (vertex) NULL) {
             if (counterclockwise(m, b, leftvertex, newvertex, rightvertex) <
                 0.0) {
-              mexPrintf("Internal error in insertvertex():\n");
-              mexPrintf("  Clockwise triangle prior to edge flip (bottom).\n");
+              printf("Internal error in insertvertex():\n");
+              printf("  Clockwise triangle prior to edge flip (bottom).\n");
             }
             /* The following test has been removed because constrainededge() */
             /*   sometimes generates inverted triangles that insertvertex()  */
@@ -8734,27 +8732,27 @@ int triflaws;
 /*
             if (counterclockwise(m, b, rightvertex, farvertex, leftvertex) <
                 0.0) {
-              mexPrintf("Internal error in insertvertex():\n");
-              mexPrintf("  Clockwise triangle prior to edge flip (top).\n");
+              printf("Internal error in insertvertex():\n");
+              printf("  Clockwise triangle prior to edge flip (top).\n");
             }
 */
             if (counterclockwise(m, b, farvertex, leftvertex, newvertex) <
                 0.0) {
-              mexPrintf("Internal error in insertvertex():\n");
-              mexPrintf("  Clockwise triangle after edge flip (left).\n");
+              printf("Internal error in insertvertex():\n");
+              printf("  Clockwise triangle after edge flip (left).\n");
             }
             if (counterclockwise(m, b, newvertex, rightvertex, farvertex) <
                 0.0) {
-              mexPrintf("Internal error in insertvertex():\n");
-              mexPrintf("  Clockwise triangle after edge flip (right).\n");
+              printf("Internal error in insertvertex():\n");
+              printf("  Clockwise triangle after edge flip (right).\n");
             }
           }
 #endif /* SELF_CHECK */
           if (b->verbose > 2) {
-            mexPrintf("  Edge flip results in left ");
+            printf("  Edge flip results in left ");
             lnextself(topleft);
             printtriangle(m, b, &topleft);
-            mexPrintf("  and right ");
+            printf("  and right ");
             printtriangle(m, b, &horiz);
           }
           /* On the next iterations, consider the two edges that were  */
@@ -8887,8 +8885,8 @@ int triflaws;
   apex(*lastedge, leftbasevertex);
   dest(*firstedge, rightbasevertex);
   if (b->verbose > 2) {
-    mexPrintf("  Triangulating interior polygon at edge\n");
-    mexPrintf("    (%.12g, %.12g) (%.12g, %.12g)\n", leftbasevertex[0],
+    printf("  Triangulating interior polygon at edge\n");
+    printf("    (%.12g, %.12g) (%.12g, %.12g)\n", leftbasevertex[0],
            leftbasevertex[1], rightbasevertex[0], rightbasevertex[1]);
   }
   /* Find the best vertex to connect the base to. */
@@ -8908,7 +8906,7 @@ int triflaws;
     }
   }
   if (b->verbose > 2) {
-    mexPrintf("    Connecting edge to (%.12g, %.12g)\n", bestvertex[0],
+    printf("    Connecting edge to (%.12g, %.12g)\n", bestvertex[0],
            bestvertex[1]);
   }
   if (bestnumber > 1) {
@@ -8980,7 +8978,7 @@ struct otri *deltri;
 
   org(*deltri, delvertex);
   if (b->verbose > 1) {
-    mexPrintf("  Deleting (%.12g, %.12g).\n", delvertex[0], delvertex[1]);
+    printf("  Deleting (%.12g, %.12g).\n", delvertex[0], delvertex[1]);
   }
   vertexdealloc(m, delvertex);
 
@@ -8990,8 +8988,8 @@ struct otri *deltri;
   while (!otriequal(*deltri, countingtri)) {
 #ifdef SELF_CHECK
     if (countingtri.tri == m->dummytri) {
-      mexPrintf("Internal error in deletevertex():\n");
-      mexPrintf("  Attempt to delete boundary vertex.\n");
+      printf("Internal error in deletevertex():\n");
+      printf("  Attempt to delete boundary vertex.\n");
       internalerror();
     }
 #endif /* SELF_CHECK */
@@ -9001,7 +8999,7 @@ struct otri *deltri;
 
 #ifdef SELF_CHECK
   if (edgecount < 3) {
-    mexPrintf("Internal error in deletevertex():\n  Vertex has degree %d.\n",
+    printf("Internal error in deletevertex():\n  Vertex has degree %d.\n",
            edgecount);
     internalerror();
   }
@@ -9537,7 +9535,7 @@ int axis;
   setdest(baseedge, innerleftdest);
   /* Apex is intentionally left NULL. */
   if (b->verbose > 2) {
-    mexPrintf("  Creating base bounding ");
+    printf("  Creating base bounding ");
     printtriangle(m, b, &baseedge);
   }
   /* Fix the extreme triangles if necessary. */
@@ -9578,7 +9576,7 @@ int axis;
       lnextself(nextedge);
       bond(nextedge, leftcand);
       if (b->verbose > 2) {
-        mexPrintf("  Creating top bounding ");
+        printf("  Creating top bounding ");
         printtriangle(m, b, &nextedge);
       }
       /* Special treatment for horizontal cuts. */
@@ -9726,7 +9724,7 @@ int axis;
       apex(leftcand, upperleft);
     }
     if (b->verbose > 2) {
-      mexPrintf("  Connecting ");
+      printf("  Connecting ");
       printtriangle(m, b, &baseedge);
     }
   }
@@ -9771,7 +9769,7 @@ struct otri *farright;
   int divider;
 
   if (b->verbose > 2) {
-    mexPrintf("  Triangulating %d vertices.\n", vertices);
+    printf("  Triangulating %d vertices.\n", vertices);
   }
   if (vertices == 2) {
     /* The triangulation of two vertices is an edge.  An edge is */
@@ -9792,9 +9790,9 @@ struct otri *farright;
     lnextself(*farright);
     bond(*farleft, *farright);
     if (b->verbose > 2) {
-      mexPrintf("  Creating ");
+      printf("  Creating ");
       printtriangle(m, b, farleft);
-      mexPrintf("  Creating ");
+      printf("  Creating ");
       printtriangle(m, b, farright);
     }
     /* Ensure that the origin of `farleft' is sortarray[0]. */
@@ -9887,13 +9885,13 @@ struct otri *farright;
       }
     }
     if (b->verbose > 2) {
-      mexPrintf("  Creating ");
+      printf("  Creating ");
       printtriangle(m, b, &midtri);
-      mexPrintf("  Creating ");
+      printf("  Creating ");
       printtriangle(m, b, &tri1);
-      mexPrintf("  Creating ");
+      printf("  Creating ");
       printtriangle(m, b, &tri2);
-      mexPrintf("  Creating ");
+      printf("  Creating ");
       printtriangle(m, b, &tri3);
     }
     return;
@@ -9905,7 +9903,7 @@ struct otri *farright;
     divconqrecurse(m, b, &sortarray[divider], vertices - divider, 1 - axis,
                    &innerright, farright);
     if (b->verbose > 1) {
-      mexPrintf("  Joining triangulations with %d and %d vertices.\n", divider,
+      printf("  Joining triangulations with %d and %d vertices.\n", divider,
              vertices - divider);
     }
     /* Merge the two triangulations into one. */
@@ -9931,7 +9929,7 @@ struct otri *startghost;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (b->verbose) {
-    mexPrintf("  Removing ghost triangles.\n");
+    printf("  Removing ghost triangles.\n");
   }
   /* Find an edge on the convex hull to start point location from. */
   lprev(*startghost, searchedge);
@@ -9991,7 +9989,7 @@ struct behavior *b;
   int i, j;
 
   if (b->verbose) {
-    mexPrintf("  Sorting vertices.\n");
+    printf("  Sorting vertices.\n");
   }
 
   /* Allocate an array of pointers to vertices for sorting. */
@@ -10008,7 +10006,7 @@ struct behavior *b;
     if ((sortarray[i][0] == sortarray[j][0])
         && (sortarray[i][1] == sortarray[j][1])) {
       if (!b->quiet) {
-        mexPrintf(
+        printf(
 "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
                sortarray[j][0], sortarray[j][1]);
       }
@@ -10032,7 +10030,7 @@ struct behavior *b;
   }
 
   if (b->verbose) {
-    mexPrintf("  Forming triangulation.\n");
+    printf("  Forming triangulation.\n");
   }
 
   /* Form the Delaunay triangulation. */
@@ -10076,7 +10074,7 @@ struct behavior *b;
   REAL width;
 
   if (b->verbose) {
-    mexPrintf("  Creating triangular bounding box.\n");
+    printf("  Creating triangular bounding box.\n");
   }
   /* Find the width (or height, whichever is larger) of the triangulation. */
   width = m->xmax - m->xmin;
@@ -10106,7 +10104,7 @@ struct behavior *b;
   /*   edge to begin searching (point location) from.           */
   m->dummytri[0] = (triangle) inftri.tri;
   if (b->verbose > 2) {
-    mexPrintf("  Creating ");
+    printf("  Creating ");
     printtriangle(m, b, &inftri);
   }
 }
@@ -10147,7 +10145,7 @@ struct behavior *b;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (b->verbose) {
-    mexPrintf("  Removing triangular bounding box.\n");
+    printf("  Removing triangular bounding box.\n");
   }
   /* Find a boundary triangle. */
   nextedge.tri = m->dummytri;
@@ -10243,7 +10241,7 @@ struct behavior *b;
   /* Create a triangular bounding box. */
   boundingbox(m, b);
   if (b->verbose) {
-    mexPrintf("  Incrementally inserting vertices.\n");
+    printf("  Incrementally inserting vertices.\n");
   }
   traversalinit(&m->vertices);
   vertexloop = vertextraverse(m);
@@ -10252,7 +10250,7 @@ struct behavior *b;
     if (insertvertex(m, b, vertexloop, &starttri, (struct osub *) NULL, 0, 0)
         == DUPLICATEVERTEX) {
       if (!b->quiet) {
-        mexPrintf(
+        printf(
 "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
                vertexloop[0], vertexloop[1]);
       }
@@ -10665,7 +10663,7 @@ struct otri *searchtri;
       lefttree->rchild = righttree;
       return lefttree;
     } else {
-/*      mexPrintf("Holy Toledo!!!\n"); */
+/*      printf("Holy Toledo!!!\n"); */
       leftright = lefttree->rchild;
       while (leftright->rchild != (struct splaynode *) NULL) {
         leftright = leftright->rchild;
@@ -10826,13 +10824,13 @@ struct behavior *b;
   splayroot = (struct splaynode *) NULL;
 
   if (b->verbose) {
-    mexPrintf("  Placing vertices in event heap.\n");
+    printf("  Placing vertices in event heap.\n");
   }
   createeventheap(m, &eventheap, &events, &freeevents);
   heapsize = m->invertices;
 
   if (b->verbose) {
-    mexPrintf("  Forming triangulation.\n");
+    printf("  Forming triangulation.\n");
   }
   maketriangle(m, b, &lefttri);
   maketriangle(m, b, &righttri);
@@ -10850,7 +10848,7 @@ struct behavior *b;
   heapsize--;
   do {
     if (heapsize == 0) {
-      mexPrintf("Error:  Input vertices are all identical.\n");
+      printf("Error:  Input vertices are all identical.\n");
       triexit(1);
     }
     secondvertex = (vertex) eventheap[0]->eventptr;
@@ -10861,7 +10859,7 @@ struct behavior *b;
     if ((firstvertex[0] == secondvertex[0]) &&
         (firstvertex[1] == secondvertex[1])) {
       if (!b->quiet) {
-        mexPrintf(
+        printf(
 "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
                secondvertex[0], secondvertex[1]);
       }
@@ -10910,7 +10908,7 @@ struct behavior *b;
       if ((nextvertex[0] == lastvertex[0]) &&
           (nextvertex[1] == lastvertex[1])) {
         if (!b->quiet) {
-          mexPrintf(
+          printf(
 "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
                  nextvertex[0], nextvertex[1]);
         }
@@ -11036,19 +11034,19 @@ struct behavior *b;
 
 #ifdef REDUCED
   if (!b->quiet) {
-    mexPrintf(
+    printf(
       "Constructing Delaunay triangulation by divide-and-conquer method.\n");
   }
   hulledges = divconqdelaunay(m, b);
 #else /* not REDUCED */
   if (!b->quiet) {
-    mexPrintf("Constructing Delaunay triangulation ");
+    printf("Constructing Delaunay triangulation ");
     if (b->incremental) {
-      mexPrintf("by incremental method.\n");
+      printf("by incremental method.\n");
     } else if (b->sweepline) {
-      mexPrintf("by sweepline method.\n");
+      printf("by sweepline method.\n");
     } else {
-      mexPrintf("by divide-and-conquer method.\n");
+      printf("by divide-and-conquer method.\n");
     }
   }
   if (b->incremental) {
@@ -11179,18 +11177,18 @@ FILE *polyfile;
   m->inelements = elements;
   incorners = corners;
   if (incorners < 3) {
-    mexPrintf("Error:  Triangles must have at least 3 vertices.\n");
+    printf("Error:  Triangles must have at least 3 vertices.\n");
     triexit(1);
   }
   m->eextras = attribs;
 #else /* not TRILIBRARY */
   /* Read the triangles from an .ele file. */
   if (!b->quiet) {
-    mexPrintf("Opening %s.\n", elefilename);
+    printf("Opening %s.\n", elefilename);
   }
   elefile = fopen(elefilename, "r");
   if (elefile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot access file %s.\n", elefilename);
+    printf("  Error:  Cannot access file %s.\n", elefilename);
     triexit(1);
   }
   /* Read number of triangles, number of vertices per triangle, and */
@@ -11203,7 +11201,7 @@ FILE *polyfile;
   } else {
     incorners = (int) strtol(stringptr, &stringptr, 0);
     if (incorners < 3) {
-      mexPrintf("Error:  Triangles in %s must have at least 3 vertices.\n",
+      printf("Error:  Triangles in %s must have at least 3 vertices.\n",
              elefilename);
       triexit(1);
     }
@@ -11256,17 +11254,17 @@ FILE *polyfile;
   if (b->vararea) {
     /* Open an .area file, check for consistency with the .ele file. */
     if (!b->quiet) {
-      mexPrintf("Opening %s.\n", areafilename);
+      printf("Opening %s.\n", areafilename);
     }
     areafile = fopen(areafilename, "r");
     if (areafile == (FILE *) NULL) {
-      mexPrintf("  Error:  Cannot access file %s.\n", areafilename);
+      printf("  Error:  Cannot access file %s.\n", areafilename);
       triexit(1);
     }
     stringptr = readline(inputline, areafile, areafilename);
     areaelements = (int) strtol(stringptr, &stringptr, 0);
     if (areaelements != m->inelements) {
-      mexPrintf("Error:  %s and %s disagree on number of triangles.\n",
+      printf("Error:  %s and %s disagree on number of triangles.\n",
              elefilename, areafilename);
       triexit(1);
     }
@@ -11274,7 +11272,7 @@ FILE *polyfile;
 #endif /* not TRILIBRARY */
 
   if (!b->quiet) {
-    mexPrintf("Reconstructing mesh.\n");
+    printf("Reconstructing mesh.\n");
   }
   /* Allocate a temporary array that maps each vertex to some adjacent */
   /*   triangle.  I took care to allocate all the permanent memory for */
@@ -11287,7 +11285,7 @@ FILE *polyfile;
   }
 
   if (b->verbose) {
-    mexPrintf("  Assembling triangles.\n");
+    printf("  Assembling triangles.\n");
   }
   /* Read the triangles from the .ele file, and link */
   /*   together those that share an edge.            */
@@ -11301,7 +11299,7 @@ FILE *polyfile;
       corner[j] = trianglelist[vertexindex++];
       if ((corner[j] < b->firstnumber) ||
           (corner[j] >= b->firstnumber + m->invertices)) {
-        mexPrintf("Error:  Triangle %ld has an invalid vertex index.\n",
+        printf("Error:  Triangle %ld has an invalid vertex index.\n",
                elementnumber);
         triexit(1);
       }
@@ -11312,14 +11310,14 @@ FILE *polyfile;
     for (j = 0; j < 3; j++) {
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        mexPrintf("Error:  Triangle %ld is missing vertex %d in %s.\n",
+        printf("Error:  Triangle %ld is missing vertex %d in %s.\n",
                elementnumber, j + 1, elefilename);
         triexit(1);
       } else {
         corner[j] = (int) strtol(stringptr, &stringptr, 0);
         if ((corner[j] < b->firstnumber) ||
             (corner[j] >= b->firstnumber + m->invertices)) {
-          mexPrintf("Error:  Triangle %ld has an invalid vertex index.\n",
+          printf("Error:  Triangle %ld has an invalid vertex index.\n",
                  elementnumber);
           triexit(1);
         }
@@ -11436,7 +11434,7 @@ FILE *polyfile;
   hullsize = 0;                      /* Prepare to count the boundary edges. */
   if (b->poly) {
     if (b->verbose) {
-      mexPrintf("  Marking segments in triangulation.\n");
+      printf("  Marking segments in triangulation.\n");
     }
     /* Read the segments from the .poly file, and link them */
     /*   to their neighboring triangles.                    */
@@ -11457,7 +11455,7 @@ FILE *polyfile;
       /* Skip the first (segment number) field. */
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        mexPrintf("Error:  Segment %ld has no endpoints in %s.\n", segmentnumber,
+        printf("Error:  Segment %ld has no endpoints in %s.\n", segmentnumber,
                polyfilename);
         triexit(1);
       } else {
@@ -11465,7 +11463,7 @@ FILE *polyfile;
       }
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        mexPrintf("Error:  Segment %ld is missing its second endpoint in %s.\n",
+        printf("Error:  Segment %ld is missing its second endpoint in %s.\n",
                segmentnumber, polyfilename);
         triexit(1);
       } else {
@@ -11483,7 +11481,7 @@ FILE *polyfile;
       for (j = 0; j < 2; j++) {
         if ((end[j] < b->firstnumber) ||
             (end[j] >= b->firstnumber + m->invertices)) {
-          mexPrintf("Error:  Segment %ld has an invalid vertex index.\n", 
+          printf("Error:  Segment %ld has an invalid vertex index.\n", 
                  segmentnumber);
           triexit(1);
         }
@@ -11640,10 +11638,10 @@ vertex searchpoint;
     /* Turn left until satisfied. */
     onextself(*searchtri);
     if (searchtri->tri == m->dummytri) {
-      mexPrintf("Internal error in finddirection():  Unable to find a\n");
-      mexPrintf("  triangle leading from (%.12g, %.12g) to", startvertex[0],
+      printf("Internal error in finddirection():  Unable to find a\n");
+      printf("  triangle leading from (%.12g, %.12g) to", startvertex[0],
              startvertex[1]);
-      mexPrintf("  (%.12g, %.12g).\n", searchpoint[0], searchpoint[1]);
+      printf("  (%.12g, %.12g).\n", searchpoint[0], searchpoint[1]);
       internalerror();
     }
     apex(*searchtri, leftvertex);
@@ -11655,10 +11653,10 @@ vertex searchpoint;
     /* Turn right until satisfied. */
     oprevself(*searchtri);
     if (searchtri->tri == m->dummytri) {
-      mexPrintf("Internal error in finddirection():  Unable to find a\n");
-      mexPrintf("  triangle leading from (%.12g, %.12g) to", startvertex[0],
+      printf("Internal error in finddirection():  Unable to find a\n");
+      printf("  triangle leading from (%.12g, %.12g) to", startvertex[0],
              startvertex[1]);
-      mexPrintf("  (%.12g, %.12g).\n", searchpoint[0], searchpoint[1]);
+      printf("  (%.12g, %.12g).\n", searchpoint[0], searchpoint[1]);
       internalerror();
     }
     dest(*searchtri, rightvertex);
@@ -11734,8 +11732,8 @@ vertex endpoint2;
   ety = torg[1] - endpoint2[1];
   denom = ty * ex - tx * ey;
   if (denom == 0.0) {
-    mexPrintf("Internal error in segmentintersection():");
-    mexPrintf("  Attempt to find intersection of parallel segments.\n");
+    printf("Internal error in segmentintersection():");
+    printf("  Attempt to find intersection of parallel segments.\n");
     internalerror();
   }
   split = (ey * etx - ex * ety) / denom;
@@ -11748,15 +11746,15 @@ vertex endpoint2;
   setvertexmark(newvertex, mark(*splitsubseg));
   setvertextype(newvertex, INPUTVERTEX);
   if (b->verbose > 1) {
-    mexPrintf(
+    printf(
   "  Splitting subsegment (%.12g, %.12g) (%.12g, %.12g) at (%.12g, %.12g).\n",
            torg[0], torg[1], tdest[0], tdest[1], newvertex[0], newvertex[1]);
   }
   /* Insert the intersection vertex.  This should always succeed. */
   success = insertvertex(m, b, newvertex, splittri, splitsubseg, 0, 0);
   if (success != SUCCESSFULVERTEX) {
-    mexPrintf("Internal error in segmentintersection():\n");
-    mexPrintf("  Failure to split a segment.\n");
+    printf("Internal error in segmentintersection():\n");
+    printf("  Failure to split a segment.\n");
     internalerror();
   }
   /* Record a triangle whose origin is the new vertex. */
@@ -11788,8 +11786,8 @@ vertex endpoint2;
     onextself(*splittri);
   } else if ((rightvertex[0] != endpoint1[0]) ||
              (rightvertex[1] != endpoint1[1])) {
-    mexPrintf("Internal error in segmentintersection():\n");
-    mexPrintf("  Topological inconsistency after splitting a segment.\n");
+    printf("Internal error in segmentintersection():\n");
+    printf("  Topological inconsistency after splitting a segment.\n");
     internalerror();
   }
   /* `splittri' should have destination endpoint1. */
@@ -11925,8 +11923,8 @@ int newmark;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose > 2) {
-    mexPrintf("Forcing segment into triangulation by recursive splitting:\n");
-    mexPrintf("  (%.12g, %.12g) (%.12g, %.12g)\n", endpoint1[0], endpoint1[1],
+    printf("Forcing segment into triangulation by recursive splitting:\n");
+    printf("  (%.12g, %.12g) (%.12g, %.12g)\n", endpoint1[0], endpoint1[1],
            endpoint2[0], endpoint2[1]);
   }
   /* Create a new vertex to insert in the middle of the segment. */
@@ -11944,7 +11942,7 @@ int newmark;
                          0, 0);
   if (success == DUPLICATEVERTEX) {
     if (b->verbose > 2) {
-      mexPrintf("  Segment intersects existing vertex (%.12g, %.12g).\n",
+      printf("  Segment intersects existing vertex (%.12g, %.12g).\n",
              newvertex[0], newvertex[1]);
     }
     /* Use the vertex that's already there. */
@@ -11953,7 +11951,7 @@ int newmark;
   } else {
     if (success == VIOLATINGVERTEX) {
       if (b->verbose > 2) {
-        mexPrintf("  Two segments intersect at (%.12g, %.12g).\n",
+        printf("  Two segments intersect at (%.12g, %.12g).\n",
                newvertex[0], newvertex[1]);
       }
       /* By fluke, we've landed right on another segment.  Split it. */
@@ -11961,8 +11959,8 @@ int newmark;
       success = insertvertex(m, b, newvertex, &searchtri1, &brokensubseg,
                              0, 0);
       if (success != SUCCESSFULVERTEX) {
-        mexPrintf("Internal error in conformingedge():\n");
-        mexPrintf("  Failure to split a segment.\n");
+        printf("Internal error in conformingedge():\n");
+        printf("  Failure to split a segment.\n");
         internalerror();
       }
     }
@@ -12274,7 +12272,7 @@ int newmark;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (b->verbose > 1) {
-    mexPrintf("  Connecting (%.12g, %.12g) to (%.12g, %.12g).\n",
+    printf("  Connecting (%.12g, %.12g) to (%.12g, %.12g).\n",
            endpoint1[0], endpoint1[1], endpoint2[0], endpoint2[1]);
   }
 
@@ -12292,9 +12290,9 @@ int newmark;
     symself(searchtri1);
     /* Search for the segment's first endpoint by point location. */
     if (locate(m, b, endpoint1, &searchtri1) != ONVERTEX) {
-      mexPrintf(
+      printf(
         "Internal error in insertsegment():  Unable to locate PSLG vertex\n");
-      mexPrintf("  (%.12g, %.12g) in triangulation.\n",
+      printf("  (%.12g, %.12g) in triangulation.\n",
              endpoint1[0], endpoint1[1]);
       internalerror();
     }
@@ -12325,9 +12323,9 @@ int newmark;
     symself(searchtri2);
     /* Search for the segment's second endpoint by point location. */
     if (locate(m, b, endpoint2, &searchtri2) != ONVERTEX) {
-      mexPrintf(
+      printf(
         "Internal error in insertsegment():  Unable to locate PSLG vertex\n");
-      mexPrintf("  (%.12g, %.12g) in triangulation.\n",
+      printf("  (%.12g, %.12g) in triangulation.\n",
              endpoint2[0], endpoint2[1]);
       internalerror();
     }
@@ -12456,7 +12454,7 @@ char *polyfilename;
 
   if (b->poly) {
     if (!b->quiet) {
-      mexPrintf("Recovering segments in Delaunay triangulation.\n");
+      printf("Recovering segments in Delaunay triangulation.\n");
     }
 #ifdef TRILIBRARY
     strcpy(polyfilename, "input");
@@ -12486,7 +12484,7 @@ char *polyfilename;
     if (m->insegments > 0) {
       makevertexmap(m, b);
       if (b->verbose) {
-        mexPrintf("  Recovering PSLG segments.\n");
+        printf("  Recovering PSLG segments.\n");
       }
     }
 
@@ -12503,7 +12501,7 @@ char *polyfilename;
       stringptr = readline(inputline, polyfile, b->inpolyfilename);
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        mexPrintf("Error:  Segment %d has no endpoints in %s.\n",
+        printf("Error:  Segment %d has no endpoints in %s.\n",
                b->firstnumber + i, polyfilename);
         triexit(1);
       } else {
@@ -12511,7 +12509,7 @@ char *polyfilename;
       }
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        mexPrintf("Error:  Segment %d is missing its second endpoint in %s.\n",
+        printf("Error:  Segment %d is missing its second endpoint in %s.\n",
                b->firstnumber + i, polyfilename);
         triexit(1);
       } else {
@@ -12529,13 +12527,13 @@ char *polyfilename;
       if ((end1 < b->firstnumber) ||
           (end1 >= b->firstnumber + m->invertices)) {
         if (!b->quiet) {
-          mexPrintf("Warning:  Invalid first endpoint of segment %d in %s.\n",
+          printf("Warning:  Invalid first endpoint of segment %d in %s.\n",
                  b->firstnumber + i, polyfilename);
         }
       } else if ((end2 < b->firstnumber) ||
                  (end2 >= b->firstnumber + m->invertices)) {
         if (!b->quiet) {
-          mexPrintf("Warning:  Invalid second endpoint of segment %d in %s.\n",
+          printf("Warning:  Invalid second endpoint of segment %d in %s.\n",
                  b->firstnumber + i, polyfilename);
         }
       } else {
@@ -12544,7 +12542,7 @@ char *polyfilename;
         endpoint2 = getvertex(m, b, end2);
         if ((endpoint1[0] == endpoint2[0]) && (endpoint1[1] == endpoint2[1])) {
           if (!b->quiet) {
-            mexPrintf("Warning:  Endpoints of segment %d are coincident in %s.\n",
+            printf("Warning:  Endpoints of segment %d are coincident in %s.\n",
                    b->firstnumber + i, polyfilename);
           }
         } else {
@@ -12558,7 +12556,7 @@ char *polyfilename;
   if (b->convex || !b->poly) {
     /* Enclose the convex hull with subsegments. */
     if (b->verbose) {
-      mexPrintf("  Enclosing convex hull with segments.\n");
+      printf("  Enclosing convex hull with segments.\n");
     }
     markhull(m, b);
   }
@@ -12599,7 +12597,7 @@ struct behavior *b;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose) {
-    mexPrintf("  Marking concavities (external triangles) for elimination.\n");
+    printf("  Marking concavities (external triangles) for elimination.\n");
   }
   /* Find a triangle handle on the hull. */
   hulltri.tri = m->dummytri;
@@ -12684,7 +12682,7 @@ struct behavior *b;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose) {
-    mexPrintf("  Marking neighbors of marked triangles.\n");
+    printf("  Marking neighbors of marked triangles.\n");
   }
   /* Loop through all the infected triangles, spreading the virus to */
   /*   their neighbors, then to their neighbors' neighbors.          */
@@ -12704,7 +12702,7 @@ struct behavior *b;
       org(testtri, deadorg);
       dest(testtri, deaddest);
       apex(testtri, deadapex);
-      mexPrintf("    Checking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
+      printf("    Checking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              deadorg[0], deadorg[1], deaddest[0], deaddest[1],
              deadapex[0], deadapex[1]);
     }
@@ -12737,7 +12735,7 @@ struct behavior *b;
             org(neighbor, deadorg);
             dest(neighbor, deaddest);
             apex(neighbor, deadapex);
-            mexPrintf(
+            printf(
               "    Marking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
                    deadorg[0], deadorg[1], deaddest[0], deaddest[1],
                    deadapex[0], deadapex[1]);
@@ -12771,7 +12769,7 @@ struct behavior *b;
   }
 
   if (b->verbose) {
-    mexPrintf("  Deleting marked triangles.\n");
+    printf("  Deleting marked triangles.\n");
   }
 
   traversalinit(&m->viri);
@@ -12823,7 +12821,7 @@ struct behavior *b;
         }
         if (killorg) {
           if (b->verbose > 1) {
-            mexPrintf("    Deleting vertex (%.12g, %.12g)\n",
+            printf("    Deleting vertex (%.12g, %.12g)\n",
                    testvertex[0], testvertex[1]);
           }
           setvertextype(testvertex, UNDEADVERTEX);
@@ -12894,7 +12892,7 @@ REAL area;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose > 1) {
-    mexPrintf("  Marking neighbors of marked triangles.\n");
+    printf("  Marking neighbors of marked triangles.\n");
   }
   /* Loop through all the infected triangles, spreading the attribute      */
   /*   and/or area constraint to their neighbors, then to their neighbors' */
@@ -12923,7 +12921,7 @@ REAL area;
       org(testtri, regionorg);
       dest(testtri, regiondest);
       apex(testtri, regionapex);
-      mexPrintf("    Checking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
+      printf("    Checking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              regionorg[0], regionorg[1], regiondest[0], regiondest[1],
              regionapex[0], regionapex[1]);
     }
@@ -12941,7 +12939,7 @@ REAL area;
           org(neighbor, regionorg);
           dest(neighbor, regiondest);
           apex(neighbor, regionapex);
-          mexPrintf("    Marking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
+          printf("    Marking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
                  regionorg[0], regionorg[1], regiondest[0], regiondest[1],
                  regionapex[0], regionapex[1]);
         }
@@ -12960,7 +12958,7 @@ REAL area;
 
   /* Uninfect all triangles. */
   if (b->verbose > 1) {
-    mexPrintf("  Unmarking marked triangles.\n");
+    printf("  Unmarking marked triangles.\n");
   }
   traversalinit(&m->viri);
   virusloop = (triangle **) traverse(&m->viri);
@@ -13010,9 +13008,9 @@ int regions;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (!(b->quiet || (b->noholes && b->convex))) {
-    mexPrintf("Removing unwanted triangles.\n");
+    printf("Removing unwanted triangles.\n");
     if (b->verbose && (holes > 0)) {
-      mexPrintf("  Marking holes for elimination.\n");
+      printf("  Marking holes for elimination.\n");
     }
   }
 
@@ -13114,12 +13112,12 @@ int regions;
     if (!b->quiet) {
       if (b->regionattrib) {
         if (b->vararea) {
-          mexPrintf("Spreading regional attributes and area constraints.\n");
+          printf("Spreading regional attributes and area constraints.\n");
         } else {
-          mexPrintf("Spreading regional attributes.\n");
+          printf("Spreading regional attributes.\n");
         }
       } else { 
-        mexPrintf("Spreading regional area constraints.\n");
+        printf("Spreading regional area constraints.\n");
       }
     }
     if (b->regionattrib && !b->refine) {
@@ -13213,12 +13211,12 @@ struct behavior *b;
 
 void precisionerror()
 {
-  mexPrintf("Try increasing the area criterion and/or reducing the minimum\n");
-  mexPrintf("  allowable angle so that tiny triangles are not created.\n");
+  printf("Try increasing the area criterion and/or reducing the minimum\n");
+  printf("  allowable angle so that tiny triangles are not created.\n");
 #ifdef SINGLE
-  mexPrintf("Alternatively, try recompiling me with double precision\n");
-  mexPrintf("  arithmetic (by removing \"#define SINGLE\" from the\n");
-  mexPrintf("  source file or \"-DSINGLE\" from the makefile).\n");
+  printf("Alternatively, try recompiling me with double precision\n");
+  printf("  arithmetic (by removing \"#define SINGLE\" from the\n");
+  printf("  source file or \"-DSINGLE\" from the makefile).\n");
 #endif /* SINGLE */
 }
 
@@ -13403,7 +13401,7 @@ int triflaws;
         setvertexmark(newvertex, mark(currentenc));
         setvertextype(newvertex, SEGMENTVERTEX);
         if (b->verbose > 1) {
-          mexPrintf(
+          printf(
   "  Splitting subsegment (%.12g, %.12g) (%.12g, %.12g) at (%.12g, %.12g).\n",
                  eorg[0], eorg[1], edest[0], edest[1],
                  newvertex[0], newvertex[1]);
@@ -13411,11 +13409,11 @@ int triflaws;
         /* Check whether the new vertex lies on an endpoint. */
         if (((newvertex[0] == eorg[0]) && (newvertex[1] == eorg[1])) ||
             ((newvertex[0] == edest[0]) && (newvertex[1] == edest[1]))) {
-          mexPrintf("Error:  Ran out of precision at (%.12g, %.12g).\n",
+          printf("Error:  Ran out of precision at (%.12g, %.12g).\n",
                  newvertex[0], newvertex[1]);
-          mexPrintf("I attempted to split a segment to a smaller size than\n");
-          mexPrintf("  can be accommodated by the finite precision of\n");
-          mexPrintf("  floating point arithmetic.\n");
+          printf("I attempted to split a segment to a smaller size than\n");
+          printf("  can be accommodated by the finite precision of\n");
+          printf("  floating point arithmetic.\n");
           precisionerror();
           triexit(1);
         }
@@ -13423,8 +13421,8 @@ int triflaws;
         success = insertvertex(m, b, newvertex, &enctri, &currentenc,
                                1, triflaws);
         if ((success != SUCCESSFULVERTEX) && (success != ENCROACHINGVERTEX)) {
-          mexPrintf("Internal error in splitencsegs():\n");
-          mexPrintf("  Failure to split a segment.\n");
+          printf("Internal error in splitencsegs():\n");
+          printf("  Failure to split a segment.\n");
           internalerror();
         }
         if (m->steinerleft > 0) {
@@ -13464,7 +13462,7 @@ struct behavior *b;
   struct otri triangleloop;
 
   if (b->verbose) {
-    mexPrintf("  Making a list of bad triangles.\n");
+    printf("  Making a list of bad triangles.\n");
   }
   traversalinit(&m->triangles);
   triangleloop.orient = 0;
@@ -13517,8 +13515,8 @@ struct badtriang *badtri;
   if (!deadtri(badotri.tri) && (borg == badtri->triangorg) &&
       (bdest == badtri->triangdest) && (bapex == badtri->triangapex)) {
     if (b->verbose > 1) {
-      mexPrintf("  Splitting this triangle at its circumcenter:\n");
-      mexPrintf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n", borg[0],
+      printf("  Splitting this triangle at its circumcenter:\n");
+      printf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n", borg[0],
              borg[1], bdest[0], bdest[1], bapex[0], bapex[1]);
     }
 
@@ -13532,7 +13530,7 @@ struct badtriang *badtri;
         ((newvertex[0] == bdest[0]) && (newvertex[1] == bdest[1])) ||
         ((newvertex[0] == bapex[0]) && (newvertex[1] == bapex[1]))) {
       if (!b->quiet) {
-        mexPrintf(
+        printf(
              "Warning:  New vertex (%.12g, %.12g) falls on existing vertex.\n",
                newvertex[0], newvertex[1]);
         errorflag = 1;
@@ -13573,7 +13571,7 @@ struct badtriang *badtri;
         /*   delete the new vertex.                                   */
         undovertex(m, b);
         if (b->verbose > 1) {
-          mexPrintf("  Rejecting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
+          printf("  Rejecting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
         }
         vertexdealloc(m, newvertex);
       } else if (success == VIOLATINGVERTEX) {
@@ -13583,7 +13581,7 @@ struct badtriang *badtri;
       } else {                                 /* success == DUPLICATEVERTEX */
         /* Couldn't insert the new vertex because a vertex is already there. */
         if (!b->quiet) {
-          mexPrintf(
+          printf(
             "Warning:  New vertex (%.12g, %.12g) falls on existing vertex.\n",
                  newvertex[0], newvertex[1]);
           errorflag = 1;
@@ -13593,14 +13591,14 @@ struct badtriang *badtri;
     }
     if (errorflag) {
       if (b->verbose) {
-        mexPrintf("  The new vertex is at the circumcenter of triangle\n");
-        mexPrintf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
+        printf("  The new vertex is at the circumcenter of triangle\n");
+        printf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
                borg[0], borg[1], bdest[0], bdest[1], bapex[0], bapex[1]);
       }
-      mexPrintf("This probably means that I am trying to refine triangles\n");
-      mexPrintf("  to a smaller size than can be accommodated by the finite\n");
-      mexPrintf("  precision of floating point arithmetic.  (You can be\n");
-      mexPrintf("  sure of this if I fail to terminate.)\n");
+      printf("This probably means that I am trying to refine triangles\n");
+      printf("  to a smaller size than can be accommodated by the finite\n");
+      printf("  precision of floating point arithmetic.  (You can be\n");
+      printf("  sure of this if I fail to terminate.)\n");
       precisionerror();
     }
   }
@@ -13630,18 +13628,18 @@ struct behavior *b;
   int i;
 
   if (!b->quiet) {
-    mexPrintf("Adding Steiner points to enforce quality.\n");
+    printf("Adding Steiner points to enforce quality.\n");
   }
   /* Initialize the pool of encroached subsegments. */
   poolinit(&m->badsubsegs, sizeof(struct badsubseg), BADSUBSEGPERBLOCK,
            BADSUBSEGPERBLOCK, 0);
   if (b->verbose) {
-    mexPrintf("  Looking for encroached subsegments.\n");
+    printf("  Looking for encroached subsegments.\n");
   }
   /* Test all segments to see if they're encroached. */
   tallyencs(m, b);
   if (b->verbose && (m->badsubsegs.items > 0)) {
-    mexPrintf("  Splitting encroached subsegments.\n");
+    printf("  Splitting encroached subsegments.\n");
   }
   /* Fix encroached subsegments without noting bad triangles. */
   splitencsegs(m, b, 0);
@@ -13665,7 +13663,7 @@ struct behavior *b;
              FLIPSTACKERPERBLOCK, 0);
     m->checkquality = 1;
     if (b->verbose) {
-      mexPrintf("  Splitting bad triangles.\n");
+      printf("  Splitting bad triangles.\n");
     }
     while ((m->badtriangles.items > 0) && (m->steinerleft != 0)) {
       /* Fix one bad triangle by inserting a vertex at its circumcenter. */
@@ -13690,17 +13688,17 @@ struct behavior *b;
   /* Might we have run out of Steiner points too soon? */
   if (!b->quiet && b->conformdel && (m->badsubsegs.items > 0) &&
       (m->steinerleft == 0)) {
-    mexPrintf("\nWarning:  I ran out of Steiner points, but the mesh has\n");
+    printf("\nWarning:  I ran out of Steiner points, but the mesh has\n");
     if (m->badsubsegs.items == 1) {
-      mexPrintf("  one encroached subsegment, and therefore might not be truly\n"
+      printf("  one encroached subsegment, and therefore might not be truly\n"
              );
     } else {
-      mexPrintf("  %ld encroached subsegments, and therefore might not be truly\n"
+      printf("  %ld encroached subsegments, and therefore might not be truly\n"
              , m->badsubsegs.items);
     }
-    mexPrintf("  Delaunay.  If the Delaunay property is important to you,\n");
-    mexPrintf("  try increasing the number of Steiner points (controlled by\n");
-    mexPrintf("  the -S switch) slightly and try again.\n\n");
+    printf("  Delaunay.  If the Delaunay property is important to you,\n");
+    printf("  try increasing the number of Steiner points (controlled by\n");
+    printf("  the -S switch) slightly and try again.\n\n");
   }
 }
 
@@ -13734,7 +13732,7 @@ struct behavior *b;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (!b->quiet) {
-    mexPrintf("Adding vertices for second-order triangles.\n");
+    printf("Adding vertices for second-order triangles.\n");
   }
   /* The following line ensures that dead items in the pool of nodes    */
   /*   cannot be allocated for the extra nodes associated with high     */
@@ -13778,7 +13776,7 @@ struct behavior *b;
           }
         }
         if (b->verbose > 1) {
-          mexPrintf("  Creating (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
+          printf("  Creating (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
         }
         /* Record the new node in the (one or two) adjacent elements. */
         triangleloop.tri[m->highorderindex + triangleloop.orient] =
@@ -13823,7 +13821,7 @@ char *infilename;
   do {
     result = fgets(string, INPUTLINESIZE, infile);
     if (result == (char *) NULL) {
-      mexPrintf("  Error:  Unexpected end of file in %s.\n", infilename);
+      printf("  Error:  Unexpected end of file in %s.\n", infilename);
       triexit(1);
     }
     /* Skip anything that doesn't look like a number, a comment, */
@@ -13919,11 +13917,11 @@ FILE **polyfile;
   if (b->poly) {
     /* Read the vertices from a .poly file. */
     if (!b->quiet) {
-      mexPrintf("Opening %s.\n", polyfilename);
+      printf("Opening %s.\n", polyfilename);
     }
     *polyfile = fopen(polyfilename, "r");
     if (*polyfile == (FILE *) NULL) {
-      mexPrintf("  Error:  Cannot access file %s.\n", polyfilename);
+      printf("  Error:  Cannot access file %s.\n", polyfilename);
       triexit(1);
     }
     /* Read number of vertices, number of dimensions, number of vertex */
@@ -13967,11 +13965,11 @@ FILE **polyfile;
   if (m->readnodefile) {
     /* Read the vertices from a .node file. */
     if (!b->quiet) {
-      mexPrintf("Opening %s.\n", nodefilename);
+      printf("Opening %s.\n", nodefilename);
     }
     infile = fopen(nodefilename, "r");
     if (infile == (FILE *) NULL) {
-      mexPrintf("  Error:  Cannot access file %s.\n", nodefilename);
+      printf("  Error:  Cannot access file %s.\n", nodefilename);
       triexit(1);
     }
     /* Read number of vertices, number of dimensions, number of vertex */
@@ -13999,11 +13997,11 @@ FILE **polyfile;
   }
 
   if (m->invertices < 3) {
-    mexPrintf("Error:  Input must have at least three input vertices.\n");
+    printf("Error:  Input must have at least three input vertices.\n");
     triexit(1);
   }
   if (m->mesh_dim != 2) {
-    mexPrintf("Error:  Triangle only works with two-dimensional meshes.\n");
+    printf("Error:  Triangle only works with two-dimensional meshes.\n");
     triexit(1);
   }
   if (m->nextras == 0) {
@@ -14024,13 +14022,13 @@ FILE **polyfile;
     }
     stringptr = findfield(stringptr);
     if (*stringptr == '\0') {
-      mexPrintf("Error:  Vertex %d has no x coordinate.\n", b->firstnumber + i);
+      printf("Error:  Vertex %d has no x coordinate.\n", b->firstnumber + i);
       triexit(1);
     }
     x = (REAL) strtod(stringptr, &stringptr);
     stringptr = findfield(stringptr);
     if (*stringptr == '\0') {
-      mexPrintf("Error:  Vertex %d has no y coordinate.\n", b->firstnumber + i);
+      printf("Error:  Vertex %d has no y coordinate.\n", b->firstnumber + i);
       triexit(1);
     }
     y = (REAL) strtod(stringptr, &stringptr);
@@ -14117,7 +14115,7 @@ int numberofpointattribs;
   m->nextras = numberofpointattribs;
   m->readnodefile = 0;
   if (m->invertices < 3) {
-    mexPrintf("Error:  Input must have at least three input vertices.\n");
+    printf("Error:  Input must have at least three input vertices.\n");
     triexit(1);
   }
   if (m->nextras == 0) {
@@ -14208,7 +14206,7 @@ int *regions;
       stringptr = readline(inputline, polyfile, polyfilename);
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        mexPrintf("Error:  Hole %d has no x coordinate.\n",
+        printf("Error:  Hole %d has no x coordinate.\n",
                b->firstnumber + (i >> 1));
         triexit(1);
       } else {
@@ -14216,7 +14214,7 @@ int *regions;
       }
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        mexPrintf("Error:  Hole %d has no y coordinate.\n",
+        printf("Error:  Hole %d has no y coordinate.\n",
                b->firstnumber + (i >> 1));
         triexit(1);
       } else {
@@ -14240,7 +14238,7 @@ int *regions;
         stringptr = readline(inputline, polyfile, polyfilename);
         stringptr = findfield(stringptr);
         if (*stringptr == '\0') {
-          mexPrintf("Error:  Region %d has no x coordinate.\n",
+          printf("Error:  Region %d has no x coordinate.\n",
                  b->firstnumber + i);
           triexit(1);
         } else {
@@ -14248,7 +14246,7 @@ int *regions;
         }
         stringptr = findfield(stringptr);
         if (*stringptr == '\0') {
-          mexPrintf("Error:  Region %d has no y coordinate.\n",
+          printf("Error:  Region %d has no y coordinate.\n",
                  b->firstnumber + i);
           triexit(1);
         } else {
@@ -14256,7 +14254,7 @@ int *regions;
         }
         stringptr = findfield(stringptr);
         if (*stringptr == '\0') {
-          mexPrintf(
+          printf(
             "Error:  Region %d has no region attribute or area constraint.\n",
                  b->firstnumber + i);
           triexit(1);
@@ -14305,12 +14303,12 @@ char **argv;
 {
   int i;
 
-  fmexPrintf(outfile, "# Generated by");
+  fprintf(outfile, "# Generated by");
   for (i = 0; i < argc; i++) {
-    fmexPrintf(outfile, " ");
+    fprintf(outfile, " ");
     fputs(argv[i], outfile);
   }
-  fmexPrintf(outfile, "\n");
+  fprintf(outfile, "\n");
   fclose(outfile);
 }
 
@@ -14378,7 +14376,7 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    mexPrintf("Writing vertices.\n");
+    printf("Writing vertices.\n");
   }
   /* Allocate memory for output vertices if necessary. */
   if (*pointlist == (REAL *) NULL) {
@@ -14400,16 +14398,16 @@ char **argv;
   attribindex = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    mexPrintf("Writing %s.\n", nodefilename);
+    printf("Writing %s.\n", nodefilename);
   }
   outfile = fopen(nodefilename, "w");
   if (outfile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot create file %s.\n", nodefilename);
+    printf("  Error:  Cannot create file %s.\n", nodefilename);
     triexit(1);
   }
   /* Number of vertices, number of dimensions, number of vertex attributes, */
   /*   and number of boundary markers (zero or one).                        */
-  fmexPrintf(outfile, "%ld  %d  %d  %d\n", outvertices, m->mesh_dim,
+  fprintf(outfile, "%ld  %d  %d  %d\n", outvertices, m->mesh_dim,
           m->nextras, 1 - b->nobound);
 #endif /* not TRILIBRARY */
 
@@ -14432,17 +14430,17 @@ char **argv;
       }
 #else /* not TRILIBRARY */
       /* Vertex number, x and y coordinates. */
-      fmexPrintf(outfile, "%4d    %.17g  %.17g", vertexnumber, vertexloop[0],
+      fprintf(outfile, "%4d    %.17g  %.17g", vertexnumber, vertexloop[0],
               vertexloop[1]);
       for (i = 0; i < m->nextras; i++) {
         /* Write an attribute. */
-        fmexPrintf(outfile, "  %.17g", vertexloop[i + 2]);
+        fprintf(outfile, "  %.17g", vertexloop[i + 2]);
       }
       if (b->nobound) {
-        fmexPrintf(outfile, "\n");
+        fprintf(outfile, "\n");
       } else {
         /* Write the boundary marker. */
-        fmexPrintf(outfile, "    %d\n", vertexmark(vertexloop));
+        fprintf(outfile, "    %d\n", vertexmark(vertexloop));
       }
 #endif /* not TRILIBRARY */
 
@@ -14543,7 +14541,7 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    mexPrintf("Writing triangles.\n");
+    printf("Writing triangles.\n");
   }
   /* Allocate memory for output triangles if necessary. */
   if (*trianglelist == (int *) NULL) {
@@ -14563,15 +14561,15 @@ char **argv;
   attribindex = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    mexPrintf("Writing %s.\n", elefilename);
+    printf("Writing %s.\n", elefilename);
   }
   outfile = fopen(elefilename, "w");
   if (outfile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot create file %s.\n", elefilename);
+    printf("  Error:  Cannot create file %s.\n", elefilename);
     triexit(1);
   }
   /* Number of triangles, vertices per triangle, attributes per triangle. */
-  fmexPrintf(outfile, "%ld  %d  %d\n", m->triangles.items,
+  fprintf(outfile, "%ld  %d  %d\n", m->triangles.items,
           (b->order + 1) * (b->order + 2) / 2, m->eextras);
 #endif /* not TRILIBRARY */
 
@@ -14590,7 +14588,7 @@ char **argv;
       tlist[vertexindex++] = vertexmark(p3);
 #else /* not TRILIBRARY */
       /* Triangle number, indices for three vertices. */
-      fmexPrintf(outfile, "%4ld    %4d  %4d  %4d", elementnumber,
+      fprintf(outfile, "%4ld    %4d  %4d  %4d", elementnumber,
               vertexmark(p1), vertexmark(p2), vertexmark(p3));
 #endif /* not TRILIBRARY */
     } else {
@@ -14606,7 +14604,7 @@ char **argv;
       tlist[vertexindex++] = vertexmark(mid3);
 #else /* not TRILIBRARY */
       /* Triangle number, indices for six vertices. */
-      fmexPrintf(outfile, "%4ld    %4d  %4d  %4d  %4d  %4d  %4d", elementnumber,
+      fprintf(outfile, "%4ld    %4d  %4d  %4d  %4d  %4d  %4d", elementnumber,
               vertexmark(p1), vertexmark(p2), vertexmark(p3), vertexmark(mid1),
               vertexmark(mid2), vertexmark(mid3));
 #endif /* not TRILIBRARY */
@@ -14618,9 +14616,9 @@ char **argv;
     }
 #else /* not TRILIBRARY */
     for (i = 0; i < m->eextras; i++) {
-      fmexPrintf(outfile, "  %.17g", elemattribute(triangleloop, i));
+      fprintf(outfile, "  %.17g", elemattribute(triangleloop, i));
     }
-    fmexPrintf(outfile, "\n");
+    fprintf(outfile, "\n");
 #endif /* not TRILIBRARY */
 
     triangleloop.tri = triangletraverse(m);
@@ -14688,7 +14686,7 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    mexPrintf("Writing segments.\n");
+    printf("Writing segments.\n");
   }
   /* Allocate memory for output segments if necessary. */
   if (*segmentlist == (int *) NULL) {
@@ -14705,20 +14703,20 @@ char **argv;
   index = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    mexPrintf("Writing %s.\n", polyfilename);
+    printf("Writing %s.\n", polyfilename);
   }
   outfile = fopen(polyfilename, "w");
   if (outfile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot create file %s.\n", polyfilename);
+    printf("  Error:  Cannot create file %s.\n", polyfilename);
     triexit(1);
   }
   /* The zero indicates that the vertices are in a separate .node file. */
   /*   Followed by number of dimensions, number of vertex attributes,   */
   /*   and number of boundary markers (zero or one).                    */
-  fmexPrintf(outfile, "%d  %d  %d  %d\n", 0, m->mesh_dim, m->nextras,
+  fprintf(outfile, "%d  %d  %d  %d\n", 0, m->mesh_dim, m->nextras,
           1 - b->nobound);
   /* Number of segments, number of boundary markers (zero or one). */
-  fmexPrintf(outfile, "%ld  %d\n", m->subsegs.items, 1 - b->nobound);
+  fprintf(outfile, "%ld  %d\n", m->subsegs.items, 1 - b->nobound);
 #endif /* not TRILIBRARY */
 
   traversalinit(&m->subsegs);
@@ -14739,10 +14737,10 @@ char **argv;
 #else /* not TRILIBRARY */
     /* Segment number, indices of its two endpoints, and possibly a marker. */
     if (b->nobound) {
-      fmexPrintf(outfile, "%4ld    %4d  %4d\n", subsegnumber,
+      fprintf(outfile, "%4ld    %4d  %4d\n", subsegnumber,
               vertexmark(endpoint1), vertexmark(endpoint2));
     } else {
-      fmexPrintf(outfile, "%4ld    %4d  %4d    %4d\n", subsegnumber,
+      fprintf(outfile, "%4ld    %4d  %4d    %4d\n", subsegnumber,
               vertexmark(endpoint1), vertexmark(endpoint2), mark(subsegloop));
     }
 #endif /* not TRILIBRARY */
@@ -14753,19 +14751,19 @@ char **argv;
 
 #ifndef TRILIBRARY
 #ifndef CDT_ONLY
-  fmexPrintf(outfile, "%d\n", holes);
+  fprintf(outfile, "%d\n", holes);
   if (holes > 0) {
     for (holenumber = 0; holenumber < holes; holenumber++) {
       /* Hole number, x and y coordinates. */
-      fmexPrintf(outfile, "%4ld   %.17g  %.17g\n", b->firstnumber + holenumber,
+      fprintf(outfile, "%4ld   %.17g  %.17g\n", b->firstnumber + holenumber,
               holelist[2 * holenumber], holelist[2 * holenumber + 1]);
     }
   }
   if (regions > 0) {
-    fmexPrintf(outfile, "%d\n", regions);
+    fprintf(outfile, "%d\n", regions);
     for (regionnumber = 0; regionnumber < regions; regionnumber++) {
       /* Region number, x and y coordinates, attribute, maximum area. */
-      fmexPrintf(outfile, "%4ld   %.17g  %.17g  %.17g  %.17g\n",
+      fprintf(outfile, "%4ld   %.17g  %.17g  %.17g  %.17g\n",
               b->firstnumber + regionnumber,
               regionlist[4 * regionnumber], regionlist[4 * regionnumber + 1],
               regionlist[4 * regionnumber + 2],
@@ -14830,7 +14828,7 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    mexPrintf("Writing edges.\n");
+    printf("Writing edges.\n");
   }
   /* Allocate memory for edges if necessary. */
   if (*edgelist == (int *) NULL) {
@@ -14845,15 +14843,15 @@ char **argv;
   index = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    mexPrintf("Writing %s.\n", edgefilename);
+    printf("Writing %s.\n", edgefilename);
   }
   outfile = fopen(edgefilename, "w");
   if (outfile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot create file %s.\n", edgefilename);
+    printf("  Error:  Cannot create file %s.\n", edgefilename);
     triexit(1);
   }
   /* Number of edges, number of boundary markers (zero or one). */
-  fmexPrintf(outfile, "%ld  %d\n", m->edges, 1 - b->nobound);
+  fprintf(outfile, "%ld  %d\n", m->edges, 1 - b->nobound);
 #endif /* not TRILIBRARY */
 
   traversalinit(&m->triangles);
@@ -14879,7 +14877,7 @@ char **argv;
         if (b->nobound) {
 #ifndef TRILIBRARY
           /* Edge number, indices of two endpoints. */
-          fmexPrintf(outfile, "%4ld   %d  %d\n", edgenumber,
+          fprintf(outfile, "%4ld   %d  %d\n", edgenumber,
                   vertexmark(p1), vertexmark(p2));
 #endif /* not TRILIBRARY */
         } else {
@@ -14891,14 +14889,14 @@ char **argv;
 #ifdef TRILIBRARY
               emlist[edgenumber - b->firstnumber] = 0;
 #else /* not TRILIBRARY */
-              fmexPrintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
+              fprintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
                       vertexmark(p1), vertexmark(p2), 0);
 #endif /* not TRILIBRARY */
             } else {
 #ifdef TRILIBRARY
               emlist[edgenumber - b->firstnumber] = mark(checkmark);
 #else /* not TRILIBRARY */
-              fmexPrintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
+              fprintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
                       vertexmark(p1), vertexmark(p2), mark(checkmark));
 #endif /* not TRILIBRARY */
             }
@@ -14906,7 +14904,7 @@ char **argv;
 #ifdef TRILIBRARY
             emlist[edgenumber - b->firstnumber] = trisym.tri == m->dummytri;
 #else /* not TRILIBRARY */
-            fmexPrintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
+            fprintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
                     vertexmark(p1), vertexmark(p2), trisym.tri == m->dummytri);
 #endif /* not TRILIBRARY */
           }
@@ -14996,7 +14994,7 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    mexPrintf("Writing Voronoi vertices.\n");
+    printf("Writing Voronoi vertices.\n");
   }
   /* Allocate memory for Voronoi vertices if necessary. */
   if (*vpointlist == (REAL *) NULL) {
@@ -15015,16 +15013,16 @@ char **argv;
   attribindex = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    mexPrintf("Writing %s.\n", vnodefilename);
+    printf("Writing %s.\n", vnodefilename);
   }
   outfile = fopen(vnodefilename, "w");
   if (outfile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot create file %s.\n", vnodefilename);
+    printf("  Error:  Cannot create file %s.\n", vnodefilename);
     triexit(1);
   }
   /* Number of triangles, two dimensions, number of vertex attributes, */
   /*   no markers.                                                     */
-  fmexPrintf(outfile, "%ld  %d  %d  %d\n", m->triangles.items, 2, m->nextras, 0);
+  fprintf(outfile, "%ld  %d  %d  %d\n", m->triangles.items, 2, m->nextras, 0);
 #endif /* not TRILIBRARY */
 
   traversalinit(&m->triangles);
@@ -15047,14 +15045,14 @@ char **argv;
     }
 #else /* not TRILIBRARY */
     /* Voronoi vertex number, x and y coordinates. */
-    fmexPrintf(outfile, "%4ld    %.17g  %.17g", vnodenumber, circumcenter[0],
+    fprintf(outfile, "%4ld    %.17g  %.17g", vnodenumber, circumcenter[0],
             circumcenter[1]);
     for (i = 2; i < 2 + m->nextras; i++) {
       /* Interpolate the vertex attributes at the circumcenter. */
-      fmexPrintf(outfile, "  %.17g", torg[i] + xi * (tdest[i] - torg[i])
+      fprintf(outfile, "  %.17g", torg[i] + xi * (tdest[i] - torg[i])
                                          + eta * (tapex[i] - torg[i]));
     }
-    fmexPrintf(outfile, "\n");
+    fprintf(outfile, "\n");
 #endif /* not TRILIBRARY */
 
     * (int *) (triangleloop.tri + 6) = (int) vnodenumber;
@@ -15068,7 +15066,7 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    mexPrintf("Writing Voronoi edges.\n");
+    printf("Writing Voronoi edges.\n");
   }
   /* Allocate memory for output Voronoi edges if necessary. */
   if (*vedgelist == (int *) NULL) {
@@ -15084,15 +15082,15 @@ char **argv;
   coordindex = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    mexPrintf("Writing %s.\n", vedgefilename);
+    printf("Writing %s.\n", vedgefilename);
   }
   outfile = fopen(vedgefilename, "w");
   if (outfile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot create file %s.\n", vedgefilename);
+    printf("  Error:  Cannot create file %s.\n", vedgefilename);
     triexit(1);
   }
   /* Number of edges, zero boundary markers. */
-  fmexPrintf(outfile, "%ld  %d\n", m->edges, 0);
+  fprintf(outfile, "%ld  %d\n", m->edges, 0);
 #endif /* not TRILIBRARY */
 
   traversalinit(&m->triangles);
@@ -15124,7 +15122,7 @@ char **argv;
           /* Write an infinite ray.  Edge number, index of one endpoint, -1, */
           /*   and x and y coordinates of a vector representing the          */
           /*   direction of the ray.                                         */
-          fmexPrintf(outfile, "%4ld   %d  %d   %.17g  %.17g\n", vedgenumber,
+          fprintf(outfile, "%4ld   %d  %d   %.17g  %.17g\n", vedgenumber,
                   p1, -1, tdest[1] - torg[1], torg[0] - tdest[0]);
 #endif /* not TRILIBRARY */
         } else {
@@ -15137,7 +15135,7 @@ char **argv;
           elist[coordindex] = p2;
           normlist[coordindex++] = 0.0;
 #else /* not TRILIBRARY */
-          fmexPrintf(outfile, "%4ld   %d  %d\n", vedgenumber, p1, p2);
+          fprintf(outfile, "%4ld   %d  %d\n", vedgenumber, p1, p2);
 #endif /* not TRILIBRARY */
         }
         vedgenumber++;
@@ -15192,7 +15190,7 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    mexPrintf("Writing neighbors.\n");
+    printf("Writing neighbors.\n");
   }
   /* Allocate memory for neighbors if necessary. */
   if (*neighborlist == (int *) NULL) {
@@ -15203,15 +15201,15 @@ char **argv;
   index = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    mexPrintf("Writing %s.\n", neighborfilename);
+    printf("Writing %s.\n", neighborfilename);
   }
   outfile = fopen(neighborfilename, "w");
   if (outfile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot create file %s.\n", neighborfilename);
+    printf("  Error:  Cannot create file %s.\n", neighborfilename);
     triexit(1);
   }
   /* Number of triangles, three neighbors per triangle. */
-  fmexPrintf(outfile, "%ld  %d\n", m->triangles.items, 3);
+  fprintf(outfile, "%ld  %d\n", m->triangles.items, 3);
 #endif /* not TRILIBRARY */
 
   traversalinit(&m->triangles);
@@ -15244,7 +15242,7 @@ char **argv;
     nlist[index++] = neighbor3;
 #else /* not TRILIBRARY */
     /* Triangle number, neighboring triangle numbers. */
-    fmexPrintf(outfile, "%4ld    %d  %d  %d\n", elementnumber,
+    fprintf(outfile, "%4ld    %d  %d  %d\n", elementnumber,
             neighbor1, neighbor2, neighbor3);
 #endif /* not TRILIBRARY */
 
@@ -15288,7 +15286,7 @@ char **argv;
   long outvertices;
 
   if (!b->quiet) {
-    mexPrintf("Writing %s.\n", offfilename);
+    printf("Writing %s.\n", offfilename);
   }
 
   if (b->jettison) {
@@ -15299,11 +15297,11 @@ char **argv;
 
   outfile = fopen(offfilename, "w");
   if (outfile == (FILE *) NULL) {
-    mexPrintf("  Error:  Cannot create file %s.\n", offfilename);
+    printf("  Error:  Cannot create file %s.\n", offfilename);
     triexit(1);
   }
   /* Number of vertices, triangles, and edges. */
-  fmexPrintf(outfile, "OFF\n%ld  %ld  %ld\n", outvertices, m->triangles.items,
+  fprintf(outfile, "OFF\n%ld  %ld  %ld\n", outvertices, m->triangles.items,
           m->edges);
 
   /* Write the vertices. */
@@ -15312,7 +15310,7 @@ char **argv;
   while (vertexloop != (vertex) NULL) {
     if (!b->jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
       /* The "0.0" is here because the OFF format uses 3D coordinates. */
-      fmexPrintf(outfile, " %.17g  %.17g  %.17g\n", vertexloop[0], vertexloop[1],
+      fprintf(outfile, " %.17g  %.17g  %.17g\n", vertexloop[0], vertexloop[1],
               0.0);
     }
     vertexloop = vertextraverse(m);
@@ -15327,7 +15325,7 @@ char **argv;
     dest(triangleloop, p2);
     apex(triangleloop, p3);
     /* The "3" means a three-vertex polygon. */
-    fmexPrintf(outfile, " 3   %4d  %4d  %4d\n", vertexmark(p1) - b->firstnumber,
+    fprintf(outfile, " 3   %4d  %4d  %4d\n", vertexmark(p1) - b->firstnumber,
             vertexmark(p2) - b->firstnumber, vertexmark(p3) - b->firstnumber);
     triangleloop.tri = triangletraverse(m);
   }
@@ -15380,7 +15378,7 @@ struct behavior *b;
   int acutebiggest;
   int i, ii, j, k;
 
-  mexPrintf("Mesh quality statistics:\n\n");
+  printf("Mesh quality statistics:\n\n");
   radconst = PI / 18.0;
   degconst = 180.0 / PI;
   for (i = 0; i < 8; i++) {
@@ -15514,37 +15512,37 @@ struct behavior *b;
     }
   }
 
-  mexPrintf("  Smallest area: %16.5g   |  Largest area: %16.5g\n",
+  printf("  Smallest area: %16.5g   |  Largest area: %16.5g\n",
          smallestarea, biggestarea);
-  mexPrintf("  Shortest edge: %16.5g   |  Longest edge: %16.5g\n",
+  printf("  Shortest edge: %16.5g   |  Longest edge: %16.5g\n",
          shortest, longest);
-  mexPrintf("  Shortest altitude: %12.5g   |  Largest aspect ratio: %8.5g\n\n",
+  printf("  Shortest altitude: %12.5g   |  Largest aspect ratio: %8.5g\n\n",
          minaltitude, worstaspect);
 
-  mexPrintf("  Triangle aspect ratio histogram:\n");
-  mexPrintf("  1.1547 - %-6.6g    :  %8d    | %6.6g - %-6.6g     :  %8d\n",
+  printf("  Triangle aspect ratio histogram:\n");
+  printf("  1.1547 - %-6.6g    :  %8d    | %6.6g - %-6.6g     :  %8d\n",
          ratiotable[0], aspecttable[0], ratiotable[7], ratiotable[8],
          aspecttable[8]);
   for (i = 1; i < 7; i++) {
-    mexPrintf("  %6.6g - %-6.6g    :  %8d    | %6.6g - %-6.6g     :  %8d\n",
+    printf("  %6.6g - %-6.6g    :  %8d    | %6.6g - %-6.6g     :  %8d\n",
            ratiotable[i - 1], ratiotable[i], aspecttable[i],
            ratiotable[i + 7], ratiotable[i + 8], aspecttable[i + 8]);
   }
-  mexPrintf("  %6.6g - %-6.6g    :  %8d    | %6.6g -            :  %8d\n",
+  printf("  %6.6g - %-6.6g    :  %8d    | %6.6g -            :  %8d\n",
          ratiotable[6], ratiotable[7], aspecttable[7], ratiotable[14],
          aspecttable[15]);
-  mexPrintf("  (Aspect ratio is longest edge divided by shortest altitude)\n\n");
+  printf("  (Aspect ratio is longest edge divided by shortest altitude)\n\n");
 
-  mexPrintf("  Smallest angle: %15.5g   |  Largest angle: %15.5g\n\n",
+  printf("  Smallest angle: %15.5g   |  Largest angle: %15.5g\n\n",
          smallestangle, biggestangle);
 
-  mexPrintf("  Angle histogram:\n");
+  printf("  Angle histogram:\n");
   for (i = 0; i < 9; i++) {
-    mexPrintf("    %3d - %3d degrees:  %8d    |    %3d - %3d degrees:  %8d\n",
+    printf("    %3d - %3d degrees:  %8d    |    %3d - %3d degrees:  %8d\n",
            i * 10, i * 10 + 10, angletable[i],
            i * 10 + 90, i * 10 + 100, angletable[i + 9]);
   }
-  mexPrintf("\n");
+  printf("\n");
 }
 
 /*****************************************************************************/
@@ -15562,58 +15560,58 @@ struct behavior *b;
 #endif /* not ANSI_DECLARATORS */
 
 {
-  mexPrintf("\nStatistics:\n\n");
-  mexPrintf("  Input vertices: %d\n", m->invertices);
+  printf("\nStatistics:\n\n");
+  printf("  Input vertices: %d\n", m->invertices);
   if (b->refine) {
-    mexPrintf("  Input triangles: %d\n", m->inelements);
+    printf("  Input triangles: %d\n", m->inelements);
   }
   if (b->poly) {
-    mexPrintf("  Input segments: %d\n", m->insegments);
+    printf("  Input segments: %d\n", m->insegments);
     if (!b->refine) {
-      mexPrintf("  Input holes: %d\n", m->holes);
+      printf("  Input holes: %d\n", m->holes);
     }
   }
 
-  mexPrintf("\n  Mesh vertices: %ld\n", m->vertices.items - m->undeads);
-  mexPrintf("  Mesh triangles: %ld\n", m->triangles.items);
-  mexPrintf("  Mesh edges: %ld\n", m->edges);
-  mexPrintf("  Mesh exterior boundary edges: %ld\n", m->hullsize);
+  printf("\n  Mesh vertices: %ld\n", m->vertices.items - m->undeads);
+  printf("  Mesh triangles: %ld\n", m->triangles.items);
+  printf("  Mesh edges: %ld\n", m->edges);
+  printf("  Mesh exterior boundary edges: %ld\n", m->hullsize);
   if (b->poly || b->refine) {
-    mexPrintf("  Mesh interior boundary edges: %ld\n",
+    printf("  Mesh interior boundary edges: %ld\n",
            m->subsegs.items - m->hullsize);
-    mexPrintf("  Mesh subsegments (constrained edges): %ld\n",
+    printf("  Mesh subsegments (constrained edges): %ld\n",
            m->subsegs.items);
   }
-  mexPrintf("\n");
+  printf("\n");
 
   if (b->verbose) {
     quality_statistics(m, b);
-    mexPrintf("Memory allocation statistics:\n\n");
-    mexPrintf("  Maximum number of vertices: %ld\n", m->vertices.maxitems);
-    mexPrintf("  Maximum number of triangles: %ld\n", m->triangles.maxitems);
+    printf("Memory allocation statistics:\n\n");
+    printf("  Maximum number of vertices: %ld\n", m->vertices.maxitems);
+    printf("  Maximum number of triangles: %ld\n", m->triangles.maxitems);
     if (m->subsegs.maxitems > 0) {
-      mexPrintf("  Maximum number of subsegments: %ld\n", m->subsegs.maxitems);
+      printf("  Maximum number of subsegments: %ld\n", m->subsegs.maxitems);
     }
     if (m->viri.maxitems > 0) {
-      mexPrintf("  Maximum number of viri: %ld\n", m->viri.maxitems);
+      printf("  Maximum number of viri: %ld\n", m->viri.maxitems);
     }
     if (m->badsubsegs.maxitems > 0) {
-      mexPrintf("  Maximum number of encroached subsegments: %ld\n",
+      printf("  Maximum number of encroached subsegments: %ld\n",
              m->badsubsegs.maxitems);
     }
     if (m->badtriangles.maxitems > 0) {
-      mexPrintf("  Maximum number of bad triangles: %ld\n",
+      printf("  Maximum number of bad triangles: %ld\n",
              m->badtriangles.maxitems);
     }
     if (m->flipstackers.maxitems > 0) {
-      mexPrintf("  Maximum number of stacked triangle flips: %ld\n",
+      printf("  Maximum number of stacked triangle flips: %ld\n",
              m->flipstackers.maxitems);
     }
     if (m->splaynodes.maxitems > 0) {
-      mexPrintf("  Maximum number of splay tree nodes: %ld\n",
+      printf("  Maximum number of splay tree nodes: %ld\n",
              m->splaynodes.maxitems);
     }
-    mexPrintf("  Approximate heap memory use (bytes): %ld\n\n",
+    printf("  Approximate heap memory use (bytes): %ld\n\n",
            m->vertices.maxitems * m->vertices.itembytes +
            m->triangles.maxitems * m->triangles.itembytes +
            m->subsegs.maxitems * m->subsegs.itembytes +
@@ -15623,26 +15621,26 @@ struct behavior *b;
            m->flipstackers.maxitems * m->flipstackers.itembytes +
            m->splaynodes.maxitems * m->splaynodes.itembytes);
 
-    mexPrintf("Algorithmic statistics:\n\n");
+    printf("Algorithmic statistics:\n\n");
     if (!b->weighted) {
-      mexPrintf("  Number of incircle tests: %ld\n", m->incirclecount);
+      printf("  Number of incircle tests: %ld\n", m->incirclecount);
     } else {
-      mexPrintf("  Number of 3D orientation tests: %ld\n", m->orient3dcount);
+      printf("  Number of 3D orientation tests: %ld\n", m->orient3dcount);
     }
-    mexPrintf("  Number of 2D orientation tests: %ld\n", m->counterclockcount);
+    printf("  Number of 2D orientation tests: %ld\n", m->counterclockcount);
     if (m->hyperbolacount > 0) {
-      mexPrintf("  Number of right-of-hyperbola tests: %ld\n",
+      printf("  Number of right-of-hyperbola tests: %ld\n",
              m->hyperbolacount);
     }
     if (m->circletopcount > 0) {
-      mexPrintf("  Number of circle top computations: %ld\n",
+      printf("  Number of circle top computations: %ld\n",
              m->circletopcount);
     }
     if (m->circumcentercount > 0) {
-      mexPrintf("  Number of triangle circumcenter computations: %ld\n",
+      printf("  Number of triangle circumcenter computations: %ld\n",
              m->circumcentercount);
     }
-    mexPrintf("\n");
+    printf("\n");
   }
 }
 
@@ -15762,11 +15760,11 @@ char **argv;
   if (!b.quiet) {
     gettimeofday(&tv2, &tz);
     if (b.refine) {
-      mexPrintf("Mesh reconstruction");
+      printf("Mesh reconstruction");
     } else {
-      mexPrintf("Delaunay");
+      printf("Delaunay");
     }
-    mexPrintf(" milliseconds:  %ld\n", 1000l * (tv2.tv_sec - tv1.tv_sec) +
+    printf(" milliseconds:  %ld\n", 1000l * (tv2.tv_sec - tv1.tv_sec) +
            (tv2.tv_usec - tv1.tv_usec) / 1000l);
   }
 #endif /* not NO_TIMER */
@@ -15794,7 +15792,7 @@ char **argv;
   if (!b.quiet) {
     gettimeofday(&tv3, &tz);
     if (b.usesegments && !b.refine) {
-      mexPrintf("Segment milliseconds:  %ld\n",
+      printf("Segment milliseconds:  %ld\n",
              1000l * (tv3.tv_sec - tv2.tv_sec) +
              (tv3.tv_usec - tv2.tv_usec) / 1000l);
     }
@@ -15827,7 +15825,7 @@ char **argv;
   if (!b.quiet) {
     gettimeofday(&tv4, &tz);
     if (b.poly && !b.refine) {
-      mexPrintf("Hole milliseconds:  %ld\n", 1000l * (tv4.tv_sec - tv3.tv_sec) +
+      printf("Hole milliseconds:  %ld\n", 1000l * (tv4.tv_sec - tv3.tv_sec) +
              (tv4.tv_usec - tv3.tv_usec) / 1000l);
     }
   }
@@ -15844,7 +15842,7 @@ char **argv;
     gettimeofday(&tv5, &tz);
 #ifndef CDT_ONLY
     if (b.quality) {
-      mexPrintf("Quality milliseconds:  %ld\n",
+      printf("Quality milliseconds:  %ld\n",
              1000l * (tv5.tv_sec - tv4.tv_sec) +
              (tv5.tv_usec - tv4.tv_usec) / 1000l);
     }
@@ -15859,7 +15857,7 @@ char **argv;
     highorder(&m, &b);       /* Promote elements to higher polynomial order. */
   }
   if (!b.quiet) {
-    mexPrintf("\n");
+    printf("\n");
   }
 
 #ifdef TRILIBRARY
@@ -15889,9 +15887,9 @@ char **argv;
   if (b.nonodewritten || (b.noiterationnum && m.readnodefile)) {
     if (!b.quiet) {
 #ifdef TRILIBRARY
-      mexPrintf("NOT writing vertices.\n");
+      printf("NOT writing vertices.\n");
 #else /* not TRILIBRARY */
-      mexPrintf("NOT writing a .node file.\n");
+      printf("NOT writing a .node file.\n");
 #endif /* not TRILIBRARY */
     }
     numbernodes(&m, &b);         /* We must remember to number the vertices. */
@@ -15907,9 +15905,9 @@ char **argv;
   if (b.noelewritten) {
     if (!b.quiet) {
 #ifdef TRILIBRARY
-      mexPrintf("NOT writing triangles.\n");
+      printf("NOT writing triangles.\n");
 #else /* not TRILIBRARY */
-      mexPrintf("NOT writing an .ele file.\n");
+      printf("NOT writing an .ele file.\n");
 #endif /* not TRILIBRARY */
     }
   } else {
@@ -15926,9 +15924,9 @@ char **argv;
     if (b.nopolywritten || b.noiterationnum) {
       if (!b.quiet) {
 #ifdef TRILIBRARY
-        mexPrintf("NOT writing segments.\n");
+        printf("NOT writing segments.\n");
 #else /* not TRILIBRARY */
-        mexPrintf("NOT writing a .poly file.\n");
+        printf("NOT writing a .poly file.\n");
 #endif /* not TRILIBRARY */
       }
     } else {
@@ -15989,10 +15987,10 @@ char **argv;
   if (!b.quiet) {
 #ifndef NO_TIMER
     gettimeofday(&tv6, &tz);
-    mexPrintf("\nOutput milliseconds:  %ld\n",
+    printf("\nOutput milliseconds:  %ld\n",
            1000l * (tv6.tv_sec - tv5.tv_sec) +
            (tv6.tv_usec - tv5.tv_usec) / 1000l);
-    mexPrintf("Total running milliseconds:  %ld\n",
+    printf("Total running milliseconds:  %ld\n",
            1000l * (tv6.tv_sec - tv0.tv_sec) +
            (tv6.tv_usec - tv0.tv_usec) / 1000l);
 #endif /* not NO_TIMER */

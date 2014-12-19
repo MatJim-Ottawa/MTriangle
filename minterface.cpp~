@@ -202,9 +202,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	{
         for (int j = 0; j < 2; j++)
         {
-            in.segmentlist[i*2 + j] = (int)inMatrixS[i + Snrows*j];
-            mexPrintf("S:%4d\n",in.segmentlist[i]);
+            in.segmentlist[i*2 + j] = (int)inMatrixP[i + Pnrows*j];
         }
+        mexPrintf("S:%4d\n",in.segmentlist[i]);
 	}
 
 	in.numberofholes = 0;
@@ -246,7 +246,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     }
     else
     {
-        triangulate("pevVna0.01" , &in, &mid, &vorout);
+        triangulate("pevVn" , &in, &mid, &vorout);
     }
 
     mexPrintf("Initial triangulation:\n\n");

@@ -101,9 +101,9 @@
 /*  `pointlist':  An array of point coordinates.  The first point's x        */
 /*    coordinate is at index [0] and its y coordinate at index [1], followed */
 /*    by the coordinates of the remaining points.  Each point occupies two   */
-/*    TRIREALs.                                                                 */
+/*    REALs.                                                                 */
 /*  `pointattributelist':  An array of point attributes.  Each point's       */
-/*    attributes occupy `numberofpointattributes' TRIREALs.                     */
+/*    attributes occupy `numberofpointattributes' REALs.                     */
 /*  `pointmarkerlist':  An array of point markers; one int per point.        */
 /*                                                                           */
 /*  `trianglelist':  An array of triangle corners.  The first triangle's     */
@@ -112,8 +112,8 @@
 /*    represents a nonlinear element.  Each triangle occupies                */
 /*    `numberofcorners' ints.                                                */
 /*  `triangleattributelist':  An array of triangle attributes.  Each         */
-/*    triangle's attributes occupy `numberoftriangleattributes' TRIREALs.       */
-/*  `trianglearealist':  An array of triangle area constraints; one TRIREAL per */
+/*    triangle's attributes occupy `numberoftriangleattributes' REALs.       */
+/*  `trianglearealist':  An array of triangle area constraints; one REAL per */
 /*    triangle.  Input only.                                                 */
 /*  `neighborlist':  An array of triangle neighbors; three ints per          */
 /*    triangle.  Output only.                                                */
@@ -125,14 +125,14 @@
 /*                                                                           */
 /*  `holelist':  An array of holes.  The first hole's x and y coordinates    */
 /*    are at indices [0] and [1], followed by the remaining holes.  Two      */
-/*    TRIREALs per hole.  Input only, although the pointer is copied to the     */
+/*    REALs per hole.  Input only, although the pointer is copied to the     */
 /*    output structure for your convenience.                                 */
 /*                                                                           */
 /*  `regionlist':  An array of regional attributes and area constraints.     */
 /*    The first constraint's x and y coordinates are at indices [0] and [1], */
 /*    followed by the regional attribute at index [2], followed by the       */
 /*    maximum area at index [3], followed by the remaining area constraints. */
-/*    Four TRIREALs per area constraint.  Note that each regional attribute is  */
+/*    Four REALs per area constraint.  Note that each regional attribute is  */
 /*    used only if you select the `A' switch, and each area constraint is    */
 /*    used only if you select the `a' switch (with no number following), but */
 /*    omitting one of these switches does not change the memory layout.      */
@@ -148,7 +148,7 @@
 /*    Voronoi diagrams.  The first normal vector's x and y magnitudes are    */
 /*    at indices [0] and [1], followed by the remaining vectors.  For each   */
 /*    finite edge in a Voronoi diagram, the normal vector written is the     */
-/*    zero vector.  Two TRIREALs per edge.  Output only.                        */
+/*    zero vector.  Two REALs per edge.  Output only.                        */
 /*                                                                           */
 /*                                                                           */
 /*  Any input fields that Triangle will examine must be initialized.         */
@@ -247,17 +247,25 @@
 /*  not used, `numberofsegments' will indicate the number of boundary edges. */
 /*                                                                           */
 /*****************************************************************************/
+#ifndef REAL
+    #define REAL double
+#endif
+#ifndef VOID
+    #define VOID void
+#endif
+
+#define ANSI_DECLARATORS
 
 struct triangulateio {
-  TRIREAL *pointlist;                                               /* In / out */
-  TRIREAL *pointattributelist;                                      /* In / out */
+  REAL *pointlist;                                               /* In / out */
+  REAL *pointattributelist;                                      /* In / out */
   int *pointmarkerlist;                                          /* In / out */
   int numberofpoints;                                            /* In / out */
   int numberofpointattributes;                                   /* In / out */
 
   int *trianglelist;                                             /* In / out */
-  TRIREAL *triangleattributelist;                                   /* In / out */
-  TRIREAL *trianglearealist;                                         /* In only */
+  REAL *triangleattributelist;                                   /* In / out */
+  REAL *trianglearealist;                                         /* In only */
   int *neighborlist;                                             /* Out only */
   int numberoftriangles;                                         /* In / out */
   int numberofcorners;                                           /* In / out */
@@ -267,20 +275,31 @@ struct triangulateio {
   int *segmentmarkerlist;                                        /* In / out */
   int numberofsegments;                                          /* In / out */
 
-  TRIREAL *holelist;                        /* In / pointer to array copied out */
+  REAL *holelist;                        /* In / pointer to array copied out */
   int numberofholes;                                      /* In / copied out */
 
-  TRIREAL *regionlist;                      /* In / pointer to array copied out */
+  REAL *regionlist;                      /* In / pointer to array copied out */
   int numberofregions;                                    /* In / copied out */
 
   int *edgelist;                                                 /* Out only */
   int *edgemarkerlist;            /* Not used with Voronoi diagram; out only */
-  TRIREAL *normlist;                /* Used only with Voronoi diagram; out only */
+  REAL *normlist;                /* Used only with Voronoi diagram; out only */
   int numberofedges;                                             /* Out only */
 };
 
-
-void triangulate(char *, struct triangulateio *, struct triangulateio *,
+#ifdef ANSI_DECLARATORS
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+void triangulate(const char *, struct triangulateio *, struct triangulateio *,
                  struct triangulateio *);
-void trifree(void *memptr);
+#ifdef __cplusplus
+}
+#endif
 
+void trifree(VOID *memptr);
+#else /* not ANSI_DECLARATORS */
+void triangulate();
+void trifree();
+#endif /* not ANSI_DECLARATORS */
