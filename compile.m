@@ -1,3 +1,3 @@
-mex -c triangle.o
+mex -c -g triangle.c
 
-mex minterface.cpp triangle.o
+mex -g minterface.cpp triangle.obj

@@ -173,7 +173,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	struct triangulateio in, mid, vorout;
 
 	in.numberofpoints = Pnrows;
-    in.pointlist = (REAL *) malloc(in.numberofpoints * 2 * sizeof(REAL));
+	in.pointlist = (REAL *)malloc(Pnrows * 2 * sizeof(REAL));
     
     for (int i = 0; i < Pnrows; i++)
     {
@@ -184,7 +184,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
     }
 
-	in.pointmarkerlist = (int *)malloc(in.numberofpoints * sizeof(int));
+	in.pointmarkerlist = (int *)malloc(Pnrows * sizeof(int));
 
 	for (int i = 0; i < PBnrows; i++)
 	{
@@ -193,19 +193,20 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	}
 
 	in.numberofpointattributes = PAnrows;
-	in.pointattributelist = inMatrixPA;
+	in.pointattributelist = (TRIREAL *)NULL;
 
 	in.numberofsegments = Snrows;
-	in.segmentlist = (int *)malloc(in.numberofpoints * 2 * sizeof(int));
+	in.segmentlist = (int *)malloc(Snrows * 2 * sizeof(int));
 
-	for (int i = 0; i < Snrows * 2; i++)
+	for (int i = 0; i < Snrows; i++)
 	{
         for (int j = 0; j < 2; j++)
         {
             in.segmentlist[i*2 + j] = (int)inMatrixS[i + Snrows*j];
-            mexPrintf("S:%4d\n",in.segmentlist[i]);
         }
 	}
+
+	in.segmentmarkerlist = (int *)NULL;
 
 	in.numberofholes = 0;
 	in.numberofregions = 0;
@@ -259,7 +260,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
     double  *pointer; 
     pointer = mxGetPr(plhs[0]);
-
+   mexPrintf("Here: %d \n", mid.numberofpoints);
     /* Copy data into the mxArray */
     for (int index = 0; index < mid.numberofpoints; index++ ) {
         for (int col = 0; col < 2; col++)
@@ -401,6 +402,12 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
         
     } 
     
+  free(in.pointlist);
+  free(in.pointattributelist);
+  free(in.pointmarkerlist);
+  free(in.segmentlist);
+  free(in.segmentmarkerlist);
+//  free(in.regionlist);  
   free(mid.pointlist);
   free(mid.pointattributelist);
   free(mid.pointmarkerlist);
@@ -416,6 +423,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   free(vorout.pointattributelist);
   free(vorout.edgelist);
   free(vorout.normlist);
+
   /*  Free(out.pointlist);
   Free(out.pointattributelist);
   Free(out.trianglelist);

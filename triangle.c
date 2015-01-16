@@ -271,6 +271,7 @@
 /* #define LINUX */
 
 #define INEXACT /* Nothing */
+#define NO_TIMER
 /* #define INEXACT volatile */
 
 /* Maximum number of characters in a file name (including the null).         */

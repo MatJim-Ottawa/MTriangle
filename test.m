@@ -10,4 +10,4 @@ o = MTriangle(P,PB,PA,S);
 
 
 figure(1);
-plot(o.P(:,1),o.P(:,2
+plot(o.P(:,1),o.P(:,2),'x');
