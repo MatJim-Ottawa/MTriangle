@@ -14,6 +14,7 @@
 #include "mex.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 
@@ -153,8 +154,16 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	double *inMatrixP, *inMatrixPB, *inMatrixPA, *inMatrixS;
 	size_t Pncols, Pnrows, PBnrows, PAnrows, Snrows;
 
+	int buflen = mxGetNumberOfElements(prhs[4]) + 1;
+
+	char *option;
+	option = (char *)mxCalloc(buflen, sizeof(char));
+	
 	/* Output Variables  in C */
 
+	if (mxGetString(prhs[4], option, buflen) != 0)
+		mexErrMsgIdAndTxt("MATLAB:explore:invalidStringArray",
+		"Could not convert string data.");
 
 
 	inMatrixP = mxGetPr(prhs[0]);
@@ -242,25 +251,17 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	/*   neighbor list (n).												*/
 
 
-    if (Snrows == 0) {
-        triangulate("pevVnc" , &in, &mid, &vorout);
-    }
-    else
-    {
-        triangulate("pevVna0.01" , &in, &mid, &vorout);
-    }
 
-    mexPrintf("Initial triangulation:\n\n");
-//     report(&in,1, 1, 1, 1, 1, 0);
-//     report(&mid, 1, 1, 1, 1, 1, 0);
-//     report(&vorout, 0, 0, 0, 0, 1, 1);
-//     
+	triangulate(option, &in, &mid, &vorout);
+    
+
+
 //    ************** Matrix P ***************************
     plhs[0] = mxCreateNumericMatrix(mid.numberofpoints, 2, mxDOUBLE_CLASS, mxREAL);
     
     double  *pointer; 
     pointer = mxGetPr(plhs[0]);
-   mexPrintf("Here: %d \n", mid.numberofpoints);
+
     /* Copy data into the mxArray */
     for (int index = 0; index < mid.numberofpoints; index++ ) {
         for (int col = 0; col < 2; col++)
