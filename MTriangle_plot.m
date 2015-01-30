@@ -3,11 +3,11 @@ function [] = MTriangle_plot( results )
 
 f = figure();
 
-A = sparse(results.E(:,1),results.E(:,2),1);
+A = sparse(results.Edges(:,1),results.Edges(:,2),1);
 
 hold on;
-gplot(A,results.P,'-b');
-plot(results.P(:,1),results.P(:,2),'ro');
+gplot(A,results.Vertices,'-b');
+plot(results.Vertices(:,1),results.Vertices(:,2),'ro');
 
 
 
